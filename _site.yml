@@ -1,0 +1,31 @@
+name: OTTR Template Website
+output_dir: '.'
+navbar:
+  title: OTTR Web
+  left:
+  - text: Home
+    href: index.html
+  - text: Setup
+    href: setup.html   
+  - text: Hosting
+    href: hosting.html   
+  - text: Structure
+    href: structure.html  
+  - text: Style
+    href: style.html
+  - text: Git Actions
+    href: git_actions.html
+  - text: Contact
+    href: contact.html
+    icon: fa-envelope
+
+
+output:
+  html_document:
+    theme: cosmo
+    lib_dir: site_libs
+    self_contained: no
+    highlight: textmate
+    css: styles.css
+    includes:
+       in_header: resources/header.html
