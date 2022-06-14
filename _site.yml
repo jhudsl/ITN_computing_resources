@@ -5,12 +5,12 @@ navbar:
   left:
   - text: Home
     href: index.html
-  - text: Setup
-    href: setup.html   
-  - text: Hosting
-    href: hosting.html   
-  - text: Structure
-    href: structure.html  
+  - text: General
+    href: generalTable.html   
+  - text: Imaging
+    href: imagingTable.html   
+  - text: Omics
+    href: omicsTable.html  
   - text: Style
     href: style.html
   - text: Git Actions
