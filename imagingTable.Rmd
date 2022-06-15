@@ -54,8 +54,9 @@ ICTR_imaging <- trimmedData %>%
     extensions = list("Scroller"),
     options = list(autoWidth = TRUE, pageLength = 10, scrollY = TRUE,
                    scrollX = TRUE, scrollCollapse = TRUE, fillContainer = TRUE,
+                   order = (list(0, 'asc')),
                    columnDefs = list(list(width = '600px', targets = c(6)),
-                                     list(width = '100px', targets = c(4)),
+                                     list(width = '100px', targets = c(0,4)),
                                      list(width = '400px', targets = c(2)),
                                      list(width = '200px', targets = "_all")),
                    initComplete = JS(

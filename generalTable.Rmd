@@ -44,7 +44,7 @@ trimmedData <- generalData[ -c(1,2,9,11) ]
 ICTR_general <- trimmedData %>%
   DT::datatable(
     style = 'auto',
-    width="225%",
+    width="100%",
     colnames = c('Unique Factor' = 2, 'Types of Data' = 3,'Interface (CL, GUI)' = 6,
                  'Summary' = 8),
     rownames = FALSE,
@@ -55,6 +55,7 @@ ICTR_general <- trimmedData %>%
     extensions = list("Scroller"),
     options = list(scrollX = TRUE, autoWidth = TRUE, pageLength = 10,
                    scrollCollapse = TRUE, fillContainer = TRUE,
+                   order = (list(0, 'asc')),
                    columnDefs = list(list(width = '600px', targets = c(7)),
                                      list(width = '100px', targets = c(0,4,5)),
                                      list(width = '400px', targets = c(2)),

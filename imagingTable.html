@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Pratik" />
+
+<meta name="date" content="2022-06-07" />
+
+<title>imagingTable</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.23/datatables.js"></script>
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="resources/images/favicon.ico" />
+ <!--- go to https://favicon.io/favicon-converter/ to upload an image to make a new favicon.io. You will need to replace the current favicon.io image with the one in the downloaded directory from the website. The current image is in the resources/images/ directory --->
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OTTR Web</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="generalTable.html">General</a>
+</li>
+<li>
+  <a href="imagingTable.html">Imaging</a>
+</li>
+<li>
+  <a href="omicsTable.html">Omics</a>
+</li>
+<li>
+  <a href="style.html">Style</a>
+</li>
+<li>
+  <a href="git_actions.html">Git Actions</a>
+</li>
+<li>
+  <a href="contact.html">
+    <span class="fa fa-envelope"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">imagingTable</h1>
+<h4 class="author">Pratik</h4>
+<h4 class="date">2022-06-07</h4>
+
+</div>
+
+
+<div id="print-the-dt-table" class="section level1">
+<h1>Print the DT Table</h1>
+<div id="htmlwidget-a41dd9f53819c28ddbcb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a41dd9f53819c28ddbcb">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Imaging Informatics Tools<\/caption>","data":[["Tumor Heterogenity Research Interactive Visualization Environment (THRIVE):<br><\/br><a href=\"https://www.csb.pitt.edu/ith/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"https://www.csb.pitt.edu/ith/publications.html\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","Cloud-based Image Biomarker Platform  (C-BIBOP):<br><\/br><a href=\"http://cbibop.github.io/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"https://github.com/cbibop/ProjectUpdatesAndWiki/wiki\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","Pathology Imaging Informatics Platform (PIIP):<br><\/br><a href=\"http://pathiip.org/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"http://pathiip.org/?q=Biblio\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","Quantitative Imaging In Pathology (QUIP):<br><\/br><a href=\"https://sbu-bmi.github.io/quip_distro/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","XNAT:<br><\/br><a href=\"https://www.xnat.org/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"https://wiki.xnat.org/documentation\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"https://www.xnat.org/about/xnat-publications.php\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","RADIOMICS.io:<br><\/br><a href=\"https://www.radiomics.io/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"https://www.radiomics.io/science.html\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","Cancer Slide Digital Archive (CDSA):<br><\/br><a href=\"https://cancer.digitalslidearchive.org/#!/CDSA/acc/TCGA-OR-A5J1\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","LesionTracker / OHIF Web Image Viewer:<br><\/br><a href=\"https://ohif.org/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"https://docs.ohif.org/history/v1/\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","PRISM - Platform for Imaging in Precision Medicine\r\n:<br><\/br><a href=\"https://www.prismclinical.com/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"https://ascopubs.org/doi/full/10.1200/CCI.20.00001\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>","OHIF:<br><\/br><a href=\"https://ohif.org/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"https://v3-docs.ohif.org/\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png\"  height=\"20\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png\"  height=\"20\"> <\/img><\/a>"],["Biomedical Imaging","Biomedical Imaging","Biomedical Imaging","Biomedical Imaging","Biomedical Imaging","Radiomics","Pathology","Biomedical Imaging","Biomedical Imaging","Biomedical Imaging"],["A flexible image platform that allows users to combine curated algorithms with their own data and analyses methods","This platform works with medical imaging; this uses Docker containers for data sharing","Allows for the compilation of user data and use of third party algorithms for analysis.","Focuses on imaging and analysis of whole slide tissue imaging; Highly customizable for data organization","This is an open-source platform that allows for data usage and collaboration primarily with clinical data; HIPAA compliant","This is an open-source platform that aims combine radiomics imaging with deep learning features","This platform hosts both TCGA images and metadata for visual research purposes","OHIF focuses on imaging analysis, providing a user-friendly interface for radiology and whole-slide imaging","PRISM was designed to work directly with the data provided in the Cancer Imaging Archive (TCIA)","Focuses specifically on medical imaging, allowing for a wide scope of applications"],["Microarray, Pathology Imaging","Radiographic Imaging","Pathology Imaging","Pathology Imaging","Radiographic Imaging","Radiographic Imaging","Pathology Imaging","Radiographic Imaging, General Imaging","Radiographic Imaging, Liquid Chromatography/Mass Spectrometry","Pathology Imaging, Radiographic Imaging"],["Free","Free","Free/Paid","Free","Free","Free",null,"Free","N/A","Free"],["Curated Data Sources","Curated Data Sources","Curated Data Sources","Collaborative/User Data Sources",null,"NSCLC Radiomics","TCGA","Curated Data Sources","TCIA","DICOMweb Imaging"],["A platform for quantitative evaluation of intratumoral spatial heterogeneity in multiplexed immunofluorescence images, via characterization of the spatial interactions between different cellular phenotypes and non-cellular constituents in the tumor microenvironment. A plugin mechanism enables researches to add and share their own heterogeneity algorithms.","C-BIBOP is a cloud based platform for medical imaging algorithm comparisons. C-BIBOP is used to conduct challenges and benchmarks and uses Docker containers to share algorithm.","Freely downloadable pathology viewer which supports viewing, annotation and analysis of Whole Slide Images. Functionality will be extended as part of the Pathology Image Informatics Platform.","QuIP is an integrated software platform designed to support analysis, management, and exploration of whole slide tissue images for cancer research.Â The QuIP software platform consists of a set of docker containers, which provide analysis execution and data management backend services, and web applications to load and visualize whole slide tissue images (stored inÂ supported file formats) Â and explore analysis results.","XNAT is an open source imaging informatics platform designed to support institutional image repositories, image-based clinical trials, and translational imaging research.","RADIOMICS.io is a open source platform for informatics developments for radiographic phenotyping using automated algorithms, such as engineered features or using deep learning technologies. With this platform, we aim to establish a reference standard for radiomic analyses, provide a tested and maintained resource, and to grow the community of radiomic developers addressing critical needs in cancer research.","The CDSA is a web-based platform to support the sharing, managment and analysis of digital pathology data. The Emory Instance currently hosts over 23,000 images from The Cancer Genome Atlas, and the software is being developed within the ITCR grant to be deployable as a digital pathology platform for other labs and Cancer Institutes.","Extensible open-source zero-footprint web image viewer for oncology imaging. \"LesionTracker\" is a web browser based platform for viewing and measuring lesion metrics for tracking oncology trials.","Prism is a clinical imaging platform that specializes in fMRI, DTI, and advanced physiological sequences. This platform aims to compile image data into a single source, providing anomatomical, functional and physiological image sequences within a single view.","The Open Health Imaging Foundation (OHIF) is an open-source web-based medical imaging platform. This platform aims to provide tools and resources for radiology analysis and whole-slide microscopy image analysis."]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Platform<\/th>\n      <th>Unique Factor<\/th>\n      <th>Types of Data<\/th>\n      <th>Data Types (Clean)<\/th>\n      <th>Price<\/th>\n      <th>Data Provided<\/th>\n      <th>Summary<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"autoWidth":true,"pageLength":10,"scrollY":true,"scrollX":true,"scrollCollapse":true,"fillContainer":true,"order":[0,"asc"],"columnDefs":[{"width":"600px","targets":6},{"width":"100px","targets":[0,4]},{"width":"400px","targets":2},{"width":"200px","targets":"_all"}],"initComplete":"function(settings, json) {\n$('body').css({'font-family': 'Calibri'});\n$(this.api().table().header()).css({'backgroundColor': '#3f546f'});\n$(this.api().table().header()).css({'color': '#fff'});\n}","orderClasses":false,"orderCellsTop":true}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
