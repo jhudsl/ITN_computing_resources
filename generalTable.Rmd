@@ -1,9 +1,11 @@
 ---
-title: "generalTable"
-author: "Pratik"
-date: '2022-06-07'
+title: "General Informatics Table"
 output: html_document
 ---
+
+### **About**
+
+This website contains a list of general informatics tools funded by ITCR grants.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
@@ -48,7 +50,7 @@ ICTR_general <- trimmedData %>%
     colnames = c('Unique Factor' = 2, 'Types of Data' = 3,'Interface (CL, GUI)' = 6,
                  'Summary' = 8),
     rownames = FALSE,
-    caption = 'General Informatics Tools',
+    caption = 'Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.',
     escape = FALSE,
     filter = "top",
     #escape = FALSE,
@@ -69,7 +71,6 @@ ICTR_general <- trimmedData %>%
   )
 ```
 
-# Print the DT Table
 ```{r,echo=FALSE}
 ICTR_general
 ```

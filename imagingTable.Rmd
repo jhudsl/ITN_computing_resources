@@ -1,9 +1,11 @@
 ---
-title: "imagingTable"
-author: "Pratik"
-date: '2022-06-07'
+title: "Imaging Informatics Table"
 output: html_document
 ---
+
+### **About**
+
+This website contains a list of imaging informatics tools funded by ITCR grants.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
@@ -47,7 +49,7 @@ ICTR_imaging <- trimmedData %>%
     colnames = c('Unique Factor' = 2, 'Types of Data' = 3,
                  'Summary' = 7),
     rownames = FALSE,
-    caption = 'Imaging Informatics Tools',
+    caption = 'Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.',
     escape = FALSE,
     filter = "top",
     #escape = FALSE,
@@ -68,7 +70,6 @@ ICTR_imaging <- trimmedData %>%
   )
 ```
 
-# Print the DT Table
 ```{r,echo=FALSE}
 ICTR_imaging
 ```
