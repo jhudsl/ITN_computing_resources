@@ -2,9 +2,14 @@ cheatsheet
 css
 custimization
 cwrigh
+DT
+favicon
+generalTable
 HTTPS
+imagingTable
 lightblue
 lightgreen
+omicsTable
 OTTR
 Rmd
 subdir
