@@ -11,9 +11,9 @@ navbar:
     href: imagingTable.html   
   - text: Omics
     href: omicsTable.html  
-  - text: Style
+  - text: Omics + Imaging
     href: style.html
-  - text: Git Actions
+  - text: Clinical
     href: git_actions.html
   - text: Contact
     href: contact.html

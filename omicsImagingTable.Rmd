@@ -1,11 +1,11 @@
 ---
-title: "**Imaging Informatics Table**"
+title: "**Omics + Imaging Informatics Table**"
 output: html_document
 ---
 
 ### **About**
 
-This website contains a list of imaging informatics tools funded by ITCR grants.
+This website contains a list of combined omics and imaging informatics tools funded by ITCR grants.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
@@ -19,7 +19,7 @@ library(RCurl)
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for Imaging Table
-generalData <- read_csv(file = here::here("ictr_table_imaging.csv"))
+generalData <- read_csv(file = here::here("ictr_table_omics_imaging.csv"))
 generalData
 
 # Mutate the tibble to alter three of the columns
@@ -37,12 +37,14 @@ generalData %<>%
   relocate(Platform, .after = `Link (Hyperlinked Over Name)`)
 
 # Create a trimmed version of the data by removing the non-consolidated columns. 
-trimmedData <- generalData[ -c(1,2,8,10) ]
+trimmedData <- generalData[ -c(1,2,8,10) ]   
+trimmedData
 ```
+
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Create a Imaging Table
-ICTR_imaging <- trimmedData %>%
+ICTR_omics <- trimmedData %>%
   DT::datatable(
     style = 'auto',
     width="100%",
@@ -71,5 +73,5 @@ ICTR_imaging <- trimmedData %>%
 ```
 
 ```{r,echo=FALSE}
-ICTR_imaging
+ICTR_omics
 ```
