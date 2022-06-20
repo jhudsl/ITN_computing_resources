@@ -24,9 +24,9 @@ generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"',' target="_blank"','<div title="Main Link"> </div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png"  height=\"20\"> </img>','</a>'),
-         `Documentation Link` = paste0('<a href="',`Documentation Link`,'"',' target="_blank"','<div title="Documentation"> </div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png"  height=\"20\"> </img>', '</a>'),
-         Publications = paste0('<a href="',Publications,'"',' target="_blank"','<div title="Publications"> </div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png"  height=\"20\"> </img>', '</a>'))
+  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height=\"30\"> </img>','</a>'),
+         `Documentation Link` = paste0('<a href="',`Documentation Link`,'"',' target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height=\"30\"> </img>', '</a>'),
+         Publications = paste0('<a href="',Publications,'"',' target="_blank"','<div title="Publications"> </div> <img src="Publication.png" height=\"30\"> </img>', '</a>'))
 
 # Mutate the tibble to combine all three columns into a general "Platform" column.
 generalData %<>%
