@@ -1,5 +1,5 @@
 ---
-title: "Imaging Informatics Table"
+title: "**Imaging Informatics Table**"
 output: html_document
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "General Informatics Table"
+title: "**General Informatics Table**"
 output: html_document
 ---
 
