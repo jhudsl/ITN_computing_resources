@@ -26,12 +26,12 @@ generalData
 # Mutate the tibble to alter three of the columns
 generalData %<>%
   mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height=\"30\"> </img>','</a>'),
-         `Documentation Link` = paste0('<a href="',`Documentation Link`,'"',' target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height=\"30\"> </img>', '</a>'),
+         Documentation = paste0('<a href="',Documentation,'"',' target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height=\"30\"> </img>', '</a>'),
          Publications = paste0('<a href="',Publications,'"',' target="_blank"','<div title="Publications"> </div> <img src="Publication.png" height=\"30\"> </img>', '</a>'))
 
 # Mutate the tibble to combine all three columns into a general "Platform" column.
 generalData %<>%
-  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', `Documentation Link`,'<br></br>', Publications))
+  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', Documentation,'<br></br>', Publications))
 
 # Shift the location of the "Platform" column. 
 generalData %<>%

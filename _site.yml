@@ -11,8 +11,6 @@ navbar:
     href: imagingTable.html   
   - text: Omics
     href: omicsTable.html  
-  - text: Omics + Imaging
-    href: omicsImagingTable.html
   - text: Clinical
     href: clinicalTable.html
   - text: Other
