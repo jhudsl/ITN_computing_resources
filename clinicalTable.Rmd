@@ -5,7 +5,7 @@ output: html_document
 
 ### **About**
 
-This website contains a list of clinical informatics tools funded by ITCR grants.
+This website contains a list of clinical informatics platforms funded by ITCR grants. Clinical platforms are those which work with several clinical data types, such as EMR Text and Clinical Notes. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
@@ -24,13 +24,13 @@ generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height=\"30\"> </img>','</a>'),
-         `Documentation Link` = paste0('<a href="',`Documentation Link`,'"',' target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height=\"30\"> </img>', '</a>'),
-         Publications = paste0('<a href="',Publications,'"',' target="_blank"','<div title="Publications"> </div> <img src="Publication.png" height=\"30\"> </img>', '</a>'))
+  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height="30"> </img>', "Main Link",'</a>'),
+         Documentation = paste0('<a href="',Documentation,'"',' target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height="30"> </img>', "Documentation", '</a>'),
+         Publications = paste0('<a href="',Publications,'"',' target="_blank"','<div title="Publications"> </div> <img src="Publication.png" height="30"> </img>', "Publications", '</a>'))
 
 # Mutate the tibble to combine all three columns into a general "Platform" column.
 generalData %<>%
-  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', `Documentation Link`,'<br></br>', Publications))
+  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', Documentation,'<br></br>', Publications))
 
 # Shift the location of the "Platform" column. 
 generalData %<>%
@@ -51,7 +51,6 @@ ICTR_omics <- trimmedData %>%
     colnames = c('Unique Factor' = 2, 'Types of Data' = 3,
                  'Summary' = 7),
     rownames = FALSE,
-    caption = 'Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.',
     escape = FALSE,
     filter = "top",
     #escape = FALSE,
@@ -59,9 +58,10 @@ ICTR_omics <- trimmedData %>%
     options = list(autoWidth = TRUE, pageLength = 10, scrollY = TRUE,
                    scrollX = TRUE, scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
-                   columnDefs = list(list(width = '600px', targets = c(6)),
-                                     list(width = '100px', targets = c(0,4)),
-                                     list(width = '400px', targets = c(2)),
+                   columnDefs = list(list(width = '300px', targets = c(6)),
+                                     list(width = '100px', targets = c(3,4)),
+                                     list(width = '120px', targets = c(0)),
+                                     list(width = '200px', targets = c(2)),
                                      list(width = '200px', targets = "_all")),
                    initComplete = JS(
                      "function(settings, json) {",
