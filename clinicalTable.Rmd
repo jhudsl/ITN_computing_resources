@@ -43,6 +43,10 @@ generalData %<>%
 # Create a trimmed version of the data by removing the non-consolidated columns. 
 trimmedData <- generalData[ -c(1,2,8,10) ]   
 trimmedData
+
+# Shift the location of the "Summary" column.
+trimmedData %<>%
+  relocate(Summary, .after = Subcategories)
 ```
 
 
@@ -52,8 +56,8 @@ ICTR_omics <- trimmedData %>%
   DT::datatable(
     style = 'auto',
     width="100%",
-    colnames = c('Unique Factor' = 3, 'Types of Data' = 4,
-                 'Summary' = 7),
+    colnames = c('Unique Factor' = 4, 'Types of Data' = 5,
+                 'Summary' = 3),
     rownames = FALSE,
     escape = FALSE,
     filter = "top",
@@ -62,11 +66,11 @@ ICTR_omics <- trimmedData %>%
     options = list(autoWidth = TRUE, pageLength = 10, scrollY = TRUE,
                    scrollX = TRUE, scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
-                   columnDefs = list(list(width = '300px', targets = c(6)),
-                                     list(width = '100px', targets = c(3,4)),
+                   columnDefs = list(list(width = '300px', targets = c(2)),
+                                     list(width = '100px', targets = c(4,5)),
                                      list(width = '120px', targets = c(0)),
-                                     list(width = '200px', targets = c(2)),
-                                     list(width = '200px', targets = "_all")),
+                                     list(width = '200px', targets = c(3)),
+                                     list(width = '150px', targets = "_all")),
                    initComplete = JS(
                      "function(settings, json) {",
                      "$('body').css({'font-family': 'Calibri'});",
