@@ -24,9 +24,13 @@ generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height="30"> </img>', "Main Link",'</a>'),
-         Documentation = paste0('<a href="',Documentation,'"',' target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height="30"> </img>', "Documentation", '</a>'),
-         Publications = paste0('<a href="',Publications,'"',' target="_blank"','<div title="Publications"> </div> <img src="Publication.png" height="30"> </img>', "Publications", '</a>'))
+  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height="30"> </img>', "Main Link",'</a>'),
+         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height="30"> </img>', "Documentation", '</a>'),
+         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div> <img src="Publication.png" height="30"> </img>', "Publications", '</a>'))
+
+#Mutate generalData's Name to be bolded.
+generalData %<>%
+  mutate(Name = paste0('<b>', Name,'</b>'))
 
 # Mutate the tibble to combine all three columns into a general "Platform" column.
 generalData %<>%
