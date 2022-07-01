@@ -36,12 +36,25 @@ generalData %<>%
 generalData %<>%
   mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', Documentation,'<br></br>', Publications))
 
+# Mutate Platform to contain an ITCR logo if the Platform is funded by ITCR.
+for (row in 1:nrow(generalData)) {
+    status <- generalData[row, "Funding"]
+    target  <- generalData[row, "Platform"]
+
+  if(status == "Yes") {
+    target %<>%
+    mutate(Platform = paste0(Platform,'<br></br>','<img src="ITCRLogo.png" height="50"> </img>'))
+    
+    generalData[row,"Platform"] <- target
+  }
+}
+
 # Shift the location of the "Platform" column. 
 generalData %<>%
   relocate(Platform, .after = `Link (Hyperlinked Over Name)`)
 
 # Create a trimmed version of the data by removing the non-consolidated columns. 
-trimmedData <- generalData[ -c(1,2,8,10) ]   
+trimmedData <- generalData[ -c(1,2,8,10,12) ]   
 trimmedData
 
 # Shift the location of the "Summary" column.

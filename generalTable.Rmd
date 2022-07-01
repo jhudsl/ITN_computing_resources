@@ -44,7 +44,7 @@ for (row in 1:nrow(generalData)) {
 
   if(status == "Yes") {
     target %<>%
-    mutate(Platform = paste0(Platform, '<img src="ITCRLogo.png" height="100"> </img>'))
+    mutate(Platform = paste0(Platform,'<br></br>','<img src="ITCRLogo.png" height="50"> </img>'))
     
     generalData[row,"Platform"] <- target
   }
