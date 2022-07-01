@@ -11,10 +11,8 @@ navbar:
     href: imagingTable.html   
   - text: Omics
     href: omicsTable.html  
-  - text: Omics + Imaging
-    href: style.html
   - text: Clinical
-    href: git_actions.html
+    href: clinicalTable.html
   - text: Contact
     href: contact.html
     icon: fa-envelope

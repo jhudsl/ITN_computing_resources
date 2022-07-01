@@ -1,5 +1,5 @@
 ---
-title: "**Website Name**"
+title: "**ITCR Cancer Informatics Platform Database**"
 output:
   html_document
 ---

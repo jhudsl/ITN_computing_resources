@@ -5,7 +5,7 @@ output: html_document
 
 ### **About**
 
-This website contains a list of clinical informatics tools funded by ITCR grants.
+This website contains a list of clinical informatics platforms funded by ITCR grants. Clinical platforms are those which work with several clinical data types, such as EMR Text and Clinical Notes. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
@@ -24,21 +24,42 @@ generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"',' target="_blank"','<div title="Main Link"> </div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-link-1.png"  height=\"20\"> </img>','</a>'),
-         `Documentation Link` = paste0('<a href="',`Documentation Link`,'"',' target="_blank"','<div title="Documentation"> </div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-13.png"  height=\"20\"> </img>', '</a>'),
-         Publications = paste0('<a href="',Publications,'"',' target="_blank"','<div title="Publications"> </div> <img src=\"https://cdns.iconmonstr.com/wp-content/releases/preview/2013/240/iconmonstr-note-4.png"  height=\"20\"> </img>', '</a>'))
+  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height="30"> </img>', "Main Link",'</a>'),
+         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height="30"> </img>', "Documentation", '</a>'),
+         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div> <img src="Publication.png" height="30"> </img>', "Publications", '</a>'))
+
+#Mutate generalData's Name to be bolded.
+generalData %<>%
+  mutate(Name = paste0('<b>', Name,'</b>'))
 
 # Mutate the tibble to combine all three columns into a general "Platform" column.
 generalData %<>%
-  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', `Documentation Link`,'<br></br>', Publications))
+  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', Documentation,'<br></br>', Publications))
+
+# Mutate Platform to contain an ITCR logo if the Platform is funded by ITCR.
+for (row in 1:nrow(generalData)) {
+    status <- generalData[row, "Funding"]
+    target  <- generalData[row, "Platform"]
+
+  if(status == "Yes") {
+    target %<>%
+    mutate(Platform = paste0(Platform,'<br></br>','<img src="ITCRLogo.png" height="50"> </img>'))
+    
+    generalData[row,"Platform"] <- target
+  }
+}
 
 # Shift the location of the "Platform" column. 
 generalData %<>%
   relocate(Platform, .after = `Link (Hyperlinked Over Name)`)
 
 # Create a trimmed version of the data by removing the non-consolidated columns. 
-trimmedData <- generalData[ -c(1,2,8,10) ]   
+trimmedData <- generalData[ -c(1,2,8,10,12) ]   
 trimmedData
+
+# Shift the location of the "Summary" column.
+trimmedData %<>%
+  relocate(Summary, .after = Subcategories)
 ```
 
 
@@ -48,10 +69,9 @@ ICTR_omics <- trimmedData %>%
   DT::datatable(
     style = 'auto',
     width="100%",
-    colnames = c('Unique Factor' = 2, 'Types of Data' = 3,
-                 'Summary' = 7),
+    colnames = c('Unique Factor' = 4, 'Types of Data' = 5,
+                 'Summary' = 3),
     rownames = FALSE,
-    caption = 'Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.',
     escape = FALSE,
     filter = "top",
     #escape = FALSE,
@@ -59,10 +79,11 @@ ICTR_omics <- trimmedData %>%
     options = list(autoWidth = TRUE, pageLength = 10, scrollY = TRUE,
                    scrollX = TRUE, scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
-                   columnDefs = list(list(width = '600px', targets = c(6)),
-                                     list(width = '100px', targets = c(0,4)),
-                                     list(width = '400px', targets = c(2)),
-                                     list(width = '200px', targets = "_all")),
+                   columnDefs = list(list(width = '300px', targets = c(2)),
+                                     list(width = '100px', targets = c(4,5)),
+                                     list(width = '120px', targets = c(0)),
+                                     list(width = '200px', targets = c(3)),
+                                     list(width = '150px', targets = "_all")),
                    initComplete = JS(
                      "function(settings, json) {",
                      "$('body').css({'font-family': 'Calibri'});",
