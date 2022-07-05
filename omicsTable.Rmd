@@ -32,6 +32,10 @@ generalData %<>%
 generalData %<>%
   mutate(Name = paste0('<b>', Name,'</b>'))
 
+# Mutate the pricing column to have a link.
+generalData %<>%
+  mutate(Price = paste0('<a href="',PLink,'"style="color: #be3b2a"',' target="_blank"','<div title="Pricing Link"> </div>', Price,'</a>'))
+
 # Mutate the tibble to combine all three columns into a general "Platform" column.
 generalData %<>%
   mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', Documentation,'<br></br>', Publications))
@@ -54,7 +58,7 @@ generalData %<>%
   relocate(Platform, .after = `Link (Hyperlinked Over Name)`)
 
 # Create a trimmed version of the data by removing the non-consolidated columns. 
-trimmedData <- generalData[ -c(1,2,8,10,12) ]   
+trimmedData <- generalData[ -c(1,2,8,10,12,13) ]   
 trimmedData
 
 # Shift the location of the "Summary" column.
