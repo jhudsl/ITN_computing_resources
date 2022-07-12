@@ -1,0 +1,85 @@
+---
+title: "**Resources Informatics Table**"
+output: html_document
+---
+
+### **About**
+
+This website contains a list of informatics resources funded by ITCR grants. Resources are remotely hosted sources of curated or collaborative data that researchers can use for projects. These resources also provide data to specific platforms highlighted within the various Platforms informatics tables.
+
+```{r,echo=FALSE,results='hide',message=FALSE}
+#Load DT, dplyr
+library(DT)
+library(dplyr)
+library(here)
+library(tidyverse)
+library(magrittr)
+library(RCurl)
+```
+
+```{r,echo=FALSE,results='hide',message=FALSE}
+# Load file for Resource Table
+generalData <- read_csv(file = here::here("ictr_table_resources.csv"))
+generalData
+
+# Mutate the tibble to alter three of the columns
+generalData %<>%
+  mutate(Name = paste0('<a href="',Link,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height="30"> </img>',Name,'</a>'))
+
+#Mutate generalData's Name to be bolded.
+generalData %<>%
+  mutate(Name = paste0('<b>', Name,'</b>'))
+
+# Mutate Platform to contain an ITCR logo if the Platform is funded by ITCR.
+for (row in 1:nrow(generalData)) {
+    status <- generalData[row, "Funding"]
+    target  <- generalData[row, "Name"]
+
+  if(status == "Yes") {
+    target %<>%
+    mutate(Name = paste0(Name,'<br></br>','<img src="ITCRLogo.png" height="50"> </img>'))
+    
+    generalData[row,"Name"] <- target
+  }
+}
+
+# Create a trimmed version of the data by removing the non-consolidated columns. 
+trimmedData <- generalData[ -c(2,7) ]   
+trimmedData
+
+# Shift the location of the "Summary" column.
+trimmedData %<>%
+  relocate(Summary, .after = Subcategories)
+```
+
+```{r,echo=FALSE,results='hide',message=FALSE}
+# Create a Imaging Table
+ICTR_resource <- trimmedData %>%
+  DT::datatable(
+    style = 'auto',
+    width="100%",
+    rownames = FALSE,
+    escape = FALSE,
+    filter = "top",
+    #escape = FALSE,
+    extensions = list("Scroller"),
+    options = list(autoWidth = TRUE, pageLength = 10, scrollY = TRUE,
+                   scrollX = TRUE, scrollCollapse = TRUE, fillContainer = TRUE,
+                   order = (list(0, 'asc')),
+                   columnDefs = list(list(width = '300px', targets = c(2)),
+                                     list(width = '100px', targets = c(4,5)),
+                                     list(width = '120px', targets = c(0)),
+                                     list(width = '200px', targets = c(3)),
+                                     list(width = '150px', targets = "_all")),
+                   initComplete = JS(
+                     "function(settings, json) {",
+                     "$('body').css({'font-family': 'Calibri'});",
+                     "$(this.api().table().header()).css({'backgroundColor': '#3f546f'});",
+                     "$(this.api().table().header()).css({'color': '#fff'});",
+                     "}"))
+  )
+```
+
+```{r,echo=FALSE}
+ICTR_resource
+```

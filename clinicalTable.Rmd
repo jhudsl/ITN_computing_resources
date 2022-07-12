@@ -18,7 +18,7 @@ library(RCurl)
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
-# Load file for Imaging Table
+# Load file for Clinical Table
 generalData <- read_csv(file = here::here("ictr_table_clinical.csv"))
 generalData
 
