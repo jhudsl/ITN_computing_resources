@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Resources Informatics Table</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.23/datatables.js"></script>
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="resources/images/favicon.ico" />
+ <!--- go to https://favicon.io/favicon-converter/ to upload an image to make a new favicon.io. You will need to replace the current favicon.io image with the one in the downloaded directory from the website. The current image is in the resources/images/ directory --->
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OTTR Web</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="generalTable.html">General</a>
+</li>
+<li>
+  <a href="imagingTable.html">Imaging</a>
+</li>
+<li>
+  <a href="omicsTable.html">Omics</a>
+</li>
+<li>
+  <a href="clinicalTable.html">Clinical</a>
+</li>
+<li>
+  <a href="contact.html">
+    <span class="fa fa-envelope"></span>
+     
+    Contact
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore"><strong>Resources Informatics
+Table</strong></h1>
+
+</div>
+
+
+<div id="about" class="section level3">
+<h3><strong>About</strong></h3>
+<p>This website contains a list of informatics resources funded by ITCR
+grants. Resources are remotely hosted sources of curated or
+collaborative data that researchers can use for projects. These
+resources also provide data to specific platforms highlighted within the
+various Platforms informatics tables.</p>
+<div id="htmlwidget-63f48e397de5f8440845" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-63f48e397de5f8440845">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["<b><a href=\"https://www.pdxfinder.org/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Patient-Derived Xenograft (PDX) Finder<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://dataverse.harvard.edu/dataverse/HemOnc\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>HemOnc Ontology<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://bioinformatics.mdanderson.org/public-software/ngchm/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Next Generation Clustered Heat Maps<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://www.oncomx.org/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>OncoMX<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://cran.r-project.org/web/packages/methcon5/index.html\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>MethCon5<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://civicdb.org/home\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Clinical Interpretation of Variants in Cancer (CIViC) Knowledgebase<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://hive.biochemistry.gwu.edu/biomuta\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>BioMuta<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://www.cancerimagingarchive.net/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>The Cancer Imaging Archive (TCIA)<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://github.com/KrasnitzLab/SCGV\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Single Cell Genome Viewer (SCGV)<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://vjcitn.shinyapps.io/ivyglimpse/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>ivyGlimpse<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://tcpaportal.org/index.html\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>The Cancer Proteome Atlas<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://github.com/qiicr/dcmqi\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>dcmqi: DICOM for Quantitative Imaging<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://github.com/SBU-BMI/region-templates\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Region Templates<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"http://cistrome.org/Cistrome/Cistrome_Project.html\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Cistrome<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"http://www.topasmc.org/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>TOPAS<\/a><\/b><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b><a href=\"https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>The Cancer Genome Atlas (TCGA)<\/a><\/b>","<b><a href=\"https://www.internationalgenome.org/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>1000 Genomes Project<\/a><\/b>","<b><a href=\"https://ocg.cancer.gov/programs/target\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Therapeutically Applicable Research to Generate Effective Treatments (TARGET)<\/a><\/b>","<b><a href=\"https://sites.broadinstitute.org/ccle/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Cancer Cell Line Encyclopedia (CCLE)<\/a><\/b>","<b><a href=\"https://www.ncbi.nlm.nih.gov/gap/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Database of Genotypes and Phenotypes (dbGAP)<\/a><\/b>","<b><a href=\"https://proteomics.cancer.gov/programs/cptac\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Clinical Proteomic Tumor Analysis Consortium (CPTAC)<\/a><\/b>","<b><a href=\"https://phekb.org/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Phenotype KnowledgeBase (PheKB)<\/a><\/b>","<b><a href=\"https://wiki.cancerimagingarchive.net/display/Public/NSCLC-Radiomics\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>NSCLC Radiomics<\/a><\/b>","<b><a href=\"https://dcc.icgc.org/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>ICGC Data Portal<\/a><\/b>"],["Genomics","Ontology","Genomics","Genomics","Genomics","Genomics","Genomics","Cancer Imaging","Genomics","Genomics","Proteomics","DICOM Standards, Cancer Imaging","Image Analysis","Genomics","Radiology Imaging","Genomics, Proteomics","Genomics","Genomics","Genomics, Proteomics","Genomics","Proteomics","Genomics, Algorithms","Genomics, Cancer Imaging","Genomics"],["PDX Finder is a freely available resource that is integrating, archiving and disseminating information about Patient Derived Xenograft (PDX) models and their associated data.","OMOP-formatted ontology of chemotherapy regimens, their component drugs, and supporting publications, with >87,000 concepts and nearly 240,000 relationships. A portion is available as the HemOnc vocabulary through the athena.ohdsi.org vocabulary management tool. The full ontology is freely available to academic and non-commercial users through the CC-BY-NC-SA 4.0 license; a drug-focused subset is available to any user through the CC-BY 4.0 license.","Next-Generation (Clustered) Heat Maps are interactive heat maps that enable the user to zoom and pan across the heatmap, alter its color scheme, generate production quality PDFs, and link out from rows, columns, and individual heatmap entries to related statistics, databases and other information.","OncoMX is a cancer biomarker database with mutation and expression metadata related to the study of cancer alongside relevant experimental and functional annotations.","The goal of methcon5 is to identify and rank CpG DNA methylation conservation along the human genome.","CIViC is an open access, open source, community-driven web resource for Clinical Interpretation of Variants in Cancer. Our goal is to enable precision medicine by providing an educational forum for dissemination of knowledge and active discussion of the clinical significance of cancer genome alterations.","Cancer associated gene mutation","TCIA is NCI’s repository for publicly shared cancer imaging data. TCIA collections include radiology and pathology images, clinical and clinical trial data, image derived annotations and quantitative features and a growing collection of related ‘omics data both from clinical and pre-clinical studies.","Graphics user interface for single-cell genomics","Bioconductor-based interface to Ivy-GAP (glioblastoma.alleninstitute.org) data resources","The Cancer Proteome Atals is a comprehensive bioinformatic resource for assessing, visualzing and analyzing the functional proteomics data of patient tumor and cell line samples.","dcmqi is a free, open source library that implements conversion of the data stored in commonly used research formats into the standard DICOM representation","A suite of libraries and runtime to support image analysis.","Curated and processed human/mouse ChIP/DNase-seq datasets in GEO, allowing users to search, browse, download ChIP-seq data signals, peaks, QC, motifs, target genes and similar datasets.","Monte Carlo simulation of ionizing radiation transport for medical applications with focus on therapy and imaging with x-rays, electrons, protons and all other forms of ionizing radiation.","TCGA is one of the most comprehensive resources on cancer data with over 20,000 tumor and normal samples. There are 33 cancer types represented in this resource, and this resource remains one of the largest publically avaiable sources for cancer data in the reserach community.","The 1000 Genomes Project aimed to collect common genetic variants with frequencies of at least 1% in the populations studied. This project sequenced thousands of genomes to create a publically accessible database for researchers.","TARGET tracks genetic changes across several datasets in order to better understand reasons for the initiation and progression of several childhood cancers. The organization aims to make this information as freely accessible as possible to accelerate the development of novel solutions to pediatric cancer treatments.","Researchers initially developed the CCLE to create a series of datasets from 1000 human cancer models. The cell lines were expanded upon to include a series of SNP derived data, allowing for the testing of anti-cancer therapeutics on these cell lines. Over the years, these datasets were expanded upon to include NGS techniques to refine the characterization of mRNA expression within these cell lines. Lastly, the program aims to conduct a series of MS quantifications to determine the abundance of produced proteins.","This resource serves as a database of clinical study results that examine the intersection between genotype and phenotypes.","CPTAC focuses on proteogenomic analysis of colorectal, ovarian, and breast cancers within human cell lines. This involved the compilation of identified preoteomic-centric cancer subtypes, driver mutations, and cancer pathways.","PheKB is a collaborative resource that allows users to contribute electronic algorithms to identify various characteristics of patient health data. This resource contains a series of integrated tools and standardizations for the user-contributed data that is added to the resource.","This resource contains a selection of images from non-small cell lung cancer patients acquired through CT scans. All datasets were manually delineated by radiation oncologists while also containing clinical outcome data in addition to the raw imaging files.","This resource offers a suite of tools and datasets that allow for the visualization and retrieval of various cancer data."],["Xenograft Models, PDF Models","Cancer Publications","Clustered Heat Maps","Biomarkers, Genes","Methylation Data","Precision Medicine Library","SNV Datasets, Sequence Data","MRI, CT, Histopathology","Single-Cell Genomics","Imaging Data","Cancer Cell Lines, Patient Cohorts, Perturbed Proteomics","Segmentation Imaging, Parametric Map Imaging, Columetric Measurements","Imaging Data","Cistrome Anaysis","X-Ray, Particle Therapy, CT Imaging, Score Dose, Fluence","Clinical, Copy Number, DNA, Imaging, Methylation, Microsatellite Instability, miRNA, mRNA Expression, Protein Expression","Genomic Sequences, Genotype Variations","Genomic Sequences, Transcriptome Data","Cancer Cell Lines","Genomic Sequences","Cancer Cell Lines","Clinical, Algorithms","Clinical, Imaging Data","Algorithms, Genomic Seuqnces, Cancer Pathway Data"],["Utilizes histopathological imagte data, molecular tumor classification, host strain metadata, and genomic data to create fully integrated visual models.","Open resource for all researchers to collaborate and explore curated datasets.","The data used in this resource are selected, standardized TCGA datasets.","Allows for a side-by-side comparison of experimental data and functional information.","Utilizes bootstrapping methods to rank CpG DNA Methylation conservation. Built to run with R.","All content is freely available, and users can easily contribute their own data to this resource.","Focuses explicitly on nonsynonymous single-nucleotide variations (nsSNVs).","Data is deidentified. Data can be serached through collections searched by disease, image modality, and research focus. Uses DICOM file format.","Involves the local installation of Anaconda.","Specifically examines data for glioplastoma patients. Allows for a direct comparison of datasets.","Data contains modules for both analysis and visualization.","Lightweight collection of tools and resources with minimal dependencies. Promotes standardization through DICOM","Highly technical setup to utilize the suite of image analysis tools.","Contains CRISPR tools for data analysis; other tools available for use","This resource models x-ray and particle therapy treatment heads, patient geometry, and replays phase space. With the correct set of inputs and data, this resource allows for easily accessible and reproducible modeling outputs.","TCGA functions through the Genomic Data Commons, allowing for direct comparisons with data found in other GDC datasets.","1000 Genomes Project is one of the largest continuously updated genomics resources available to researchers","Contains data collected from acute myeloid leukemia, osteosarcoma, kidney tumors, acute lymphoblastic leukemia, and neuroblastoma","Contains a series of deep examinations of several cancer cell lines, allowing for a comprehensive examination of specific datasets.","This resource contains a broad archive of human genomic data.","Focuses specifically on colorectal, breast, and ovarian cancer.","This resource contains a set of tools that allow for cross-site collaboration from algorithm development, validation, and sharing.","Focuses specifically on non-small cell lung cancer imaging","This resource is developed explicitly to work with the Overture Platform"],["Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Free","Priced","Free","Free","Free","Free","Free","Free","Free","Free","Free"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Name<\/th>\n      <th>Subcategories<\/th>\n      <th>Summary<\/th>\n      <th>Data Type<\/th>\n      <th>Unique Factors<\/th>\n      <th>Price<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"autoWidth":true,"pageLength":10,"scrollY":true,"scrollX":true,"scrollCollapse":true,"fillContainer":true,"order":[0,"asc"],"columnDefs":[{"width":"300px","targets":2},{"width":"100px","targets":[4,5]},{"width":"120px","targets":0},{"width":"200px","targets":3},{"width":"150px","targets":"_all"}],"initComplete":"function(settings, json) {\n$('body').css({'font-family': 'Calibri'});\n$(this.api().table().header()).css({'backgroundColor': '#3f546f'});\n$(this.api().table().header()).css({'color': '#fff'});\n}","orderClasses":false,"orderCellsTop":true}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
