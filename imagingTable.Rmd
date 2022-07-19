@@ -57,6 +57,16 @@ for (row in 1:nrow(generalData)) {
 generalData %<>%
   relocate(Platform, .after = `Link (Hyperlinked Over Name)`)
 
+# Load file for Resource Table
+resource <- read_csv(file = here::here("ictr_table_resources.csv"))
+
+# Create the html version of links in resources
+resource <- resource %>% mutate(Link = paste0('<a href="',Link,'"style="color: #be3b2a"',' target="_blank"','<div title="Resource Link"> </div>',Name,'</a>'))
+
+# Alter the generalData df to see how it interacts with the resources tab. 
+generalData %<>% 
+  mutate('Data Provided' = str_replace(string = pull(generalData,'Data Provided'), pattern = "TCGA", replacement = str_subset(string = pull(resource,Link), pattern = "tcga")[1]))
+
 # Create a trimmed version of the data by removing the non-consolidated columns. 
 trimmedData <- generalData[ -c(1,2,8,10,12,13) ]
 

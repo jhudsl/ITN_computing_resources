@@ -13,6 +13,8 @@ navbar:
     href: omicsTable.html  
   - text: Clinical
     href: clinicalTable.html
+  - text: Resources
+    href: resourceTable.html
   - text: Contact
     href: contact.html
     icon: fa-envelope

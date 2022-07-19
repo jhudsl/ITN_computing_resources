@@ -24,7 +24,7 @@ generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(Name = paste0('<a href="',Link,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height="30"> </img>',Name,'</a>'))
+  mutate(Name = paste0('<a href="',Link,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>',Name,'</a>'))
 
 #Mutate generalData's Name to be bolded.
 generalData %<>%
