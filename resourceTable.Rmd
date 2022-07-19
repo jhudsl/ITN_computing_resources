@@ -71,6 +71,7 @@ ICTR_resource <- trimmedData %>%
                                      list(width = '120px', targets = c(0)),
                                      list(width = '200px', targets = c(3)),
                                      list(width = '150px', targets = "_all")),
+                   # Format the headers and font family for the DT Table.
                    initComplete = JS(
                      "function(settings, json) {",
                      "$('body').css({'font-family': 'Calibri'});",
