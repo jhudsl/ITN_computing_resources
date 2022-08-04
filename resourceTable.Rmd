@@ -56,7 +56,7 @@ trimmedData %<>%
 # Create a Imaging Table
 ICTR_resource <- trimmedData %>%
   DT::datatable(
-    style = 'auto',
+    style = 'default',
     width="100%",
     rownames = FALSE,
     escape = FALSE,

@@ -87,7 +87,7 @@ trimmedData %<>%
 # Create a General Table
 ICTR_general <- trimmedData %>%
   DT::datatable(
-    style = 'auto',
+    style = 'default',
     width="100%",
     colnames = c('Unique Factor' = 4, 'Types of Data' = 5,
                  'Summary' = 3),
