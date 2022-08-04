@@ -8,7 +8,8 @@ COPY install_github.R .
 
 
 RUN Rscript -e  "install.packages( \
-    c('DT')"
+    c('DT',\
+    'RCurl'))"
 
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
