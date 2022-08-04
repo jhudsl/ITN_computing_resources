@@ -14,7 +14,7 @@ library(dplyr)
 library(here)
 library(tidyverse)
 library(magrittr)
-library(RCurl)
+#library(RCurl)
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
@@ -79,7 +79,7 @@ trimmedData %<>%
 # Create a Imaging Table
 ICTR_imaging <- trimmedData %>%
   DT::datatable(
-    style = 'auto',
+    style = 'default',
     width="100%",
     colnames = c('Unique Factor' = 4, 'Types of Data' = 5,
                  'Summary' = 3),
