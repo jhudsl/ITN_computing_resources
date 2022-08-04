@@ -14,7 +14,7 @@ library(dplyr)
 library(here)
 library(tidyverse)
 library(magrittr)
-library(RCurl)
+#library(RCurl)
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
