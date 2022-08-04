@@ -7,10 +7,14 @@ favicon
 generalTable
 HTTPS
 imagingTable
+ITCR
 lightblue
 lightgreen
+omics
 omicsTable
 OTTR
+proteomic
+radiographic
 Rmd
 subdir
 th
