@@ -7,7 +7,7 @@ output: html_document
 
 This website contains a list of clinical informatics platforms funded by ITCR grants. Clinical platforms are those which work with several clinical data types, such as EMR Text and Clinical Notes. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 library(dplyr)
