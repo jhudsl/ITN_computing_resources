@@ -14,8 +14,13 @@ library(dplyr)
 library(here)
 library(tidyverse)
 library(magrittr)
+
 #library(RCurl)
+
 ```
+
+`r emoji::emoji("smile")`
+
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for Clinical Table
