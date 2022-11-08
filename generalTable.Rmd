@@ -5,7 +5,7 @@ output: html_document
 
 ### **About**
 
-This website contains a list of general informatics platforms funded by ITCR grants. General platforms are those which work with a wide variety of data types, from imaging data to "omics" data. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
+This website contains a list of general informatics platforms funded by ITCR grants. General platforms are those which work with a wide variety of data types, from imaging data to “omics” data. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
@@ -17,6 +17,11 @@ library(magrittr)
 #library(RCurl)
 ```
 
+**Table keys:** 
+<div title="Table keys"> 
+<img src="Hyperlink.png"  height="30"> </img> = Main Link, <img src="Documentation.png" height="30"> </img> = Documentation, <img src="Publication.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
+</div>
+
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for General Table
@@ -25,9 +30,9 @@ generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>','<img src="Hyperlink.png"  height="30"> </img>', "Main Link",'</a>'),
-         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div>','<img src="Documentation.png" height="30"> </img>',"Documentation", '</a>'),
-         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div>','<img src="Publication.png" height="30"> </img>',"Publications", '</a>'))
+  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>','<img src="Hyperlink.png"  height="30"> </img>', '</a>'),
+         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div>','<img src="Documentation.png" height="30"> </img>', '</a>'),
+         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div>','<img src="Publication.png" height="30"> </img>', '</a>'))
 
 # Mutate generalData's Name to be bolded.
 generalData %<>%
@@ -38,17 +43,19 @@ generalData %<>%
   mutate(Price = paste0('<a href="',PLink,'"style="color: #be3b2a"',' target="_blank"','<div title="Pricing Link"> </div>', Price,'</a>'))
 
 # Mutate the tibble to combine all three columns into a general "Platform" column.
+## Awan Edit: Removed line-breaks between linked icons to save space.
 generalData %<>%
-  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', Documentation,'<br></br>', Publications))
+  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`, Documentation, Publications))
 
 # Mutate Platform to contain an ITCR logo if the Platform is funded by ITCR.
+## Awan Edit: Reduced ITCR Logo size.
 for (row in 1:nrow(generalData)) {
     status <- generalData[row, "Funding"]
     target  <- generalData[row, "Platform"]
 
   if(status == "Yes") {
     target %<>%
-    mutate(Platform = paste0(Platform,'<br></br>','<img src="ITCRLogo.png" height="50"> </img>'))
+    mutate(Platform = paste0(Platform,'<br></br>','<img src="ITCRLogo.png" height="40"> </img>'))
     
     generalData[row,"Platform"] <- target
   }
@@ -85,25 +92,28 @@ trimmedData %<>%
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Create a General Table
-ICTR_general <- trimmedData %>%
+ITCR_general <- trimmedData %>%
   DT::datatable(
     style = 'default',
     width="100%",
-    colnames = c('Unique Factor' = 4, 'Types of Data' = 5,
-                 'Summary' = 3),
+    colnames = c('Unique Factor' = 4, 'Types of Data' = 5, 'Summary' = 3),
     rownames = FALSE,
     escape = FALSE,
+    #caption = "some caption",
     filter = "top",
-    #escape = FALSE,
-    extensions = list("Scroller"),
+    #extensions = list("Scroller"),
+    extensions = 'FixedHeader',
     options = list(scrollX = TRUE, autoWidth = TRUE, pageLength = 10,
                    scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
-                   columnDefs = list(list(width = '300px', targets = c(2)),
-                                     list(width = '100px', targets = c(4,5)),
-                                     list(width = '120px', targets = c(0)),
-                                     list(width = '200px', targets = c(3)),
-                                     list(width = '150px', targets = "_all")),
+                   columnDefs = list(list(className = 'dt-center', targets = "_all"),
+                                     list(width = '300px', targets = c(2)) , 
+                                     list(width = '150px', targets = c(3)) ),
+                   # columnDefs = list(list(width = '300px', targets = c(2)),
+                   #                   list(width = '100px', targets = c(4,5)),
+                   #                   list(width = '120px', targets = c(0)),
+                   #                   list(width = '200px', targets = c(3)),
+                   #                   list(width = '150px', targets = "_all")),
                    initComplete = JS(
                      "function(settings, json) {",
                      "$('body').css({'font-family': 'Calibri'});",
@@ -114,6 +124,6 @@ ICTR_general <- trimmedData %>%
 ```
 
 ```{r,echo=FALSE}
-ICTR_general
+ITCR_general
 ```
 

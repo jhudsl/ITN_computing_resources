@@ -5,30 +5,67 @@ output:
 ---
 
 <div class = "banner_color">
-Banner text!  
+Computing and Data Resource Hub  
 </div>
 
-### **About**
+<style type="text/css">
+  body{
+  font-size: 13pt;
+  line-height: 1.6;
+}
+</style>
 
-This website was created with the OTTR_Template_Website template. This enables simpler creation of websites that have automated checks for broken URLs and spelling errors, as well as automated rendering of all html files. No need to worry about git conflicts for html files!
+<br> 
 
-Here is how you can include images in your website pages (this one is saved in `resources/images` to keep things tidy:
+### **Welcome!**
 
-```{r, fig.align='center', fig.alt= "Example image", echo = FALSE, out.width="30%"}
-knitr::include_graphics("resources/images/example_image.png")
+This website for ITCR Cancer Informatics Platform Database contains a comprehensive list of the bioinformatics platforms (computing and data) funded by **ITCR** *(Informatics Technology for Cancer Research)* grants. Each resource will have, along with their brief description, up to three links that navigate towards their -  
+
+- main site  
+- pertinent documentation, and  
+- list of their publications.  
+  
+Please browse the through the resources on each page by using the navigation bar above. 
+
+To refer to the **original table** of Informatics Tools on the ITCR website, [click here](https://itcr.cancer.gov/informatics-tools).   
+<br>
+
+```{r, fig.align='center', fig.alt="Source: https://itcr.cancer.gov/", echo = FALSE, out.height="10%", out.width="100%"}
+knitr::include_graphics("resources/images/background-3-2000x360.jpg")
 ```
 
+<br>
+
+If you would like to contact us please use the contact information listed on the **Contact** page. We would love to hear your questions, feedback and suggestions!   
+
+<br>
+To contact ITCR directly, please refer to the original [ITCR website](https://itcr.cancer.gov/).  
+
+<br>
+
+## To Do  
+
+- make a home page that explains what the tables are **[Ask advice on what more to add]**
+- link to the original table: https://itcr.cancer.gov/informatics-tools **[Pending]**
+- clarify and add more description above each table **[Ask advice: what to add here, how much]**
+- change the favicon to be the itcr icon which can be found within the tables **[Completed]**
+- restructure so that all the tables are together under something like "Computing resources" - except the resource table (which we want to be labeled as "Data resources") **Clarify: Does this mean we merge all the tables together? How will that change the intended description of the table?**
+- would be good to make directories to clean up the repo a bit - but this is not a priority.
  
- 
-We will go through the following:
+## Change notes
+1. Changed the website theme from cosmo to "spacelab" to make the ITCR logo visible on the navbar. [the dark navbar in cosmo doesn't complement the ITCR logo]
+2. Added relevant favicons to the page links on the navbar. 
+3. Added the ITCR website banner image from the original website. (Should we change it?)
+4. Created and added the favicon_ITCR.ico file to the resources/image folder and included the favicon to the website.
+5. Included the following code in styles.css body: **font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif !important;**, to make all the font consistent across the website. 
+6. In general Table:  
+  - added margin definitions for body and main.container to utilize more space on both sides and eliminate the necessity for scrolling along X-axis. [lines 6-17]
+    - (also commented out the column width definitions for the table.)  [lines 122-126]
+  - Edit: Removed line-breaks between linked icons to save space. (line 60-61)
+  - Reduced ITCR Logo height for 50 to 40 (this stops over-elongating the logo). [line 71]
+  - fixed typos: ICTR >> ITCR
 
-1. How to set up your repository to enable the GitHub actions of the template. (Setup tab)
-2. How to host your website using GitHub (Hosting tab)
-3. How to modify your website structure (Structure tab)
-4. How to change your website style (Style tab)
-5. More information about GitHub Actions (Git Actions tab)
 
-Click on each tab to learn more.
-
-
-
+## Comments/Suggestions 
+1. Can we reduce the white space at the top (between navbar and page header) and on the sides ? [for the top, I changed it from 100px to 30px in style.css for now and and I increased the page width.]
+2. Where do we want the original table link? I put it in the homepage for now. 

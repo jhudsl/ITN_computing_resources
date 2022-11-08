@@ -1,10 +1,23 @@
 
 /* To add some space below the navigation bar */
 
+
  body {
-  margin-top: 100px;
+  margin-top: 30px;
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
+/*  */
+
+body .main-container {
+  max-width: 1140px !important;
+  width: 1140px !important;
+}
+body {
+  max-width: 1140px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* add some color - if you want color behind a major point on your website */
 

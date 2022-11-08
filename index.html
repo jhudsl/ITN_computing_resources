@@ -13,10 +13,10 @@
 
 <title>ITCR Cancer Informatics Platform Database</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -34,8 +34,11 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-<link rel="shortcut icon" href="resources/images/favicon.ico" />
+<link rel="shortcut icon" href="resources/images/favicon_ITCR.ico" />
  <!--- go to https://favicon.io/favicon-converter/ to upload an image to make a new favicon.io. You will need to replace the current favicon.io image with the one in the downloaded directory from the website. The current image is in the resources/images/ directory --->
+ 
+ 
+ <!--- 11/6/22 Awan: added the favicon_ITCR.ico file to the resources/image folder and included the favicon to the website. --->
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -56,6 +59,7 @@ if (window.hljs) {
   }
 }
 </script>
+
 
 
 
@@ -85,6 +89,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -142,11 +149,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -175,8 +186,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -184,16 +195,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -237,32 +241,74 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">OTTR Web</a>
+      <a class="navbar-brand" href="index.html"><img id="logo" style="width: 75px;" src="ITCRLogo.png" /></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-desktop"></span>
+     
+    Computing Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="generalTable.html">
+        <span class="fa fa-th"></span>
+         
+        All Tables
+      </a>
+    </li>
+    <li>
+      <a href="generalTable.html">
+        <span class="fa fa-stream"></span>
+         
+        General
+      </a>
+    </li>
+    <li>
+      <a href="imagingTable.html">
+        <span class="fa fa-camera-retro"></span>
+         
+        Imaging
+      </a>
+    </li>
+    <li>
+      <a href="omicsTable.html">
+        <span class="fa fa-dna"></span>
+         
+        Omics
+      </a>
+    </li>
+    <li>
+      <a href="clinicalTable.html">
+        <span class="fa fa-heartbeat"></span>
+         
+        Clinical
+      </a>
+    </li>
+  </ul>
 </li>
 <li>
-  <a href="generalTable.html">General</a>
-</li>
-<li>
-  <a href="imagingTable.html">Imaging</a>
-</li>
-<li>
-  <a href="omicsTable.html">Omics</a>
-</li>
-<li>
-  <a href="clinicalTable.html">Clinical</a>
-</li>
-<li>
-  <a href="resourceTable.html">Resources</a>
+  <a href="resourceTable.html">
+    <span class="fa fa-bar-chart"></span>
+     
+    Data Resources
+  </a>
 </li>
 <li>
   <a href="contact.html">
@@ -283,28 +329,115 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><strong>ITCR Cancer Informatics Platform Database</strong></h1>
+<h1 class="title toc-ignore"><strong>ITCR Cancer Informatics Platform
+Database</strong></h1>
 
 </div>
 
 
 <div class="banner_color">
-<p>Banner text!</p>
+<p>Computing and Data Resource Hub</p>
 </div>
-<div id="about" class="section level3">
-<h3><strong>About</strong></h3>
-<p>This website was created with the OTTR_Template_Website template. This enables simpler creation of websites that have automated checks for broken URLs and spelling errors, as well as automated rendering of all html files. No need to worry about git conflicts for html files!</p>
-<p>Here is how you can include images in your website pages (this one is saved in <code>resources/images</code> to keep things tidy:</p>
-<p><img src="resources/images/example_image.png" title="Example image" alt="Example image" width="30%" style="display: block; margin: auto;" /></p>
-<p>We will go through the following:</p>
+<style type="text/css">
+  body{
+  font-size: 13pt;
+  line-height: 1.6;
+}
+</style>
+<p><br></p>
+<div id="welcome" class="section level3">
+<h3><strong>Welcome!</strong></h3>
+<p>This website for ITCR Cancer Informatics Platform Database contains a
+comprehensive list of the bioinformatics platforms (computing and data)
+funded by <strong>ITCR</strong> <em>(Informatics Technology for Cancer
+Research)</em> grants. Each resource will have, along with their brief
+description, up to three links that navigate towards their -</p>
+<ul>
+<li>main site<br />
+</li>
+<li>pertinent documentation, and<br />
+</li>
+<li>list of their publications.</li>
+</ul>
+<p>Please browse the through the resources on each page by using the
+navigation bar above.</p>
+<p>To refer to the <strong>original table</strong> of Informatics Tools
+on the ITCR website, <a
+href="https://itcr.cancer.gov/informatics-tools">click here</a>.<br />
+<br></p>
+<p><img src="resources/images/background-3-2000x360.jpg" alt="Source: https://itcr.cancer.gov/" width="100%" height="10%" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<p>If you would like to contact us please use the contact information
+listed on the <strong>Contact</strong> page. We would love to hear your
+questions, feedback and suggestions!</p>
+<p><br> To contact ITCR directly, please refer to the original <a
+href="https://itcr.cancer.gov/">ITCR website</a>.</p>
+<p><br></p>
+</div>
+<div id="to-do" class="section level2">
+<h2>To Do</h2>
+<ul>
+<li>make a home page that explains what the tables are <strong>[Ask
+advice on what more to add]</strong></li>
+<li>link to the original table: <a
+href="https://itcr.cancer.gov/informatics-tools"
+class="uri">https://itcr.cancer.gov/informatics-tools</a>
+<strong>[Pending]</strong></li>
+<li>clarify and add more description above each table <strong>[Ask
+advice: what to add here, how much]</strong></li>
+<li>change the favicon to be the itcr icon which can be found within the
+tables <strong>[Completed]</strong></li>
+<li>restructure so that all the tables are together under something like
+“Computing resources” - except the resource table (which we want to be
+labeled as “Data resources”) <strong>Clarify: Does this mean we merge
+all the tables together? How will that change the intended description
+of the table?</strong></li>
+<li>would be good to make directories to clean up the repo a bit - but
+this is not a priority.</li>
+</ul>
+</div>
+<div id="change-notes" class="section level2">
+<h2>Change notes</h2>
 <ol style="list-style-type: decimal">
-<li>How to set up your repository to enable the GitHub actions of the template. (Setup tab)</li>
-<li>How to host your website using GitHub (Hosting tab)</li>
-<li>How to modify your website structure (Structure tab)</li>
-<li>How to change your website style (Style tab)</li>
-<li>More information about GitHub Actions (Git Actions tab)</li>
+<li>Changed the website theme from cosmo to “spacelab” to make the ITCR
+logo visible on the navbar. [the dark navbar in cosmo doesn’t complement
+the ITCR logo]</li>
+<li>Added relevant favicons to the page links on the navbar.</li>
+<li>Added the ITCR website banner image from the original website.
+(Should we change it?)</li>
+<li>Created and added the favicon_ITCR.ico file to the resources/image
+folder and included the favicon to the website.</li>
+<li>Included the following code in styles.css body: <strong>font-family:
+“Open Sans”,“Helvetica Neue”,Helvetica,Arial,sans-serif
+!important;</strong>, to make all the font consistent across the
+website.</li>
+<li>In general Table:<br />
+</li>
 </ol>
-<p>Click on each tab to learn more.</p>
+<ul>
+<li>added margin definitions for body and main.container to utilize more
+space on both sides and eliminate the necessity for scrolling along
+X-axis. [lines 6-17]
+<ul>
+<li>(also commented out the column width definitions for the table.)
+[lines 122-126]</li>
+</ul></li>
+<li>Edit: Removed line-breaks between linked icons to save space. (line
+60-61)</li>
+<li>Reduced ITCR Logo height for 50 to 40 (this stops over-elongating
+the logo). [line 71]</li>
+<li>fixed typos: ICTR &gt;&gt; ITCR</li>
+</ul>
+</div>
+<div id="commentssuggestions" class="section level2">
+<h2>Comments/Suggestions</h2>
+<ol style="list-style-type: decimal">
+<li>Can we reduce the white space at the top (between navbar and page
+header) and on the sides ? [for the top, I changed it from 100px to 30px
+in style.css for now and and I increased the page width.]</li>
+<li>Where do we want the original table link? I put it in the homepage
+for now.</li>
+</ol>
 </div>
 
 
