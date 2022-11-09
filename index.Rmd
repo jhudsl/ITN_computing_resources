@@ -30,8 +30,8 @@ Please browse the through the resources on each page by using the navigation bar
 To refer to the **original table** of Informatics Tools on the ITCR website, [click here](https://itcr.cancer.gov/informatics-tools).   
 <br>
 
-```{r, fig.align='center', fig.alt="Source: https://itcr.cancer.gov/", echo = FALSE, out.height="10%", out.width="100%"}
-knitr::include_graphics("resources/images/background-3-2000x360.jpg")
+```{r, fig.align='center', fig.alt="Source: https://itcr.cancer.gov/", echo = FALSE, eval=FALSE, out.height="10%", out.width="100%"}
+# knitr::include_graphics("resources/images/background-3-2000x360.jpg")
 ```
 
 <br>
