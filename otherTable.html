@@ -13,8 +13,8 @@
 
 <title>Non-Specified Informatics Table</title>
 
-<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -32,18 +32,18 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="site_libs/datatables-binding-0.26/datatables.js"></script>
-<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="site_libs/datatables-binding-0.15/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
 <link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
 <script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
 <link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
 <script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
-<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/favicon_ITCR.ico" />
@@ -76,7 +76,6 @@ if (window.hljs) {
 
 
 
-
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
 
@@ -101,9 +100,6 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
-}
-details > summary > p:only-child {
-  display: inline;
 }
 pre code {
   padding: 0;
@@ -161,15 +157,11 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark the anchor link active (and if it's in a dropdown, also mark that active)
-  var dropdown = menuAnchor.closest('li.dropdown');
-  if (window.bootstrap) { // Bootstrap 4+
-    menuAnchor.addClass('active');
-    dropdown.find('> .dropdown-toggle').addClass('active');
-  } else { // Bootstrap 3
-    menuAnchor.parent().addClass('active');
-    dropdown.addClass('active');
-  }
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -198,8 +190,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -207,9 +199,16 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
+  content: "&#xe258;";
   border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -253,7 +252,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -270,7 +269,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-desktop"></span>
      
     Computing Resources
@@ -341,18 +340,16 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><strong>Non-Specified Informatics
-Table</strong></h1>
+<h1 class="title toc-ignore"><strong>Non-Specified Informatics Table</strong></h1>
 
 </div>
 
 
 <div id="about" class="section level3">
 <h3><strong>About</strong></h3>
-<p>This website contains a list of non-specified informatics tools
-funded by ITCR grants.</p>
-<div id="htmlwidget-fcaeda1cd27a0467be44" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fcaeda1cd27a0467be44">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\" disabled=\"\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.<\/caption>","data":[["NDEx - The Network Data Exchange:<br><\/br><a href=\"https://www.ndexbio.org/#/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img><\/a><br><\/br><a href=\"https://home.ndexbio.org/quick-start/\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img><\/a>"],["Biological Modeling"],["This platform works with user models that can be stored and shared; 10 GB of free cloud space"],["Sequence"],["Free"],["Collaborative/User Data Sources"],["NDEx is an online commons where scientists can upload, share, and publicly distribute biological networks and pathway models. The NDEx Project maintains a web-accessible public server, a documentation website, provides seamless connectivity to Cytoscape as well as programmatic access using a variety of languages including Python and Java. NDEx Â users can easily create accounts or sign in using their Google credentials thanks to Â the supported open authentication (OAUTH2) method Â and mint DOIs for their networks to use in publications or include in other resources for long term access."]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Platform<\/th>\n      <th>Unique Factor<\/th>\n      <th>Types of Data<\/th>\n      <th>Data Types (Clean)<\/th>\n      <th>Price<\/th>\n      <th>Data Provided<\/th>\n      <th>Summary<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"autoWidth":true,"pageLength":10,"scrollY":true,"scrollX":true,"scrollCollapse":true,"fillContainer":true,"order":[0,"asc"],"columnDefs":[{"width":"600px","targets":6},{"width":"100px","targets":[0,4]},{"width":"400px","targets":2},{"width":"200px","targets":"_all"}],"initComplete":"function(settings, json) {\n$('body').css({'font-family': 'Calibri'});\n$(this.api().table().header()).css({'backgroundColor': '#3f546f'});\n$(this.api().table().header()).css({'color': '#fff'});\n}","orderClasses":false,"orderCellsTop":true}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+<p>This website contains a list of non-specified informatics tools funded by ITCR grants.</p>
+<div id="htmlwidget-cdece99f9dff2218c102" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cdece99f9dff2218c102">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.<\/caption>","data":[["NDEx - The Network Data Exchange:<br><\/br><a href=\"https://www.ndexbio.org/#/\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img><\/a><br><\/br><a href=\"https://home.ndexbio.org/quick-start/\" target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img><\/a><br><\/br><a href=\"NA\" target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img><\/a>"],["Biological Modeling"],["This platform works with user models that can be stored and shared; 10 GB of free cloud space"],["Sequence"],["Free"],["Collaborative/User Data Sources"],["NDEx is an online commons where scientists can upload, share, and publicly distribute biological networks and pathway models. The NDEx Project maintains a web-accessible public server, a documentation website, provides seamless connectivity to Cytoscape as well as programmatic access using a variety of languages including Python and Java. NDEx Â users can easily create accounts or sign in using their Google credentials thanks to Â the supported open authentication (OAUTH2) method Â and mint DOIs for their networks to use in publications or include in other resources for long term access."]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Platform<\/th>\n      <th>Unique Factor<\/th>\n      <th>Types of Data<\/th>\n      <th>Data Types (Clean)<\/th>\n      <th>Price<\/th>\n      <th>Data Provided<\/th>\n      <th>Summary<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"autoWidth":true,"pageLength":10,"scrollY":true,"scrollX":true,"scrollCollapse":true,"fillContainer":true,"order":[0,"asc"],"columnDefs":[{"width":"600px","targets":6},{"width":"100px","targets":[0,4]},{"width":"400px","targets":2},{"width":"200px","targets":"_all"}],"initComplete":"function(settings, json) {\n$('body').css({'font-family': 'Calibri'});\n$(this.api().table().header()).css({'backgroundColor': '#3f546f'});\n$(this.api().table().header()).css({'color': '#fff'});\n}","orderClasses":false,"orderCellsTop":true}},"evals":["options.initComplete"],"jsHooks":[]}</script>
 </div>
 
 
