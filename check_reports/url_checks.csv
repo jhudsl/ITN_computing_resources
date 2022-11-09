@@ -1,0 +1,10 @@
+URL,RESULT,FILENAME
+https://itcr.cancer.gov/,passed,index.Rmd
+https://itcr.cancer.gov/informatics-tools,passed,index.Rmd
+https://fontawesome.com/,passed,structure.Rmd
+https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html,passed,README.md
+https://garrettgman.github.io/rmarkdown/rmarkdown_websites.html,passed,README.md
+https://www.w3schools.com/css/,passed,style.Rmd
+https://www.datadreaming.org/post/r-markdown-theme-gallery/,passed,style.Rmd
+https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf,passed,style.Rmd
+https://favicon.io/favicon-converter/,passed,style.Rmd
