@@ -1,20 +1,41 @@
-name: OTTR Template Website
+name: ITCR Computing and Data Resource Hub
 output_dir: '.'
 navbar:
-  title: OTTR Web
+  title: "<img id=\"logo\" style=\"width: 75px;\" src=\"ITCRLogo.png\" />"
   left:
   - text: Home
+    icon: fa-home
     href: index.html
-  - text: General
-    href: generalTable.html   
-  - text: Imaging
-    href: imagingTable.html   
-  - text: Omics
-    href: omicsTable.html  
-  - text: Clinical
-    href: clinicalTable.html
-  - text: Resources
-    href: resourceTable.html
+
+  - text: Computing Resources
+    icon: fa-desktop   
+    href: ""
+    menu: 
+      - text: All Tables
+        href: generalTable.html 
+        icon: fa-th
+        
+      - text: General
+        href: generalTable.html 
+        icon: fa-stream
+        
+      - text: Imaging  
+        href: imagingTable.html  
+        icon: fa-camera-retro
+        
+      - text: Omics
+        href: omicsTable.html 
+        icon: fa-dna 
+        
+      - text: Clinical
+        href: clinicalTable.html
+        icon: fa-heartbeat
+    
+  - text: Data Resources  
+    href: resourceTable.html 
+    icon: fa-bar-chart
+ 
+    
   - text: Contact
     href: contact.html
     icon: fa-envelope
@@ -22,7 +43,7 @@ navbar:
 
 output:
   html_document:
-    theme: cosmo
+    theme: spacelab
     lib_dir: site_libs
     self_contained: no
     highlight: textmate
