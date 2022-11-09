@@ -13,8 +13,8 @@
 
 <title>Clinical Informatics Table</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -32,18 +32,18 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="site_libs/datatables-binding-0.15/datatables.js"></script>
-<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="site_libs/datatables-binding-0.26/datatables.js"></script>
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
 <link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
 <script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
 <link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
 <script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
-<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/favicon_ITCR.ico" />
@@ -76,6 +76,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
 
@@ -100,6 +101,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -157,11 +161,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -190,8 +198,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -199,16 +207,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -252,7 +253,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -269,7 +270,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-desktop"></span>
      
     Computing Resources
@@ -340,16 +341,21 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><strong>Clinical Informatics Table</strong></h1>
+<h1 class="title toc-ignore"><strong>Clinical Informatics
+Table</strong></h1>
 
 </div>
 
 
 <div id="about" class="section level3">
 <h3><strong>About</strong></h3>
-<p>This website contains a list of clinical informatics platforms funded by ITCR grants. Clinical platforms are those which work with several clinical data types, such as EMR Text and Clinical Notes. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.</p>
-<div id="htmlwidget-fb04b58b4b0786eb762f" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fb04b58b4b0786eb762f">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["<b>GARDE<\/b>:<br><\/br><a href=\"https://reimagineehr.utah.edu/innovations/garde/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"https://reimagineehr.utah.edu/innovations/garde/\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b>Text Information Extraction System (TIES)<\/b>:<br><\/br><a href=\"https://sourceforge.net/projects/caties/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b>FeTS<\/b>:<br><\/br><a href=\"https://www.med.upenn.edu/cbica/fets/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"https://fets-ai.github.io/Front-End/\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"https://www.med.upenn.edu/cbica/fets/\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b>Atlas.ti<\/b>:<br><\/br><a href=\"https://atlasti.com/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"https://atlasti.com/topic/blog/\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a>","<b>D2Refine<\/b>:<br><\/br><a href=\"https://github.com/caCDE-QA/D2Refine/wiki\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>"],["EMR Free-Text","Clinical Reports, EMRs","Tumor Segmentation","Images, Pdf, Audio, Video, Geo, Survey Data, Text Import, Social Network Comments, Reference Manager Data, AV Transcripts","Clinical Modeling"],["GARDE (Genetic Cancer Risk Detector) is a population clinical decision support (CDS) platform based on Fast Healthcare Interoperability Resources (FHIR) and CDS Hooks standards. GARDE (i) screens and identifies patients who meet National Comprehensive Cancer Network (NCCN) criteria for evaluation of familial cancer risk based on their family history in the EHR; and (ii) promotes genetic testing with eligible patients through a rule-based conversational agent (chatbot) that minimizes genetic counseling workload by automating patient outreach and education. GARDE has been integrated with two market-leading EHR systems (EpicÂ® and CernerÂ®). GARDE is open source software that can be deployed both through containerization and cloud-based services. GARDE has been deployed in clinical settings at two academic medical centers and their respective cancer centers (University of Utah Health/Huntsman Cancer Institute and New York University Langone Health) in support of the BRIDGE trial, funded by NCIâ€™s Cancer Moonshot program.","TIES is a service based software system for acquiring, deidentifying, and processing clinical text reports using natural language processing, and also for querying, sharing and using this data to foster tissue and image based research, within and between institutions.","FeTS is an open-source toolkit aimed at detecting tumor boundary data from patient imaging data. This platform emphasizes data deidentification for securing sharing models between researchers, allowing for collaborative improvements to be made to these models.","ATLAS.ti is a qualitative analysis platform that works with several data types such as video, audio, images, surveys, and social media data. There are also several tools such as text data analysis used for sentiment analysis and named-entity recognition.","D2Refine is an integrated platform that enables cancer study data/metadata harmonization and quality assurance. The platform is based on the Open Refine and enhanced with a suite of plugins."],["Designed for use within EHR systems","Extracts information from Surgical Pathology Reports;","This open-source platform offers more advanced researchers an opportunity to work with pre-trained segmentation models of deep learning algorithms for easy analysis of radiographic imaging; This platform additionally provides collaborative options for resaerchers to improve these models without sharing sensitive clinical data.","Free trial; specifically works with sentiment analysis and text data analysis.","This platform works on top of the open-source tool OpenRefine to transform messy data disctionaries into cleaner ones"],["EMR Free-Text","Clinical Reports, EMRs","Tumor Segmentation","Images, Pdf, Audio, Video, Geo, Survey Data, Text Import, Social Network Comments, Reference Manager Data, AV Transcripts","Sequence"],["<a href=\"https://www.opencds.org/pages/join\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Free<\/a>","<a href=\"https://sourceforge.net/projects/caties/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Free<\/a>","<a href=\"https://www.med.upenn.edu/cbica/fets/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Free<\/a>","<a href=\"https://atlasti.com/atlas-ti-product-feature-comparison/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Paid<\/a>","<a href=\"https://github.com/caCDE-QA/D2Refine/wiki\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Free<\/a>"],["No Data Provided","Curated Data Sources","TCIA, IDC","No Data Provided","dbGAP, PheKB, <a href=\"https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Resource Link\"> <\/div>The Cancer Genome Atlas (TCGA)<\/a>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Platform<\/th>\n      <th>Subcategories<\/th>\n      <th>Summary<\/th>\n      <th>Unique Factor<\/th>\n      <th>Types of Data<\/th>\n      <th>Price<\/th>\n      <th>Data Provided<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"autoWidth":true,"pageLength":10,"scrollY":true,"scrollX":true,"scrollCollapse":true,"fillContainer":true,"order":[0,"asc"],"columnDefs":[{"width":"300px","targets":2},{"width":"100px","targets":[4,5]},{"width":"120px","targets":0},{"width":"200px","targets":3},{"width":"150px","targets":"_all"}],"initComplete":"function(settings, json) {\n$('body').css({'font-family': 'Calibri'});\n$(this.api().table().header()).css({'backgroundColor': '#3f546f'});\n$(this.api().table().header()).css({'color': '#fff'});\n}","orderClasses":false,"orderCellsTop":true}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+<p>This website contains a list of clinical informatics platforms funded
+by ITCR grants. Clinical platforms are those which work with several
+clinical data types, such as EMR Text and Clinical Notes. Each resource
+will have up to three links that navigate towards their main site, their
+documentation, and a list of their publications.</p>
+<div id="htmlwidget-9b33856f0bed9f496eca" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9b33856f0bed9f496eca">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["<b>GARDE<\/b>:<br><\/br><a href=\"https://reimagineehr.utah.edu/innovations/garde/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"https://reimagineehr.utah.edu/innovations/garde/\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b>Text Information Extraction System (TIES)<\/b>:<br><\/br><a href=\"https://sourceforge.net/projects/caties/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b>FeTS<\/b>:<br><\/br><a href=\"https://www.med.upenn.edu/cbica/fets/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"https://fets-ai.github.io/Front-End/\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"https://www.med.upenn.edu/cbica/fets/\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>","<b>Atlas.ti<\/b>:<br><\/br><a href=\"https://atlasti.com/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"https://atlasti.com/topic/blog/\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a>","<b>D2Refine<\/b>:<br><\/br><a href=\"https://github.com/caCDE-QA/D2Refine/wiki\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> <\/div> <img src=\"Hyperlink.png\"  height=\"30\"> <\/img>Main Link<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> <\/div> <img src=\"Documentation.png\" height=\"30\"> <\/img>Documentation<\/a><br><\/br><a href=\"NA\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> <\/div> <img src=\"Publication.png\" height=\"30\"> <\/img>Publications<\/a><br><\/br><img src=\"ITCRLogo.png\" height=\"50\"> <\/img>"],["EMR Free-Text","Clinical Reports, EMRs","Tumor Segmentation","Images, Pdf, Audio, Video, Geo, Survey Data, Text Import, Social Network Comments, Reference Manager Data, AV Transcripts","Clinical Modeling"],["GARDE (Genetic Cancer Risk Detector) is a population clinical decision support (CDS) platform based on Fast Healthcare Interoperability Resources (FHIR) and CDS Hooks standards. GARDE (i) screens and identifies patients who meet National Comprehensive Cancer Network (NCCN) criteria for evaluation of familial cancer risk based on their family history in the EHR; and (ii) promotes genetic testing with eligible patients through a rule-based conversational agent (chatbot) that minimizes genetic counseling workload by automating patient outreach and education. GARDE has been integrated with two market-leading EHR systems (EpicÂ® and CernerÂ®). GARDE is open source software that can be deployed both through containerization and cloud-based services. GARDE has been deployed in clinical settings at two academic medical centers and their respective cancer centers (University of Utah Health/Huntsman Cancer Institute and New York University Langone Health) in support of the BRIDGE trial, funded by NCIâ€™s Cancer Moonshot program.","TIES is a service based software system for acquiring, deidentifying, and processing clinical text reports using natural language processing, and also for querying, sharing and using this data to foster tissue and image based research, within and between institutions.","FeTS is an open-source toolkit aimed at detecting tumor boundary data from patient imaging data. This platform emphasizes data deidentification for securing sharing models between researchers, allowing for collaborative improvements to be made to these models.","ATLAS.ti is a qualitative analysis platform that works with several data types such as video, audio, images, surveys, and social media data. There are also several tools such as text data analysis used for sentiment analysis and named-entity recognition.","D2Refine is an integrated platform that enables cancer study data/metadata harmonization and quality assurance. The platform is based on the Open Refine and enhanced with a suite of plugins."],["Designed for use within EHR systems","Extracts information from Surgical Pathology Reports;","This open-source platform offers more advanced researchers an opportunity to work with pre-trained segmentation models of deep learning algorithms for easy analysis of radiographic imaging; This platform additionally provides collaborative options for resaerchers to improve these models without sharing sensitive clinical data.","Free trial; specifically works with sentiment analysis and text data analysis.","This platform works on top of the open-source tool OpenRefine to transform messy data disctionaries into cleaner ones"],["EMR Free-Text","Clinical Reports, EMRs","Tumor Segmentation","Images, Pdf, Audio, Video, Geo, Survey Data, Text Import, Social Network Comments, Reference Manager Data, AV Transcripts","Sequence"],["<a href=\"https://www.opencds.org/pages/join\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Free<\/a>","<a href=\"https://sourceforge.net/projects/caties/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Free<\/a>","<a href=\"https://www.med.upenn.edu/cbica/fets/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Free<\/a>","<a href=\"https://atlasti.com/atlas-ti-product-feature-comparison/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Paid<\/a>","<a href=\"https://github.com/caCDE-QA/D2Refine/wiki\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Pricing Link\"> <\/div>Free<\/a>"],["No Data Provided","Curated Data Sources","TCIA, IDC","No Data Provided","dbGAP, PheKB, <a href=\"https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Resource Link\"> <\/div>The Cancer Genome Atlas (TCGA)<\/a>"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Platform<\/th>\n      <th>Subcategories<\/th>\n      <th>Summary<\/th>\n      <th>Unique Factor<\/th>\n      <th>Types of Data<\/th>\n      <th>Price<\/th>\n      <th>Data Provided<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"autoWidth":true,"pageLength":10,"scrollY":true,"scrollX":true,"scrollCollapse":true,"fillContainer":true,"order":[0,"asc"],"columnDefs":[{"width":"300px","targets":2},{"width":"100px","targets":[4,5]},{"width":"120px","targets":0},{"width":"200px","targets":3},{"width":"150px","targets":"_all"}],"initComplete":"function(settings, json) {\n$('body').css({'font-family': 'Calibri'});\n$(this.api().table().header()).css({'backgroundColor': '#3f546f'});\n$(this.api().table().header()).css({'color': '#fff'});\n}","orderClasses":false,"orderCellsTop":true}},"evals":["options.initComplete"],"jsHooks":[]}</script>
 </div>
 
 
