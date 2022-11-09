@@ -5,30 +5,40 @@ output:
 ---
 
 <div class = "banner_color">
-Banner text!  
+Computing and Data Resource Hub  
 </div>
 
-### **About**
+<style type="text/css">
+  body{
+  font-size: 13pt;
+  line-height: 1.6;
+}
+</style>
 
-This website was created with the OTTR_Template_Website template. This enables simpler creation of websites that have automated checks for broken URLs and spelling errors, as well as automated rendering of all html files. No need to worry about git conflicts for html files!
+<br> 
 
-Here is how you can include images in your website pages (this one is saved in `resources/images` to keep things tidy:
+### **Welcome!**
 
-```{r, fig.align='center', fig.alt= "Example image", echo = FALSE, out.width="30%"}
-knitr::include_graphics("resources/images/example_image.png")
+This website for ITCR Cancer Informatics Platform Database contains a comprehensive list of the bioinformatics platforms (computing and data) funded by **ITCR** *(Informatics Technology for Cancer Research)* grants. Each resource will have, along with their brief description, up to three links that navigate towards their -  
+
+- main site  
+- pertinent documentation, and  
+- list of their publications.  
+  
+Please browse the through the resources on each page by using the navigation bar above. 
+
+To refer to the **original table** of Informatics Tools on the ITCR website, [click here](https://itcr.cancer.gov/informatics-tools).   
+<br>
+
+```{r, fig.align='center', fig.alt="Source: https://itcr.cancer.gov/", echo = FALSE, out.height="10%", out.width="100%"}
+knitr::include_graphics("resources/images/background-3-2000x360.jpg")
 ```
 
- 
- 
-We will go through the following:
+<br>
 
-1. How to set up your repository to enable the GitHub actions of the template. (Setup tab)
-2. How to host your website using GitHub (Hosting tab)
-3. How to modify your website structure (Structure tab)
-4. How to change your website style (Style tab)
-5. More information about GitHub Actions (Git Actions tab)
+If you would like to contact us please use the contact information listed on the **Contact** page. We would love to hear your questions, feedback and suggestions!   
 
-Click on each tab to learn more.
+<br>
+To contact ITCR directly, please refer to the original [ITCR website](https://itcr.cancer.gov/).  
 
-
-
+<br>
