@@ -3,7 +3,7 @@
 
 
  body {
-  margin-top: 30px;
+  margin-top: 20px;
   font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
@@ -22,8 +22,9 @@ body {
 /* add some color - if you want color behind a major point on your website */
 
 .banner_color {
-  background-color: lightblue;
-  font-weight:bold;
+  background-color: #5EB2EA;
+  font-weight: bold;
+  color: black;
 
 }
 
