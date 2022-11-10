@@ -19,7 +19,7 @@ library(magrittr)
 
 **Table keys:** 
 <div title="Table keys"> 
-<img src="Hyperlink.png"  height="30"> </img> = Main Link, <img src="Documentation.png" height="30"> </img> = Documentation, <img src="Publication.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
+<img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
 
@@ -30,9 +30,9 @@ generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>','<img src="Hyperlink.png"  height="30"> </img>', '</a>'),
-         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div>','<img src="Documentation.png" height="30"> </img>', '</a>'),
-         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div>','<img src="Publication.png" height="30"> </img>', '</a>'))
+  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>','<img src="resources/images/Hyperlink2.png"  height="30"> </img>', '</a>'),
+         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div>','<img src="resources/images/Documentation2.png" height="30"> </img>', '</a>'),
+         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div>','<img src="resources/images/Publication2.png" height="30"> </img>', '</a>'))
 
 # Mutate generalData's Name to be bolded.
 generalData %<>%
