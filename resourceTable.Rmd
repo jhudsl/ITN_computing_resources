@@ -3,7 +3,7 @@ title: "**Resources Informatics Table**"
 output: html_document
 ---
 
-### **About**
+### **Overview**
 
 This website contains a list of informatics resources funded by ITCR grants. Resources are remotely hosted sources of curated or collaborative data that researchers can use for projects. These resources also provide data to specific platforms highlighted within the various Platforms informatics tables.
 
@@ -16,6 +16,11 @@ library(tidyverse)
 library(magrittr)
 #library(RCurl)
 ```
+
+**Table keys:** 
+<div title="Table keys"> 
+<img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
+</div>
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for Resource Table
@@ -37,7 +42,7 @@ for (row in 1:nrow(generalData)) {
 
   if(status == "Yes") {
     target %<>%
-    mutate(Name = paste0(Name,'<br></br>','<img src="ITCRLogo.png" height="50"> </img>'))
+    mutate(Name = paste0(Name,'<br></br>','<img src="ITCRLogo.png" height="40"> </img>'))
     
     generalData[row,"Name"] <- target
   }
@@ -54,26 +59,31 @@ trimmedData %<>%
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Create a Imaging Table
-ICTR_resource <- trimmedData %>%
+ITCR_resource <- trimmedData %>%
   DT::datatable(
     style = 'default',
     width="100%",
+    colnames = c('Unique Factor' = 4, 'Types of Data' = 5, 'Summary' = 3),
     rownames = FALSE,
     escape = FALSE,
+    #caption = "some caption",
     filter = "top",
-    #escape = FALSE,
-    extensions = list("Scroller"),
-    options = list(autoWidth = TRUE, pageLength = 10, scrollY = TRUE,
-                   scrollX = TRUE, scrollCollapse = TRUE, fillContainer = TRUE,
+    #extensions = list("Scroller")
+    options = list(scrollX = TRUE, autoWidth = TRUE, pageLength = 10,
+                   scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
-                   columnDefs = list(list(width = '300px', targets = c(2)),
-                                     list(width = '100px', targets = c(4,5)),
-                                     list(width = '120px', targets = c(0)),
-                                     list(width = '200px', targets = c(3)),
-                                     list(width = '150px', targets = "_all")),
+                   columnDefs = list(list(className = 'dt-center', targets = "_all"),
+                                     list(width = '320px', targets = c(2)) , 
+                                     list(width = '100px', targets = c(3)) ,
+                                     list(width = '140px', targets = c(4)) ),
+                   # columnDefs = list(list(width = '300px', targets = c(2)),
+                   #                   list(width = '100px', targets = c(4,5)),
+                   #                   list(width = '120px', targets = c(0)),
+                   #                   list(width = '200px', targets = c(3)),
+                   #                   list(width = '150px', targets = "_all")),
                    initComplete = JS(
                      "function(settings, json) {",
-                     "$('body').css({'font-family': 'Calibri'});",
+                     #"$('body').css({'font-family': 'Calibri'});",
                      "$(this.api().table().header()).css({'backgroundColor': '#3f546f'});",
                      "$(this.api().table().header()).css({'color': '#fff'});",
                      "}"))
@@ -81,5 +91,5 @@ ICTR_resource <- trimmedData %>%
 ```
 
 ```{r,echo=FALSE}
-ICTR_resource
+ITCR_resource
 ```

@@ -4,8 +4,8 @@ output:
   html_document
 ---
 
+### *Get in touch*
 
+Hey there! We would love to hear from you! If you have feedback, suggestions or questions please contact:
 
-If you have questions please contact:
-
-* Carrie Wright (cwrigh60@jhu.edu)
+* **Carrie Wright** (cwrigh60@jhu.edu)

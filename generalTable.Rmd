@@ -3,9 +3,9 @@ title: "**General Informatics Table**"
 output: html_document
 ---
 
-### **About**
+### **Overview**
 
-This website contains a list of general informatics platforms funded by ITCR grants. General platforms are those which work with a wide variety of data types, from imaging data to “omics” data. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
+This webpage contains a list of general informatics platforms funded by ITCR grants. General platforms are those which work with a wide variety of data types, from imaging data to “omics” data. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
@@ -19,20 +19,20 @@ library(magrittr)
 
 **Table keys:** 
 <div title="Table keys"> 
-<img src="Hyperlink.png"  height="30"> </img> = Main Link, <img src="Documentation.png" height="30"> </img> = Documentation, <img src="Publication.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
+<img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for General Table
 generalData <- read_csv(file = here::here("ictr_table_general.csv"))
-generalData
+#generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>','<img src="Hyperlink.png"  height="30"> </img>', '</a>'),
-         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div>','<img src="Documentation.png" height="30"> </img>', '</a>'),
-         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div>','<img src="Publication.png" height="30"> </img>', '</a>'))
+  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>','<img src="resources/images/Hyperlink2.png"  height="30"> </img>', '</a>'),
+         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div>','<img src="resources/images/Documentation2.png" height="30"> </img>', '</a>'),
+         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div>','<img src="resources/images/Publication2.png" height="30"> </img>', '</a>'))
 
 # Mutate generalData's Name to be bolded.
 generalData %<>%
@@ -101,8 +101,7 @@ ITCR_general <- trimmedData %>%
     escape = FALSE,
     #caption = "some caption",
     filter = "top",
-    #extensions = list("Scroller"),
-    extensions = 'FixedHeader',
+    #extensions = list("Scroller")
     options = list(scrollX = TRUE, autoWidth = TRUE, pageLength = 10,
                    scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
@@ -116,7 +115,7 @@ ITCR_general <- trimmedData %>%
                    #                   list(width = '150px', targets = "_all")),
                    initComplete = JS(
                      "function(settings, json) {",
-                     "$('body').css({'font-family': 'Calibri'});",
+                     #"$('body').css({'font-family': 'Calibri'});",
                      "$(this.api().table().header()).css({'backgroundColor': '#3f546f'});",
                      "$(this.api().table().header()).css({'color': '#fff'});",
                      "}"))

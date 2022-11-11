@@ -3,7 +3,7 @@ title: "**Clinical Informatics Table**"
 output: html_document
 ---
 
-### **About**
+### **Overview**
 
 This website contains a list of clinical informatics platforms funded by ITCR grants. Clinical platforms are those which work with several clinical data types, such as EMR Text and Clinical Notes. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
 
@@ -17,6 +17,12 @@ library(magrittr)
 #library(RCurl)
 ```
 
+**Table keys:** 
+<div title="Table keys"> 
+<img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
+</div>
+
+
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for Clinical Table
 generalData <- read_csv(file = here::here("ictr_table_clinical.csv"))
@@ -24,11 +30,11 @@ generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
-  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height="30"> </img>', "Main Link",'</a>'),
-         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div> <img src="Documentation.png" height="30"> </img>', "Documentation", '</a>'),
-         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div> <img src="Publication.png" height="30"> </img>', "Publications", '</a>'))
+  mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>','<img src="resources/images/Hyperlink2.png"  height="30"> </img>', '</a>'),
+         Documentation = paste0('<a href="',Documentation,'"style="color: #be3b2a"','target="_blank"','<div title="Documentation"> </div>','<img src="resources/images/Documentation2.png" height="30"> </img>', '</a>'),
+         Publications = paste0('<a href="',Publications,'"style="color: #be3b2a"', 'target="_blank"','<div title="Publications"> </div>','<img src="resources/images/Publication2.png" height="30"> </img>', '</a>'))
 
-#Mutate generalData's Name to be bolded.
+# Mutate generalData's Name to be bolded.
 generalData %<>%
   mutate(Name = paste0('<b>', Name,'</b>'))
 
@@ -37,17 +43,19 @@ generalData %<>%
   mutate(Price = paste0('<a href="',PLink,'"style="color: #be3b2a"',' target="_blank"','<div title="Pricing Link"> </div>', Price,'</a>'))
 
 # Mutate the tibble to combine all three columns into a general "Platform" column.
+## Awan Edit: Removed line-breaks between linked icons to save space.
 generalData %<>%
-  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`,'<br></br>', Documentation,'<br></br>', Publications))
+  mutate(Platform = paste0(Name, ":",'<br></br>', `Link (Hyperlinked Over Name)`, Documentation, Publications))
 
 # Mutate Platform to contain an ITCR logo if the Platform is funded by ITCR.
+## Awan Edit: Reduced ITCR Logo size.
 for (row in 1:nrow(generalData)) {
     status <- generalData[row, "Funding"]
     target  <- generalData[row, "Platform"]
 
   if(status == "Yes") {
     target %<>%
-    mutate(Platform = paste0(Platform,'<br></br>','<img src="ITCRLogo.png" height="50"> </img>'))
+    mutate(Platform = paste0(Platform,'<br></br>','<img src="ITCRLogo.png" height="30"> </img>'))
     
     generalData[row,"Platform"] <- target
   }
@@ -63,13 +71,19 @@ resource <- read_csv(file = here::here("ictr_table_resources.csv"))
 # Create the html version of links in resources
 resource <- resource %>% mutate(Link = paste0('<a href="',Link,'"style="color: #be3b2a"',' target="_blank"','<div title="Resource Link"> </div>',Name,'</a>'))
 
+# Create a function to merge resources and generalData
+resourceMerge <- function( generalData,row,col ) {
+  generalData %>%
+    filter(row_number() == row) %>%
+    select(col)
+}
+
 # Alter the generalData df to see how it interacts with the resources tab. 
 generalData %<>% 
   mutate('Data Provided' = str_replace(string = pull(generalData,'Data Provided'), pattern = "TCGA", replacement = str_subset(string = pull(resource,Link), pattern = "tcga")[1]))
 
-# Create a trimmed version of the data by removing the non-consolidated columns. 
-trimmedData <- generalData[ -c(1,2,8,10,12,13) ]   
-trimmedData
+# Create a trimmed version of the data by removing the non-consolidated columns.
+trimmedData <- generalData[ -c(1,2,8,10,12,13) ]
 
 # Shift the location of the "Summary" column.
 trimmedData %<>%
@@ -79,28 +93,30 @@ trimmedData %<>%
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Create a Imaging Table
-ICTR_omics <- trimmedData %>%
+ITCR_clinical <- trimmedData %>%
   DT::datatable(
     style = 'default',
     width="100%",
-    colnames = c('Unique Factor' = 4, 'Types of Data' = 5,
-                 'Summary' = 3),
+    colnames = c('Unique Factor' = 4, 'Types of Data' = 5, 'Summary' = 3),
     rownames = FALSE,
     escape = FALSE,
+    #caption = "some caption",
     filter = "top",
-    #escape = FALSE,
-    extensions = list("Scroller"),
-    options = list(autoWidth = TRUE, pageLength = 10, scrollY = TRUE,
-                   scrollX = TRUE, scrollCollapse = TRUE, fillContainer = TRUE,
+    #extensions = list("Scroller")
+    options = list(scrollX = TRUE, autoWidth = TRUE, pageLength = 10,
+                   scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
-                   columnDefs = list(list(width = '300px', targets = c(2)),
-                                     list(width = '100px', targets = c(4,5)),
-                                     list(width = '120px', targets = c(0)),
-                                     list(width = '200px', targets = c(3)),
-                                     list(width = '150px', targets = "_all")),
+                   columnDefs = list(list(className = 'dt-center', targets = "_all"),
+                                     list(width = '300px', targets = c(2)) , 
+                                     list(width = '150px', targets = c(3)) ),
+                   # columnDefs = list(list(width = '300px', targets = c(2)),
+                   #                   list(width = '100px', targets = c(4,5)),
+                   #                   list(width = '120px', targets = c(0)),
+                   #                   list(width = '200px', targets = c(3)),
+                   #                   list(width = '150px', targets = "_all")),
                    initComplete = JS(
                      "function(settings, json) {",
-                     "$('body').css({'font-family': 'Calibri'});",
+                     #"$('body').css({'font-family': 'Calibri'});",
                      "$(this.api().table().header()).css({'backgroundColor': '#3f546f'});",
                      "$(this.api().table().header()).css({'color': '#fff'});",
                      "}"))
@@ -108,5 +124,5 @@ ICTR_omics <- trimmedData %>%
 ```
 
 ```{r,echo=FALSE}
-ICTR_omics
+ITCR_clinical
 ```
