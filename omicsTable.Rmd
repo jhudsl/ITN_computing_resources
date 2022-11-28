@@ -15,7 +15,6 @@ library(here)
 library(tidyverse)
 library(magrittr)
 #library(RCurl)
-library(splitstackshape)
 ```
 
 **Table keys:** 
@@ -85,10 +84,13 @@ resource <- resource %>%
 #   mutate('Data Provided' = str_replace(string = pull(generalData,'Data Provided'), pattern = "TCGA", replacement = str_subset(string = pull(resource,Link), pattern = "tcga")[1]))
 
 # AwanEdit: Code for Linking Resource table to the other tables' Data Provided column
-LinkUpdater <- cSplit_e(generalData %>% select(Name, `Data Provided`), "Data Provided", ",", type = "character", fill = 0, drop = T) %>% 
-  set_names(str_replace(string = names(.), pattern = "Data Provided_", replacement = "")) %>% 
-  pivot_longer(cols = -Name, names_to = "identifier", values_to = "indicator") %>% 
-  filter(indicator == 1) %>%
+LinkUpdater <- bind_cols(Name = pull(generalData, Name), 
+                         read.table(text = as.character(generalData$`Data Provided`), sep = ",", as.is = TRUE, fill = TRUE, na.strings = "")) %>% 
+  pivot_longer(cols = -Name, names_to = "vars", values_to = "vals") %>% 
+  filter(!is.na(vals)) %>% 
+  mutate(vals = str_trim(vals, side = "both")) %>% 
+  select(-vars, identifier = vals) %>% 
+  mutate(indicator = 1) %>%
   left_join(y = resource %>% select(identifier, Link), by = "identifier") %>% 
   mutate(Link = if_else(is.na(Link), identifier, Link)) %>% select(-identifier, -indicator) %>% 
   group_by(Name) %>% mutate(var = paste0("var", 1:n() )) %>% ungroup() %>% relocate(var) %>% 

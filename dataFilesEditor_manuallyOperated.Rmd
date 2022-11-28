@@ -17,7 +17,6 @@ library(here)
 library(tidyverse)
 library(magrittr)
 #library(RCurl)
-library(splitstackshape)
 ```
 
 ##  Resource table editor
