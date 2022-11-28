@@ -5,16 +5,17 @@ output: html_document
 
 ### **Overview**
 
-This website contains a list of informatics resources funded by ITCR grants. Resources are remotely hosted sources of curated or collaborative data that researchers can use for projects. These resources also provide data to specific platforms highlighted within the various Platforms informatics tables.
+The following table contains a list of informatics resources funded by ITCR grants. Resources are remotely hosted sources of curated or collaborative data that are available to researchers. These platforms catalog common human genetic sequencing data, including genomic, epigenomic, transcriptomic, and proteomic data, cancer imaging data, radiology data, along with analytic and graphical tools to facilitate research endeavours. They also provide data to specific computing platforms which have been highlighted within the various computing resource tables. Note that, all resource summaries were taken from their respective sources.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
 library(DT)
-library(dplyr)
+#library(dplyr) 
 library(here)
 library(tidyverse)
 library(magrittr)
 #library(RCurl)
+library(splitstackshape)
 ```
 
 **Table keys:** 
@@ -24,7 +25,7 @@ library(magrittr)
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for Resource Table
-generalData <- read_csv(file = here::here("ictr_table_resources.csv"))
+generalData <- read_csv(file = here::here("data/ictr_table_resources_new.csv"))
 generalData
 
 # Mutate the tibble to alter three of the columns
@@ -49,7 +50,8 @@ for (row in 1:nrow(generalData)) {
 }
 
 # Create a trimmed version of the data by removing the non-consolidated columns. 
-trimmedData <- generalData[ -c(2,7) ]   
+trimmedData <- generalData[ -c(1, 2, 4, 9) ]   
+## if data is loaded from original ictr_table_resources.csv, only remove columns 2 and 7 generalData[ -c(2, 7) ]
 trimmedData
 
 # Shift the location of the "Summary" column.
@@ -73,9 +75,10 @@ ITCR_resource <- trimmedData %>%
                    scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
-                                     list(width = '320px', targets = c(2)) , 
+                                     list(width = '120px', targets = c(0)) , 
+                                     list(width = '300px', targets = c(2)) , 
                                      list(width = '100px', targets = c(3)) ,
-                                     list(width = '140px', targets = c(4)) ),
+                                     list(width = '150px', targets = c(4)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),

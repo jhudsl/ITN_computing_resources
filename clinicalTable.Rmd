@@ -5,16 +5,17 @@ output: html_document
 
 ### **Overview**
 
-This website contains a list of clinical informatics platforms funded by ITCR grants. Clinical platforms are those which work with several clinical data types, such as EMR Text and Clinical Notes. Each resource will have up to three links that navigate towards their main site, their documentation, and a list of their publications.
+The following table contains a list of clinical informatics platforms funded by ITCR grants. Clinical platforms work with several clinical data types, such as EMR Text and Clinical Notes, utilizing Natural Language Processing techniques, AI and machine learning algorithms in order to generate actionable insights with automated research tools. Note that, all resource summaries were taken from their respective sources.
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
-library(dplyr)
+#library(dplyr) 
 library(here)
 library(tidyverse)
 library(magrittr)
 #library(RCurl)
+library(splitstackshape)
 ```
 
 **Table keys:** 
@@ -25,7 +26,7 @@ library(magrittr)
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for Clinical Table
-generalData <- read_csv(file = here::here("ictr_table_clinical.csv"))
+generalData <- read_csv(file = here::here("data/ictr_table_clinical.csv"))
 generalData
 
 # Mutate the tibble to alter three of the columns
@@ -66,21 +67,39 @@ generalData %<>%
   relocate(Platform, .after = `Link (Hyperlinked Over Name)`)
 
 # Load file for Resource Table
-resource <- read_csv(file = here::here("ictr_table_resources.csv"))
+resource <- read_csv(file = here::here("data/ictr_table_resources_new.csv"))
 
 # Create the html version of links in resources
-resource <- resource %>% mutate(Link = paste0('<a href="',Link,'"style="color: #be3b2a"',' target="_blank"','<div title="Resource Link"> </div>',Name,'</a>'))
+## AwanEdit: added a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
+resource <- resource %>% 
+  mutate(Link = paste0('<a href="', Link,'"style="color: #be3b2a"',' target="_blank"','<div title="Resource Link"> </div>',Name,'</a>'))
+## To have shorter acronyms use "identifier" in place of "Name" inside 'mutate'
 
-# Create a function to merge resources and generalData
-resourceMerge <- function( generalData,row,col ) {
-  generalData %>%
-    filter(row_number() == row) %>%
-    select(col)
-}
+# # Create a function to merge resources and generalData (edit: This function seems redundant)
+# resourceMerge <- function( generalData,row,col ) {
+#   generalData %>%
+#     filter(row_number() == row) %>%
+#     select(col)
+# }
 
 # Alter the generalData df to see how it interacts with the resources tab. 
-generalData %<>% 
-  mutate('Data Provided' = str_replace(string = pull(generalData,'Data Provided'), pattern = "TCGA", replacement = str_subset(string = pull(resource,Link), pattern = "tcga")[1]))
+# generalData %<>% 
+#   mutate('Data Provided' = str_replace(string = pull(generalData,'Data Provided'), pattern = "TCGA", replacement = str_subset(string = pull(resource,Link), pattern = "tcga")[1]))
+
+# AwanEdit: Code for Linking Resource table to the other tables' Data Provided column
+LinkUpdater <- cSplit_e(generalData %>% select(Name, `Data Provided`), "Data Provided", ",", type = "character", fill = 0, drop = T) %>% 
+  set_names(str_replace(string = names(.), pattern = "Data Provided_", replacement = "")) %>% 
+  pivot_longer(cols = -Name, names_to = "identifier", values_to = "indicator") %>% 
+  filter(indicator == 1) %>%
+  left_join(y = resource %>% select(identifier, Link), by = "identifier") %>% 
+  mutate(Link = if_else(is.na(Link), identifier, Link)) %>% select(-identifier, -indicator) %>% 
+  group_by(Name) %>% mutate(var = paste0("var", 1:n() )) %>% ungroup() %>% relocate(var) %>% 
+  pivot_wider(names_from = var, values_from = Link) %>% 
+  unite(col = "Data Provided2", -Name, sep = ", ", na.rm = T, remove = T) 
+
+generalData %<>% left_join(LinkUpdater, by = "Name") %>% 
+  relocate(`Data Provided2`, .before = `Data Provided`) %>% 
+  select(-`Data Provided`) %>% rename("Data Provided" = `Data Provided2`)
 
 # Create a trimmed version of the data by removing the non-consolidated columns.
 trimmedData <- generalData[ -c(1,2,8,10,12,13) ]
@@ -107,8 +126,8 @@ ITCR_clinical <- trimmedData %>%
                    scrollCollapse = TRUE, fillContainer = TRUE,
                    order = (list(0, 'asc')),
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
-                                     list(width = '300px', targets = c(2)) , 
-                                     list(width = '150px', targets = c(3)) ),
+                                     list(width = '280px', targets = c(2)) , 
+                                     list(width = '140px', targets = c(3)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),

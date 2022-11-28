@@ -19,7 +19,7 @@ library(magrittr)
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for Imaging Table
-generalData <- read_csv(file = here::here("ictr_table_other.csv"))
+generalData <- read_csv(file = here::here("data/ictr_table_other.csv"))
 generalData
 
 # Mutate the tibble to alter three of the columns
