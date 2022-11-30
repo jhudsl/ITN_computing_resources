@@ -21,7 +21,7 @@ knitr::include_graphics("resources/images/bannerITCR.png")
 
 ### **Welcome!**
 
-This website for ITCR Scientific Software Resources contains a comprehensive list of the bioinformatics platforms (computing and data) that contain scientific software tools funded by **ITCR** *(Informatics Technology for Cancer Research)* grants.  
+This website is intended to help cancer researchers find bioinformatics computing platforms and data resources, many of which are funded by the ITCR (Informatics Technology for Cancer Research) program of the NCI (National Cancer Institute). Please note that some of the information presented in these tables came from the [ITCR website](https://itcr.cancer.gov/informatics-tools).
 
   - **Computing resource platforms** are web or cloud-based platforms that provide computational support to researchers including, but not limited to, analysis, visualization, storage, and computation of large-scale bioinformatics data sets while facilitating efficient workflow,  database management, wider collaboration,  reproducibility, and streamlined scientific communication.  
   
