@@ -12,7 +12,7 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of general informatics and biomedical platforms funded by ITCR grants. General platforms are those platforms which work with a wide variety of data types, from imaging data to “omics” data and provide computing resource support across different areas of bioinformatics research. Note that, all resource summaries were taken from their respective sources.
+The following table contains a list of general informatics and biomedical platforms that can help researchers work with publicly available data and or their own data. General platforms are those which work with a wide variety of data types, from imaging data to “omics” data, and provide computing resource support across different areas of bioinformatics research. 
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
