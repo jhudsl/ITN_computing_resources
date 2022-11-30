@@ -5,7 +5,7 @@ output: html_document
 
 ### **About**
 
-The following table contains a list of imaging informatics platforms funded by ITCR grants. Imaging platforms work with several imaging data types, ranging from pathology imaging to radiographic imaging. These platforms allows researchers to create custom workflows, view and interact with analysis results, utilize imaging algorithms, analyze image tiles, as well as visualize and report analysis results. Note that, all resource summaries were taken from their respective sources.
+The following table contains a list of imaging informatics platforms. These platforms work with several imaging data types, ranging from pathology imaging to radiographic imaging. These platforms allow researchers to create custom workflows, view and interact with analysis results, utilize imaging algorithms, as well as visualize and report analysis results. 
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
