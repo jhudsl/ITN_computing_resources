@@ -73,7 +73,7 @@ generalData %<>%
   relocate(Platform, .after = `Link (Hyperlinked Over Name)`)
 
 # Load file for Resource Table
-resource <- read_csv(file = here::here("data/ictr_table_resources_new.csv"))
+resource <- read_csv(file = here::here("data/ictr_table_resources_identifier.csv"))
 
 # Create the html version of links in resources
 ## AwanEdit: added a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables: see dataFilesEditor Rmd
@@ -93,17 +93,20 @@ resource <- resource %>%
 
 # AwanEdit: Code for Linking Resource table to the other tables' Data Provided column
 LinkUpdater <- bind_cols(Name = pull(generalData, Name), 
+                         ## create new columns for each comma separated string in the `Data Provided` column 
+                         ## without specifying the total number of columns in advance
                          read.table(text = as.character(generalData$`Data Provided`), sep = ",", as.is = TRUE, fill = TRUE, na.strings = "")) %>% 
+  ## convert the data into long format to prepare for merging with resource table with corresponding identifier
   pivot_longer(cols = -Name, names_to = "vars", values_to = "vals") %>% 
+  ## filter out the rows with NA values
   filter(!is.na(vals)) %>% 
-  mutate(vals = str_trim(vals, side = "both")) %>% 
+  mutate(vals = str_trim(vals, side = "both")) %>% ## remove leading and trailing white spaces in the strings
   select(-vars, identifier = vals) %>% 
-  mutate(indicator = 1) %>%
-  left_join(y = resource %>% select(identifier, Link), by = "identifier") %>% 
-  mutate(Link = if_else(is.na(Link), identifier, Link)) %>% select(-identifier, -indicator) %>% 
-  group_by(Name) %>% mutate(var = paste0("var", 1:n() )) %>% ungroup() %>% relocate(var) %>% 
+  left_join(y = resource %>% select(identifier, Link), by = "identifier") %>%  # merge the working data with the Link column from the resource table
+  mutate(Link = if_else(is.na(Link), identifier, Link)) %>% select(-identifier) %>% # fill out the missing values with with strings non-linked ids
+  group_by(Name) %>% mutate(var = paste0("var", 1:n() )) %>% ungroup() %>% relocate(var) %>% ## prepare data to re-convert into wide form
   pivot_wider(names_from = var, values_from = Link) %>% 
-  unite(col = "Data Provided2", -Name, sep = ", ", na.rm = T, remove = T) 
+  unite(col = "Data Provided2", -Name, sep = ", ", na.rm = T, remove = T) # unite all columns (except Name) into one string variables separated by commas 
 
 generalData %<>% left_join(LinkUpdater, by = "Name") %>% 
   relocate(`Data Provided2`, .before = `Data Provided`) %>% 

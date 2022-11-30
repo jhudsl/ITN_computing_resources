@@ -5,7 +5,7 @@ output: html_document
 
 ### **Overview**
 
-
+This file is used to make edits to the data files. 
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
@@ -23,14 +23,14 @@ library(magrittr)
 #generalData <- read_csv(file = here::here("ictr_table_general.csv"))
 #generalData
 # Load file for Resource Table
-resource <- read_csv(file = here::here("data/ictr_table_resources.csv"))
+resource <- read_csv(file = here::here("data/ictr_table_resources.csv"), show_col_types = FALSE)
 
 # Create the html version of links in resources
 ## AwanEdit: added a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
-resource_new <- resource %>% 
+resource_identifier <- resource %>% 
   mutate(identifier = c("PDX", "HemOnc", "ngchm", "OncoMX", "MethCon5", "CIViC", "BioMuta", "TCIA", "SCGV", "ivyGlimpse", "TCPA", "dcmqi", "Region Templates", "Cistrome", "TOPAS", "TCGA", "1000 Genomes", "TARGET", "CCLE", "dbGAP", "CPTAC", "PheKB", "NSCLC Radiomics", "ICGC"))  %>%  relocate(identifier)
 
-write.csv(resource_new, file = "data/ictr_table_resources_new.csv")
+write.csv(resource_identifier, file = "data/ictr_table_resources_identifier.csv")
 ```
 
 

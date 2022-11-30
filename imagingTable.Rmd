@@ -65,7 +65,7 @@ generalData %<>%
   relocate(Platform, .after = `Link (Hyperlinked Over Name)`)
 
 # Load file for Resource Table
-resource <- read_csv(file = here::here("data/ictr_table_resources_new.csv"))
+resource <- read_csv(file = here::here("data/ictr_table_resources_identifier.csv"))
 
 # Create the html version of links in resources
 ## AwanEdit: added a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
@@ -91,9 +91,8 @@ LinkUpdater <- bind_cols(Name = pull(generalData, Name),
   filter(!is.na(vals)) %>% 
   mutate(vals = str_trim(vals, side = "both")) %>% 
   select(-vars, identifier = vals) %>% 
-  mutate(indicator = 1) %>%
   left_join(y = resource %>% select(identifier, Link), by = "identifier") %>% 
-  mutate(Link = if_else(is.na(Link), identifier, Link)) %>% select(-identifier, -indicator) %>% 
+  mutate(Link = if_else(is.na(Link), identifier, Link)) %>% select(-identifier) %>% 
   group_by(Name) %>% mutate(var = paste0("var", 1:n() )) %>% ungroup() %>% relocate(var) %>% 
   pivot_wider(names_from = var, values_from = Link) %>% 
   unite(col = "Data Provided2", -Name, sep = ", ", na.rm = T, remove = T) 

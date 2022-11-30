@@ -24,7 +24,7 @@ library(magrittr)
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 # Load file for Resource Table
-generalData <- read_csv(file = here::here("data/ictr_table_resources_new.csv"))
+generalData <- read_csv(file = here::here("data/ictr_table_resources_identifier.csv"))
 generalData
 
 # Mutate the tibble to alter three of the columns
