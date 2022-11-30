@@ -25,7 +25,7 @@ This website is intended to help cancer researchers find bioinformatics computin
 
   - **Computing resource platforms** are web or cloud-based platforms that provide computational support to researchers including, but not limited to, analysis, visualization, storage, and computation of large-scale bioinformatics data sets while facilitating efficient workflow,  database management, wider collaboration,  reproducibility, and streamlined scientific communication.  
   
-  - **Data resource platforms** are remotely hosted sources of curated or collaborative bioinformatics data that researchers can access and utilize as required. The available data sets accommodate genomics, proteomics, imaging (cancel and radiology), as well as other types of data.
+- **Data resources** are remotely hosted sources of curated or collaborative bioinformatics data that researchers can access and utilize as required. The available data sets accommodate genomics, proteomics, imaging (histology and radiology), as well as other types of data.
 
 Each resource will have, along with their brief description, up to three links that navigate towards their (1) main site, (2) pertinent documentation, and (3) a list of their publications. Please note that all resource summaries were obtained from their respective sources.  
 
