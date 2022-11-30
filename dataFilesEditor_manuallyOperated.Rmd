@@ -6,7 +6,6 @@ output: html_document
 ### **Overview**
 
 
-## DO NOT knit this Markdown file.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
