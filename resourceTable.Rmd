@@ -5,7 +5,7 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of informatics resources funded by ITCR grants. Resources are remotely hosted sources of curated or collaborative data that are available to researchers. These platforms catalog common human genetic sequencing data, including genomic, epigenomic, transcriptomic, and proteomic data, cancer imaging data, radiology data, along with analytic and graphical tools to facilitate research endeavours. They also provide data to specific computing platforms which have been highlighted within the various computing resource tables. Note that, all resource summaries were taken from their respective sources.
+The following table contains a list of cancer data resources that are available to researchers. These resources include genomic, epigenomic, transcriptomic, proteomic, and cancer imaging data. 
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
