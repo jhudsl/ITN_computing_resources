@@ -1,17 +1,19 @@
 ---
-title: "**ITCR Cancer Informatics Platform Database**"
+title: "**ITCR Scientific Software Resources**"
 output:
   html_document
 ---
-
-<div class = "banner_color">
-Computing and Data Resource Hub  
-</div>
+<br>
+```{r, fig.align='center', fig.alt="Source: https://itcr.cancer.gov/", out.width="1540px", echo = FALSE}
+knitr::include_graphics("resources/images/bannerITCR.png")
+```
 
 <style type="text/css">
   body{
-  font-size: 13pt;
+  font-size: 12pt;
   line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
 }
 </style>
 
@@ -19,26 +21,17 @@ Computing and Data Resource Hub
 
 ### **Welcome!**
 
-This website for ITCR Cancer Informatics Platform Database contains a comprehensive list of the bioinformatics platforms (computing and data) funded by **ITCR** *(Informatics Technology for Cancer Research)* grants. Each resource will have, along with their brief description, up to three links that navigate towards their -  
+This website is intended to help cancer researchers find bioinformatics computing platforms and data resources, many of which are funded by the ITCR (Informatics Technology for Cancer Research) program of the NCI (National Cancer Institute). Please note that some of the information presented in these tables came from the [ITCR website](https://itcr.cancer.gov/informatics-tools).
 
-- main site  
-- pertinent documentation, and  
-- list of their publications.  
+  - **Computing resource platforms** are web or cloud-based platforms that provide computational support to researchers including, but not limited to, analysis, visualization, storage, and computation of large-scale bioinformatics data sets while facilitating efficient workflow,  database management, wider collaboration,  reproducibility, and streamlined scientific communication.  
   
-Please browse the through the resources on each page by using the navigation bar above. 
+- **Data resources** are remotely hosted sources of curated or collaborative bioinformatics data that researchers can access and utilize as required. The available data sets accommodate genomics, proteomics, imaging (histology and radiology), as well as other types of data.
 
-To refer to the **original table** of Informatics Tools on the ITCR website, [click here](https://itcr.cancer.gov/informatics-tools).   
-<br>
+Each resource will have, along with their brief description, up to three links that navigate towards their (1) main site, (2) pertinent documentation, and (3) a list of their publications. Please note that all resource summaries were obtained from their respective sources.  
 
-```{r, fig.align='center', fig.alt="Source: https://itcr.cancer.gov/", echo = FALSE, eval=FALSE, out.height="10%", out.width="100%"}
-# knitr::include_graphics("resources/images/background-3-2000x360.jpg")
-```
+Please browse the through the resources on each page by using the navigation bar above.  
+<br> <br>
+In addition to this site, the ITCR also offers **[an interactive table](https://itcr.cancer.gov/informatics-tools)** of Informatics Tools on the **[ITCR website](https://itcr.cancer.gov/)**. 
+<br><br>
 
-<br>
-
-If you would like to contact us please use the contact information listed on the **Contact** page. We would love to hear your questions, feedback and suggestions!   
-
-<br>
-To contact ITCR directly, please refer to the original [ITCR website](https://itcr.cancer.gov/).  
-
-<br>
+If you would like to contact us please use the contact information listed on the **Contact** page. We would love to hear your questions, feedback and suggestions!  

@@ -20,3 +20,10 @@ Rmd
 subdir
 th
 www
+bioinformatics
+csv
+endeavours
+epigenomic
+reproducibility
+transcriptomic
+workspaces

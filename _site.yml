@@ -1,4 +1,4 @@
-name: ITCR Computing and Data Resource Hub
+name: ITCR Scientific Software Resources
 output_dir: '.'
 navbar:
   title: "<img id=\"logo\" style=\"width: 75px;\" src=\"ITCRLogo.png\" />"
@@ -33,12 +33,16 @@ navbar:
     
   - text: Data Resources  
     href: resourceTable.html 
-    icon: fa-bar-chart
+    icon: fa-database
  
     
   - text: Contact
     href: contact.html
     icon: fa-envelope
+    
+  - text: Feedback Form
+    href: feedback.html
+    icon: fa-comments
 
 
 output:
