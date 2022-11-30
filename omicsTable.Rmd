@@ -5,7 +5,7 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of "omics" informatics platforms funded by ITCR grants. "Omics" platforms are those which work with several genomic or proteomic data types, such as sequencing, imaging, text and microarray data. These platforms allow access to interactively exploring and analyzing large-scale cancer data, create and share reproducible workspaces and results. The goal of these platforms include facilitating scientific collaboration and empowering the research community for genomic research. Note that, all resource summaries were taken from their respective sources.
+The following table contains a list of "omics" informatics platforms funded by ITCR grants. "Omics" platforms are those which work with genomic or proteomic data types, such as RNA-Seq data. These platforms allow access to interactively explore and analyze large-scale cancer data, as well as create and share reproducible workspaces and results. The goals of these platforms are to facilitate scientific collaboration and to better empower the research community for "omic" research. 
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
 #Load DT, dplyr
