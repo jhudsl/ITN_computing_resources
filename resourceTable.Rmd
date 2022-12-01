@@ -7,7 +7,7 @@ output: html_document
 
 The following table contains a list of cancer data resources that are available to researchers. These resources include genomic, epigenomic, transcriptomic, proteomic, and cancer imaging data. 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 
@@ -22,7 +22,7 @@ library(magrittr)
 <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for Resource Table
 generalData <- read_csv(file = here::here("data/ictr_table_resources_identifier.csv"))
 generalData
@@ -58,7 +58,7 @@ trimmedData %<>%
   relocate(Summary, .after = Subcategories)
 ```
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Create a Imaging Table
 ITCR_resource <- trimmedData %>%
   DT::datatable(
@@ -92,6 +92,6 @@ ITCR_resource <- trimmedData %>%
   )
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
 ITCR_resource
 ```

@@ -7,7 +7,7 @@ output: html_document
 
 The following table contains a list of "omics" informatics platforms funded by ITCR grants. "Omics" platforms are those which work with genomic or proteomic data types, such as RNA-Seq data. These platforms allow access to interactively explore and analyze large-scale cancer data, as well as create and share reproducible workspaces and results. The goals of these platforms are to facilitate scientific collaboration and to better empower the research community for "omic" research. 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 
@@ -22,7 +22,7 @@ library(magrittr)
 <img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for Imaging Table
 generalData <- read_csv(file = here::here("data/ictr_table_omics.csv"))
 generalData
@@ -109,7 +109,7 @@ trimmedData %<>%
 ```
 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Create a Imaging Table
 ITCR_omics <- trimmedData %>%
   DT::datatable(
@@ -141,6 +141,6 @@ ITCR_omics <- trimmedData %>%
   )
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
 ITCR_omics
 ```

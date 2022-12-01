@@ -14,7 +14,7 @@ output: html_document
 
 The following table contains a list of general informatics and biomedical platforms that can help researchers work with publicly available data and or their own data. General platforms are those which work with a wide variety of data types, from imaging data to “omics” data, and provide computing resource support across different areas of bioinformatics research. 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 
@@ -30,7 +30,7 @@ library(magrittr)
 </div>
 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for General Table
 generalData <- read_csv(file = here::here("data/ictr_table_general.csv"))
 #generalData
@@ -120,7 +120,7 @@ trimmedData %<>%
   relocate(Summary, .after = Subcategories)
 ```
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Create a General Table
 ITCR_general <- trimmedData %>%
   DT::datatable(
@@ -152,6 +152,6 @@ ITCR_general <- trimmedData %>%
   )
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
 ITCR_general
 ```

@@ -7,7 +7,7 @@ output: html_document
 
 This file is used to make edits to the data files. 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 
@@ -18,7 +18,7 @@ library(magrittr)
 ```
 
 ##  Resource table editor
-```{r,echo=FALSE,results='hide'}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for General Table
 #generalData <- read_csv(file = here::here("ictr_table_general.csv"))
 #generalData
@@ -34,7 +34,7 @@ write.csv(resource_identifier, file = "data/ictr_table_resources_identifier.csv"
 ```
 
 
-```{r,echo=FALSE,results='hide'}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for General Table
 #generalData <- read_csv(file = here::here("ictr_table_general.csv"))
 #generalData
