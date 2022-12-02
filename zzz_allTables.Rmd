@@ -1,0 +1,79 @@
+---
+title: "**All Tables**"
+output: html_document
+---
+
+<style type="text/css">
+  body{
+  text-align: justify;
+  text-justify: inter-word;
+}
+</style>
+
+### **Overview**
+
+The following table contains a list of all ITCR-funded as well as some other useful bioinformatics platforms, including general informatics and biomedical, imaging, omics, and clinical platforms that can help researchers work with publicly available data or their own data and provide computing resource support across different areas of bioinformatics research.
+
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+#Load DT, dplyr
+library(DT)
+#library(dplyr) 
+library(here)
+library(tidyverse)
+library(magrittr)
+```
+
+**Table keys:** 
+<div title="Table keys"> 
+<img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
+</div>
+
+```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+## Note: render_site() - will knit all the files in the same directory in alphabetical order, hence we name this file starting with zzz as zzz_allTables.Rmd. The statistical probability of of 3 z's appearing consecutively in a random name generator is insignificant rendering the choice of name robust. 
+## Alternative solution using child Rmds:  https://stackoverflow.com/questions/70785139/accessing-objects-from-another-mardown-file
+
+tabGen <- read_csv(file = "data/modified_general.csv")
+tabImg <- read_csv(file = "data/modified_imaging.csv")
+tabOmi <- read_csv(file = "data/modified_omics.csv")
+tabCli <- read_csv(file = "data/modified_clinical.csv")
+
+fulltab <- bind_rows(tabGen, tabImg, tabOmi, tabCli)
+names(fulltab)
+```
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+# Create full table
+ITCR_ALL <- fulltab %>%
+  DT::datatable(
+    style = 'default',
+    width="100%",
+    colnames = c('Unique Factor' = 5, 'Types of Data' = 6, 'Summary' = 4),
+    rownames = FALSE,
+    escape = FALSE,
+    #caption = "some caption",
+    filter = "top",
+    #extensions = list("Scroller")
+    options = list(scrollX = TRUE, autoWidth = TRUE, pageLength = 10,
+                   scrollCollapse = TRUE, fillContainer = TRUE,
+                   order = (list(0, 'asc')),
+                   columnDefs = list(list(className = 'dt-center', targets = "_all"),
+                                     list(width = '300px', targets = c(3)) ,
+                                     list(width = '110px', targets = c(4)) ),
+                   # columnDefs = list(list(width = '300px', targets = c(2)),
+                   #                   list(width = '100px', targets = c(4,5)),
+                   #                   list(width = '120px', targets = c(0)),
+                   #                   list(width = '200px', targets = c(3)),
+                   #                   list(width = '150px', targets = "_all")),
+                   initComplete = JS(
+                     "function(settings, json) {",
+                     #"$('body').css({'font-family': 'Calibri'});",
+                     "$(this.api().table().header()).css({'backgroundColor': '#3f546f'});",
+                     "$(this.api().table().header()).css({'color': '#fff'});",
+                     "}"))
+  )
+```
+
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
+ITCR_ALL
+```

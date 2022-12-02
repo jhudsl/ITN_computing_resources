@@ -108,6 +108,12 @@ trimmedData <- generalData[ -c(1,2,8,10,12,13) ]
 # Shift the location of the "Summary" column.
 trimmedData %<>%
   relocate(Summary, .after = Subcategories)
+
+# save the trimmed version of the data file to call into allTables.Rmd
+modified_clinical <- trimmedData %>% 
+  mutate(Category = "Clinical") %>% relocate(Category, .after = Platform)
+# save this data file to the data folder
+write_csv(modified_clinical, file = "data/modified_clinical.csv")
 ```
 
 
@@ -128,7 +134,7 @@ ITCR_clinical <- trimmedData %>%
                    order = (list(0, 'asc')),
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
                                      list(width = '280px', targets = c(2)) , 
-                                     list(width = '140px', targets = c(3)) ),
+                                     list(width = '120px', targets = c(3)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),

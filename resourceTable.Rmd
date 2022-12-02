@@ -25,7 +25,6 @@ library(magrittr)
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for Resource Table
 generalData <- read_csv(file = here::here("data/ictr_table_resources_identifier.csv"))
-generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
@@ -55,7 +54,7 @@ trimmedData
 
 # Shift the location of the "Summary" column.
 trimmedData %<>%
-  relocate(Summary, .after = Subcategories)
+  relocate(Summary, .after = Subcategories) %>% relocate(`Unique Factors`, .after = Summary)
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
@@ -76,8 +75,8 @@ ITCR_resource <- trimmedData %>%
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
                                      list(width = '120px', targets = c(0)) , 
                                      list(width = '300px', targets = c(2)) , 
-                                     list(width = '100px', targets = c(3)) ,
-                                     list(width = '150px', targets = c(4)) ),
+                                     list(width = '140px', targets = c(3)) ,
+                                     list(width = '100px', targets = c(4)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),

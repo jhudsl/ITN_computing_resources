@@ -118,6 +118,13 @@ trimmedData <- generalData[ -c(1,2,8,10,12,13) ]
 # Shift the location of the "Summary" column.
 trimmedData %<>%
   relocate(Summary, .after = Subcategories)
+
+# save the trimmed version of the data file to call into allTables.Rmd
+modified_general <- trimmedData %>% 
+  rename("Unique Factor" = "Unique Factor (free trial, extra guidance, privacy protection, development, unique dataset?)") %>% 
+  mutate(Category = "General") %>% relocate(Category, .after = Platform)
+# save this data file to the data folder
+write_csv(modified_general, file = "data/modified_general.csv")
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
@@ -137,7 +144,7 @@ ITCR_general <- trimmedData %>%
                    order = (list(0, 'asc')),
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
                                      list(width = '280px', targets = c(2)) , 
-                                     list(width = '140px', targets = c(3)) ),
+                                     list(width = '120px', targets = c(3)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),
