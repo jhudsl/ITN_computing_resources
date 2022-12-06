@@ -25,10 +25,17 @@ library(magrittr)
 # Load file for Resource Table
 resource <- read_csv(file = here::here("data/ictr_table_resources.csv"))
 
+## Add pricing info on TOPAS 
+resource %<>% 
+  mutate(Price = case_when(Name == "TOPAS" ~ '<a href="http://www.topasmc.org/licensing" style="color: #be3b2a" target="_blank"<div title="Pricing Link"> </div>Paid/Free</a>',
+                           TRUE ~ as.character(Price)))
+
 # Create the html version of links in resources
 ## AwanEdit: added a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
 resource_identifier <- resource %>% 
   mutate(identifier = c("PDX", "HemOnc", "ngchm", "OncoMX", "MethCon5", "CIViC", "BioMuta", "TCIA", "SCGV", "ivyGlimpse", "TCPA", "dcmqi", "Region Templates", "Cistrome", "TOPAS", "TCGA", "1000 Genomes", "TARGET", "CCLE", "dbGAP", "CPTAC", "PheKB", "NSCLC Radiomics", "ICGC"))  %>%  relocate(identifier)
+
+
 
 write.csv(resource_identifier, file = "data/ictr_table_resources_identifier.csv")
 ```

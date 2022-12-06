@@ -31,17 +31,17 @@ library(magrittr)
 
 ```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
 ## Solution using child Rmds:  https://stackoverflow.com/questions/70785139/accessing-objects-from-another-mardown-file
-
-knitr::knit_child("generalTable.Rmd")
+## general refers to multi-data types 
+knitr::knit_child("multiTable.Rmd")
 knitr::knit_child("imagingTable.Rmd")
 knitr::knit_child("omicsTable.Rmd")
 knitr::knit_child("clinicalTable.Rmd")
-tabGen <- read_csv(file = "data/modified_general.csv")
+tabMulti <- read_csv(file = "data/modified_general.csv")
 tabImg <- read_csv(file = "data/modified_imaging.csv")
 tabOmi <- read_csv(file = "data/modified_omics.csv")
 tabCli <- read_csv(file = "data/modified_clinical.csv")
 
-fulltab <- bind_rows(tabGen, tabImg, tabOmi, tabCli)
+fulltab <- bind_rows(tabMulti, tabImg, tabOmi, tabCli)
 names(fulltab)
 ```
 

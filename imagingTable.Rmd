@@ -1,9 +1,9 @@
 ---
-title: "**Imaging Informatics Table**"
+title: "**Imaging Platforms**"
 output: html_document
 ---
 
-### **About**
+### **Overview**
 
 The following table contains a list of imaging informatics platforms. These platforms work with several imaging data types, ranging from pathology imaging to radiographic imaging. These platforms allow researchers to create custom workflows, view and interact with analysis results, utilize imaging algorithms, as well as visualize and report analysis results. 
 

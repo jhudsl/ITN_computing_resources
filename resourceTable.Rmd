@@ -1,5 +1,5 @@
 ---
-title: "**Resources Informatics Table**"
+title: "**Data Resources Platforms**"
 output: html_document
 ---
 

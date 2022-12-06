@@ -1,5 +1,5 @@
 ---
-title: "**Clinical Informatics Table**"
+title: "**Clinical Platforms**"
 output: html_document
 ---
 

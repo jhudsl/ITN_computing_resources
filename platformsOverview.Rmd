@@ -1,0 +1,38 @@
+---
+title: "**Overview of the Platforms**"
+output:
+  html_document
+---
+
+<style type="text/css">
+  body{
+  font-size: 12pt;
+  line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
+}
+</style>
+
+<br>
+
+```{r, fig.align='center', fig.alt="Banner", out.width="1540px", echo = FALSE}
+knitr::include_graphics("resources/images/bannerITCR.png")
+```
+
+<br> 
+
+### **Overview**
+
+This resources on this website aims to aid cancer researchers find bioinformatics computing platforms and data resources, many of which are funded by the ITCR (Informatics Technology for Cancer Research) program of the NCI (National Cancer Institute). Here is the glossary for relevant terms used in the website:
+
+  - **Platforms** are web or cloud-based websites/webpages that host computational tools or data resources.  
+  
+  - **Multi-data type platforms** work with a wide variety of data types, from imaging, histological, omics, and clinical data. 
+  
+  - **Imaging** platforms work with clinical and pre-clinical images containing pathology imaging to radiographic imaging (e.g., CT, MRI, PET) obtained by specialized medical imaging devices.
+  
+  - **Omics** platforms work with proteomic, transcriptomic, genomic, metabolomic, lipidomic, and epigenomic data, which correspond to global analyses of data on proteins, RNA, genes, metabolites, lipids, and methylated DNA or modified histone proteins in chromosomes.  
+  
+  - **Clinical** platforms work with several types of clinical data, such as EMR Text and Clinical Notes, utilizing Natural Language Processing techniques, AI and machine learning algorithms.
+  
+  - **Data resources** are remotely hosted sources of curated or collaborative bioinformatics data containing genomics, proteomics, imaging (histology and radiology), as well as other various types of data.

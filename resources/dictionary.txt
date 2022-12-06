@@ -27,3 +27,7 @@ epigenomic
 reproducibility
 transcriptomic
 workspaces
+metabolomics
+histone
+lipidomic
+methylated

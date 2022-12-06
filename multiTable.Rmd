@@ -1,5 +1,5 @@
 ---
-title: "**General Informatics Table**"
+title: "**Multi-data type Platforms**"
 output: html_document
 ---
 
@@ -12,7 +12,7 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of general informatics and biomedical platforms that can help researchers work with publicly available data and or their own data. General platforms are those which work with a wide variety of data types, from imaging data to “omics” data, and provide computing resource support across different areas of bioinformatics research. 
+The following table contains a list of multi-data type (informatics and biomedical) platforms that can help researchers work with publicly available data and or their own data. Multi-data type platforms are those which work with a wide variety of data types, from imaging data to “omics” data, and provide computing resource support across different areas of bioinformatics research. 
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
