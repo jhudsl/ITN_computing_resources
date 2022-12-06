@@ -12,7 +12,7 @@ navbar:
     href: ""
     menu: 
       - text: All Tables
-        href: generalTable.html 
+        href: allTables.html
         icon: fa-th
         
       - text: General

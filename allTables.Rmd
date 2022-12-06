@@ -30,9 +30,12 @@ library(magrittr)
 </div>
 
 ```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
-## Note: render_site() - will knit all the files in the same directory in alphabetical order, hence we name this file starting with zzz as zzz_allTables.Rmd. The statistical probability of of 3 z's appearing consecutively in a random name generator is insignificant rendering the choice of name robust. 
-## Alternative solution using child Rmds:  https://stackoverflow.com/questions/70785139/accessing-objects-from-another-mardown-file
+## Solution using child Rmds:  https://stackoverflow.com/questions/70785139/accessing-objects-from-another-mardown-file
 
+knitr::knit_child("generalTable.Rmd")
+knitr::knit_child("imagingTable.Rmd")
+knitr::knit_child("omicsTable.Rmd")
+knitr::knit_child("clinicalTable.Rmd")
 tabGen <- read_csv(file = "data/modified_general.csv")
 tabImg <- read_csv(file = "data/modified_imaging.csv")
 tabOmi <- read_csv(file = "data/modified_omics.csv")

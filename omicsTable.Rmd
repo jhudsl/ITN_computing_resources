@@ -8,6 +8,11 @@ output: html_document
 The following table contains a list of "omics" informatics platforms funded by ITCR grants. "Omics" platforms are those which work with genomic or proteomic data types, such as RNA-Seq data. These platforms allow access to interactively explore and analyze large-scale cancer data, as well as create and share reproducible workspaces and results. The goals of these platforms are to facilitate scientific collaboration and to better empower the research community for "omic" research. 
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+## edit all the data files before loading them. Compiling this Rmd will generate modified data files.
+knitr::knit_child("alldataFilesEditor.Rmd")
+```
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 

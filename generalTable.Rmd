@@ -29,6 +29,11 @@ library(magrittr)
 <img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+## edit all the data files before loading them. Compiling this Rmd will generate modified data files.
+knitr::knit_child("alldataFilesEditor.Rmd")
+```
+
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for General Table

@@ -8,6 +8,11 @@ output: html_document
 The following table contains a list of clinical informatics platforms. These platforms work with several types of clinical data, such as EMR Text and Clinical Notes, utilizing Natural Language Processing techniques, AI and machine learning algorithms in order to generate actionable insights with automated research tools. 
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+## edit all the data files before loading them. Compiling this Rmd will generate modified data files.
+knitr::knit_child("alldataFilesEditor.Rmd")
+```
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 
