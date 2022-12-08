@@ -12,7 +12,7 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of all ITCR-funded as well as some other useful bioinformatics platforms, including general informatics and biomedical, imaging, omics, and clinical platforms that can help researchers work with publicly available data or their own data and provide computing resource support across different areas of bioinformatics research.
+The following table contains a list of ITCR-funded bioinformatics platforms, as well as some other useful platforms, including those that allow users to work with a variety of types of data including imaging, omics, and clinical data. These resources can help researchers work with publicly available data or their own data and provide computing support across different areas of bioinformatics research.
 
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
