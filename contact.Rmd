@@ -3,9 +3,28 @@ title: "**Contact Us**"
 output:
   html_document
 ---
+<style type="text/css">
+  body{
+  font-size: 12pt;
+  line-height: 1.6;
+  text-align: justify;
+  text-justify: inter-word;
+}
+</style>
+
+<br>
+```{r, fig.align='center', fig.alt="Banner", out.width="1540px", echo = FALSE}
+knitr::include_graphics("resources/images/bannerITCR.png")
+```
+<br> 
 
 ### *Get in touch*
 
-Hey there! We would love to hear from you! If you have feedback, suggestions or questions please contact:
+Hey there!  
 
-* **Carrie Wright** (cwrigh60@jhu.edu)
+The platforms and resources on the website are primarily made from ITCR Training Network (ITN) resources and are linked to the [ITCR table](https://itcr.cancer.gov/informatics-tools) hosted on the ITCR website. 
+
+We would love to hear from you! If you have any feedback, suggestions or questions please contact:
+
+* **Carrie Wright** (cwright2@fredhutch.org)  *[for ITCR stuff]*
+* **Awan Afiaz** (aafiaz@uw.edu) *[for technical blurbs]*

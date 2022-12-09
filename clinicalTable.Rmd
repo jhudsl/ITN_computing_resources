@@ -1,11 +1,16 @@
 ---
-title: "**Clinical Informatics Table**"
+title: "**Clinical Platforms**"
 output: html_document
 ---
 
 ### **Overview**
 
 The following table contains a list of clinical informatics platforms. These platforms work with several types of clinical data, such as EMR Text and Clinical Notes, utilizing Natural Language Processing techniques, AI and machine learning algorithms in order to generate actionable insights with automated research tools. 
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+## edit all the data files before loading them. Compiling this Rmd will generate modified data files.
+knitr::knit_child("alldataFilesEditor.Rmd")
+```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
@@ -23,7 +28,7 @@ library(magrittr)
 </div>
 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for Clinical Table
 generalData <- read_csv(file = here::here("data/ictr_table_clinical.csv"))
 generalData
@@ -108,10 +113,16 @@ trimmedData <- generalData[ -c(1,2,8,10,12,13) ]
 # Shift the location of the "Summary" column.
 trimmedData %<>%
   relocate(Summary, .after = Subcategories)
+
+# save the trimmed version of the data file to call into allTables.Rmd
+modified_clinical <- trimmedData %>% 
+  mutate(Category = "Clinical") %>% relocate(Category, .after = Platform)
+# save this data file to the data folder
+write_csv(modified_clinical, file = "data/modified_clinical.csv")
 ```
 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Create a Imaging Table
 ITCR_clinical <- trimmedData %>%
   DT::datatable(
@@ -128,7 +139,7 @@ ITCR_clinical <- trimmedData %>%
                    order = (list(0, 'asc')),
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
                                      list(width = '280px', targets = c(2)) , 
-                                     list(width = '140px', targets = c(3)) ),
+                                     list(width = '120px', targets = c(3)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),
@@ -143,6 +154,6 @@ ITCR_clinical <- trimmedData %>%
   )
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
 ITCR_clinical
 ```

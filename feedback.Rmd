@@ -4,4 +4,23 @@ output:
   html_document
 ---
 
-### This is a placeholder for feedback form.
+<style type="text/css">
+  body{
+  font-size: 11pt;
+  line-height: 1.4;
+  text-align: justify;
+  text-justify: inter-word;
+}
+</style>
+
+<br>
+```{r, fig.align='center', fig.alt="Source: https://itcr.cancer.gov/", out.width="1200px", echo = FALSE}
+knitr::include_graphics("resources/images/bannerITCR.png")
+```
+<br>
+
+Hello there! If you are a proud developer of one of the awesome ITCR-funded or other projects listed on this website, please take a few minutes to answer the following survey regarding your **Scientific Software Tool (SST)** platform. <ins> Before responding to the following questions</ins>, please review whether the information (platform name, description, unique factor, data and price details) and all relevant links for your SST listed on the website are accurate and up-to-date. If not, you can provide us with the information you would like us to include in the space provided! 
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfJSCZ4hnjxUWKF5tqExKOhbSgPyBvi3LXPAJ1qIPbiUpTGcQ/viewform?embedded=true" width="1200" height="3390" frameborder="0" marginheight="0" marginwidth="0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>Loading…</iframe>
+
+

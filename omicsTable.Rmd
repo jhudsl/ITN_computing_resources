@@ -1,5 +1,5 @@
 ---
-title: "**Omics Informatics Table**"
+title: "**Omics Platforms**"
 output: html_document
 ---
 
@@ -7,7 +7,12 @@ output: html_document
 
 The following table contains a list of "omics" informatics platforms funded by ITCR grants. "Omics" platforms are those which work with genomic or proteomic data types, such as RNA-Seq data. These platforms allow access to interactively explore and analyze large-scale cancer data, as well as create and share reproducible workspaces and results. The goals of these platforms are to facilitate scientific collaboration and to better empower the research community for "omic" research. 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+## edit all the data files before loading them. Compiling this Rmd will generate modified data files.
+knitr::knit_child("alldataFilesEditor.Rmd")
+```
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 
@@ -22,7 +27,7 @@ library(magrittr)
 <img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for Imaging Table
 generalData <- read_csv(file = here::here("data/ictr_table_omics.csv"))
 generalData
@@ -106,10 +111,16 @@ trimmedData <- generalData[ -c(1,2,8,10,12,13) ]
 # Shift the location of the "Summary" column.
 trimmedData %<>%
   relocate(Summary, .after = Subcategories)
+
+# save the trimmed version of the data file to call into allTables.Rmd
+modified_omics <- trimmedData %>% 
+  mutate(Category= "Omics") %>% relocate(Category, .after = Platform)
+# save this data file to the data folder
+write_csv(modified_omics, file = "data/modified_omics.csv")
 ```
 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Create a Imaging Table
 ITCR_omics <- trimmedData %>%
   DT::datatable(
@@ -126,7 +137,7 @@ ITCR_omics <- trimmedData %>%
                    order = (list(0, 'asc')),
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
                                      list(width = '280px', targets = c(2)) , 
-                                     list(width = '150px', targets = c(3)) ),
+                                     list(width = '130px', targets = c(3)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),
@@ -141,6 +152,6 @@ ITCR_omics <- trimmedData %>%
   )
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
 ITCR_omics
 ```

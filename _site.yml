@@ -11,25 +11,29 @@ navbar:
     icon: fa-desktop   
     href: ""
     menu: 
-      - text: All Tables
-        href: generalTable.html 
-        icon: fa-th
+      - text: Platforms overview
+        href: platformsOverview.html 
+        icon: fa-pie-chart
         
-      - text: General
-        href: generalTable.html 
+      - text: Multi-data type platforms
+        href: multiTable.html 
         icon: fa-stream
         
-      - text: Imaging  
+      - text: Imaging platforms
         href: imagingTable.html  
         icon: fa-camera-retro
         
-      - text: Omics
+      - text: Omics platforms
         href: omicsTable.html 
         icon: fa-dna 
         
-      - text: Clinical
+      - text: Clinical platforms
         href: clinicalTable.html
         icon: fa-heartbeat
+        
+      - text: All platforms
+        href: allTables.html
+        icon: fa-th
     
   - text: Data Resources  
     href: resourceTable.html 

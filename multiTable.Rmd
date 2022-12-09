@@ -1,5 +1,5 @@
 ---
-title: "**General Informatics Table**"
+title: "**Multi-data type Platforms**"
 output: html_document
 ---
 
@@ -12,9 +12,9 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of general informatics and biomedical platforms that can help researchers work with publicly available data and or their own data. General platforms are those which work with a wide variety of data types, from imaging data to “omics” data, and provide computing resource support across different areas of bioinformatics research. 
+The following table contains a list of informatics and biomedical platforms that can help researchers work with **multiple types** of publicly available data and or their own data. These platforms provide computing resource support across different areas of bioinformatics research. 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 
@@ -29,8 +29,13 @@ library(magrittr)
 <img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+## edit all the data files before loading them. Compiling this Rmd will generate modified data files.
+knitr::knit_child("alldataFilesEditor.Rmd")
+```
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for General Table
 generalData <- read_csv(file = here::here("data/ictr_table_general.csv"))
 #generalData
@@ -118,9 +123,16 @@ trimmedData <- generalData[ -c(1,2,8,10,12,13) ]
 # Shift the location of the "Summary" column.
 trimmedData %<>%
   relocate(Summary, .after = Subcategories)
+
+# save the trimmed version of the data file to call into allTables.Rmd
+modified_general <- trimmedData %>% 
+  rename("Unique Factor" = "Unique Factor (free trial, extra guidance, privacy protection, development, unique dataset?)") %>% 
+  mutate(Category = "General") %>% relocate(Category, .after = Platform)
+# save this data file to the data folder
+write_csv(modified_general, file = "data/modified_general.csv")
 ```
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Create a General Table
 ITCR_general <- trimmedData %>%
   DT::datatable(
@@ -137,7 +149,7 @@ ITCR_general <- trimmedData %>%
                    order = (list(0, 'asc')),
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
                                      list(width = '280px', targets = c(2)) , 
-                                     list(width = '140px', targets = c(3)) ),
+                                     list(width = '120px', targets = c(3)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),
@@ -152,6 +164,6 @@ ITCR_general <- trimmedData %>%
   )
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
 ITCR_general
 ```

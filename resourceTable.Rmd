@@ -1,5 +1,5 @@
 ---
-title: "**Resources Informatics Table**"
+title: "**Data Resources Platforms**"
 output: html_document
 ---
 
@@ -7,7 +7,12 @@ output: html_document
 
 The following table contains a list of cancer data resources that are available to researchers. These resources include genomic, epigenomic, transcriptomic, proteomic, and cancer imaging data. 
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
+## edit all the data files before loading them. Compiling this Rmd will generate modified data files.
+knitr::knit_child("alldataFilesEditor.Rmd")
+```
+
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
 library(DT)
 #library(dplyr) 
@@ -22,10 +27,9 @@ library(magrittr)
 <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for Resource Table
 generalData <- read_csv(file = here::here("data/ictr_table_resources_identifier.csv"))
-generalData
 
 # Mutate the tibble to alter three of the columns
 generalData %<>%
@@ -55,10 +59,10 @@ trimmedData
 
 # Shift the location of the "Summary" column.
 trimmedData %<>%
-  relocate(Summary, .after = Subcategories)
+  relocate(Summary, .after = Subcategories) %>% relocate(`Unique Factors`, .after = Summary)
 ```
 
-```{r,echo=FALSE,results='hide',message=FALSE}
+```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Create a Imaging Table
 ITCR_resource <- trimmedData %>%
   DT::datatable(
@@ -76,8 +80,8 @@ ITCR_resource <- trimmedData %>%
                    columnDefs = list(list(className = 'dt-center', targets = "_all"),
                                      list(width = '120px', targets = c(0)) , 
                                      list(width = '300px', targets = c(2)) , 
-                                     list(width = '100px', targets = c(3)) ,
-                                     list(width = '150px', targets = c(4)) ),
+                                     list(width = '140px', targets = c(3)) ,
+                                     list(width = '100px', targets = c(4)) ),
                    # columnDefs = list(list(width = '300px', targets = c(2)),
                    #                   list(width = '100px', targets = c(4,5)),
                    #                   list(width = '120px', targets = c(0)),
@@ -92,6 +96,6 @@ ITCR_resource <- trimmedData %>%
   )
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,message=FALSE, warning=FALSE}
 ITCR_resource
 ```
