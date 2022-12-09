@@ -25,7 +25,7 @@ knitr::include_graphics("resources/images/bannerITCR.png")
 
 This resources aims to improve access to bioinformatics computing platforms many of which are funded by the ITCR (Informatics Technology for Cancer Research) program of the NCI (National Cancer Institute). Here is the glossary for relevant terms used in these tables:
 
-  - **Platforms** are web or cloud-based websites/webpages that host computational tools or data resources.  
+  - **Platforms** are web or cloud-based websites/webpages that allow users to analyze their own data and/or publicly available data.
   
   - **Multi-data type platforms** work with a wide variety of data types, from imaging, histological, omics, and clinical data. 
   
