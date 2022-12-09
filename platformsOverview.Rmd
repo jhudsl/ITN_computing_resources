@@ -35,4 +35,4 @@ This resources aims to improve access to bioinformatics computing platforms many
   
   - **Clinical** platforms work with several types of clinical data, such as EMR Text and Clinical Notes, utilizing Natural Language Processing techniques, AI and machine learning algorithms.
   
-  - **Data resources** are remotely hosted sources of curated or collaborative bioinformatics data containing genomics, proteomics, imaging (histology and radiology), as well as other various types of data.
+  - **Data resources** are remotely hosted sources of curated or collaborative bioinformatics data containing genomics, proteomics, imaging (histology and radiology), as well as other various types of data. See the Data Resource page for more information.
