@@ -27,7 +27,7 @@ This resources aims to improve access to bioinformatics computing platforms many
 
   - **Platforms** are web or cloud-based websites/webpages that allow users to analyze their own data and/or publicly available data.
   
-  - **Multi-data type platforms**allow users to work with more than one type of data, including a wide variety of data types, from imaging, histological, omics, and clinical data. 
+  - **Multi-data type platforms** allow users to work with more than one type of data, including a wide variety of data types, from imaging, histological, omics, and clinical data. 
   
   - **Imaging** platforms work with clinical and pre-clinical images containing pathology imaging to radiographic imaging (e.g., CT, MRI, PET) obtained by specialized medical imaging devices.
   
