@@ -13,7 +13,7 @@ navbar:
     menu: 
       - text: Platforms overview
         href: platformsOverview.html 
-        icon: fa-pie-chart
+        icon: fa-search-plus
         
       - text: Multi-data type platforms
         href: multiTable.html 
