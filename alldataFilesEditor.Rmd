@@ -30,21 +30,58 @@ resource %<>%
   mutate(Price = case_when(Name == "TOPAS" ~ '<a href="http://www.topasmc.org/licensing" style="color: #be3b2a" target="_blank"<div title="Pricing Link"> </div>Paid/Free</a>',
                            TRUE ~ as.character(Price)))
 
-# Create the html version of links in resources
-## AwanEdit: added a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
-resource_identifier <- resource %>% 
-  mutate(identifier = c("PDX", "HemOnc", "ngchm", "OncoMX", "MethCon5", "CIViC", "BioMuta", "TCIA", "SCGV", "ivyGlimpse", "TCPA", "dcmqi", "Region Templates", "Cistrome", "TOPAS", "TCGA", "1000 Genomes", "TARGET", "CCLE", "dbGAP", "CPTAC", "PheKB", "NSCLC Radiomics", "ICGC"))  %>%  relocate(identifier)
+## Add ISIC Archive: Submitted 06/01/2023, 13:31 (vrotemberg@gmail.com)
+new_ISIC <- tibble(
+  Name = "ISIC Archive",
+  Funding = "Yes",
+  Subcategories = "Cancer Imaging", 
+  `Data Type` = "Clinical imaging",
+  `Unique Factors` = "The largest public archive of dermatology photographs. It has around 20 million individual image downloads per month and is widely used for education and AI research.",
+  Price = "Free",
+  Link = "https://www.isic-archive.com/",
+  `Summary` = "The ISIC Archive is an academic-industry collaboration that is devoted to improving dermatology artificial intelligence. It is the largest public archive of images of skin conditions, with special attention to skin cancer detection. We also host grand challenges (and live challenges) for AI models as well as conference workshops.")
 
+## Add new rows to the existing dataset
+new_resource <- resource %>% 
+  bind_rows(new_ISIC)
 
+## Goal: Create the html version of links in resources
+## Edit 1: Add a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
+## Edit 2: Make sure add new identifiers for new resources in the resource data set.
+resource_identifier <- new_resource %>% 
+  mutate(identifier = c("PDX", "HemOnc", "ngchm", "OncoMX", "MethCon5", "CIViC", "BioMuta", "TCIA", "SCGV", "ivyGlimpse", "TCPA", "dcmqi", "Region Templates", "Cistrome", "TOPAS", "TCGA", "1000 Genomes", "TARGET", "CCLE", "dbGAP", "CPTAC", "PheKB", "NSCLC Radiomics", "ICGC", "ISIC"))  %>%  relocate(identifier)
 
+## Save the edited data file
 write.csv(resource_identifier, file = "data/ictr_table_resources_identifier.csv")
 ```
 
+## Adding new platforms to the Imaging Table
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
-# Load file for General Table
-#generalData <- read_csv(file = here::here("ictr_table_general.csv"))
-#generalData
+# imaging <- read_csv(file = here::here("data/ictr_table_imaging.csv"))
+# nameOfCols <- imaging %>% colnames()
+
+## CaPTk: Submitted 06/01/2023, 11:12 (sbakas@upenn.edu)
+new_imaging_CaPTk <- tibble(
+  Name = "The Cancer Imaging Phenomics Toolkit (CaPTk)",
+  `Link (Hyperlinked Over Name)` = "https://www.med.upenn.edu/cbica/captk/",
+  Subcategories = "Radiomics", 
+  `Unique Factor` = "CaPTk beyond being a stand-alone software client it also makes its computational functionality on image analytics available for free, through the Image Processing Portal (IPP) that offers compute power through the CaPTk's supporting high performance computing cluster.",
+  `Data Types (Clean)` = "Radiographic Imaging",
+  Price = "Free",
+  Documentation = "https://cbica.github.io/CaPTk/",
+  `Data Provided` = "Sample Data available within CaPTk",
+  Publications = "https://doi.org/10.1117/1.jmi.5.1.011018",
+  `Summary` = "CaPTk is a software platform for analysis of radiographic cancer images, currently focusing on brain, breast, and lung cancer that integrates advanced, validated tools performing various aspects of medical image analysis, that have been developed in the context of active clinical research studies and collaborations toward addressing real clinical needs. CaPTk aims to facilitate the swift translation of advanced computational algorithms into routine clinical quantification, analysis, decision making, and reporting workflow.",
+  Funding = "Yes",
+  PLink = "https://github.com/CBICA/CaPTk/#downloads")
+
+## Add new rows to the existing dataset
+new_imaging <- read_csv(file = here::here("data/ictr_table_imaging.csv")) %>% 
+  bind_rows(new_imaging_CaPTk)
+
+## Create new data file 
+write.csv(new_imaging, file = "data/ictr_table_imaging_new.csv", row.names = FALSE)
 ```
 
 
