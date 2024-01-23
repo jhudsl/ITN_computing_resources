@@ -16,9 +16,7 @@ The following table contains a list of ITCR-funded bioinformatics platforms, as 
 
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
-#Load DT, dplyr
 library(DT)
-#library(dplyr) 
 library(here)
 library(tidyverse)
 library(magrittr)
@@ -31,17 +29,14 @@ library(magrittr)
 
 ```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
 ## Solution using child Rmds:  https://stackoverflow.com/questions/70785139/accessing-objects-from-another-mardown-file
-## general refers to multi-data types 
-knitr::knit_child("multiTable.Rmd")
-knitr::knit_child("imagingTable.Rmd")
-knitr::knit_child("omicsTable.Rmd")
-knitr::knit_child("clinicalTable.Rmd")
-tabMulti <- read_csv(file = "data/modified_general.csv")
-tabImg <- read_csv(file = "data/modified_imaging.csv")
-tabOmi <- read_csv(file = "data/modified_omics.csv")
-tabCli <- read_csv(file = "data/modified_clinical.csv")
+## general refers to multi-data types
+knitr::knit_child("resourceTable.Rmd")
+knitr::knit_child("multiTable.Rmd") #inherit modified_general
+knitr::knit_child("imagingTable.Rmd") #inherit modified_imaging
+knitr::knit_child("omicsTable.Rmd") #inherit modified_omics
+knitr::knit_child("clinicalTable.Rmd") #inherit modified_clinical
 
-fulltab <- bind_rows(tabMulti, tabImg, tabOmi, tabCli)
+fulltab <- bind_rows(modified_general, modified_imaging, modified_omics, modified_clinical)
 names(fulltab)
 ```
 
@@ -78,5 +73,6 @@ ITCR_ALL <- fulltab %>%
 ```
 
 ```{r,echo=FALSE,message=FALSE, warning=FALSE}
+#Display the whole table
 ITCR_ALL
 ```

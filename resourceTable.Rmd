@@ -7,19 +7,14 @@ output: html_document
 
 The following table contains a list of cancer data resources that are available to researchers. These resources include genomic, epigenomic, transcriptomic, proteomic, and cancer imaging data. 
 
-```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
-## edit all the data files before loading them. Compiling this Rmd will generate modified data files.
-knitr::knit_child("alldataFilesEditor.Rmd")
-```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
-#Load DT, dplyr
 library(DT)
-#library(dplyr) 
 library(here)
 library(tidyverse)
 library(magrittr)
-#library(RCurl)
+
+source("scripts/format-tables.R")
 ```
 
 **Table keys:** 
@@ -28,74 +23,88 @@ library(magrittr)
 </div>
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
-# Load file for Resource Table
-generalData <- read_csv(file = here::here("data/ictr_table_resources_identifier.csv"))
+# Load file for Resource Table and make edits/additions
+## If adding any resources/platforms/not a tool to the ITCR tables, this code block is where you'll want to do that
+resource <- readr::read_csv(file = here::here("data/itcr_table_resources.csv"))
 
-# Mutate the tibble to alter three of the columns
-generalData %<>%
-  mutate(Name = paste0('<a href="',Link,'"style="color: #be3b2a"',' target="_blank"','<div title="Main Link"> </div>',Name,'</a>'))
+tibbleTOPAS <- tibble(
+  Name = "TOPAS",
+  Price = '<a href="http://www.topasmc.org/licensing" style="color: #be3b2a" target="_blank"<div title="Pricing Link"> </div>Paid/Free</a>'
+)
 
-#Mutate generalData's Name to be bolded.
-generalData %<>%
-  mutate(Name = paste0('<b>', Name,'</b>'))
+resource <- dplyr::rows_update(resource, tibbleTOPAS, by="Name") #this will update the existing TOPAS entry
 
-# Mutate Platform to contain an ITCR logo if the Platform is funded by ITCR.
-for (row in 1:nrow(generalData)) {
-    status <- generalData[row, "Funding"]
-    target  <- generalData[row, "Name"]
+## Add ISIC Archive: Submitted 06/01/2023, 13:31 (vrotemberg@gmail.com)
+new_ISIC <- tibble(
+  Name = "ISIC Archive",
+  Funding = "Yes",
+  Subcategories = "Cancer Imaging", 
+  `Data Type` = "Clinical imaging",
+  `Unique Factors` = "The largest public archive of dermatology photographs. It has around 20 million individual image downloads per month and is widely used for education and AI research.",
+  Price = "Free",
+  Link = "https://www.isic-archive.com/",
+  `Summary` = "The ISIC Archive is an academic-industry collaboration that is devoted to improving dermatology artificial intelligence. It is the largest public archive of images of skin conditions, with special attention to skin cancer detection. We also host grand challenges (and live challenges) for AI models as well as conference workshops.")
 
-  if(status == "Yes") {
-    target %<>%
-    mutate(Name = paste0(Name,'<br></br>','<img src="ITCRLogo.png" height="40"> </img>'))
-    
-    generalData[row,"Name"] <- target
-  }
-}
+resource <- dplyr::rows_insert(resource, new_ISIC, conflict = "ignore") #include conflict = ignore argument because it won't re-add the resource the next time this code is run if the file is overwritten/resource is already included.
 
-# Create a trimmed version of the data by removing the non-consolidated columns. 
-trimmedData <- generalData[ -c(1, 2, 4, 9) ]   
-## if data is loaded from original ictr_table_resources.csv, only remove columns 2 and 7 generalData[ -c(2, 7) ]
-trimmedData
+## Goal: Create the html version of links in resources
+## Edit 1: Add a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
+## Edit 2: Make sure add new identifiers for new resources in the resource data set.
+resource %<>% 
+  mutate(identifier = c("PDX", "HemOnc", "ngchm", "OncoMX", "MethCon5", "CIViC", "BioMuta", "TCIA", "SCGV", "ivyGlimpse", "TCPA", "dcmqi", "Region Templates", "Cistrome", "TOPAS", "TCGA", "1000 Genomes", "TARGET", "CCLE", "dbGAP", "CPTAC", "PheKB", "NSCLC Radiomics", "ICGC", "ISIC"))  %>%  relocate(identifier)
 
-# Shift the location of the "Summary" column.
-trimmedData %<>%
-  relocate(Summary, .after = Subcategories) %>% relocate(`Unique Factors`, .after = Summary)
+## From this point forward, any additions to the resource table need to include an "identifier" in the tibble/row that will be added
+
+## Add The Cancer Epitope Database and Analysis Resource (CEDAR): Submitted 07/26/2023, 10:48 (nblazeska@lji.org)
+new_CEDAR <- tibble(
+  Name = "Cancer Epitope Database and Analysis Resource (CEDAR)",
+  Funding = "Yes",
+  Subcategories = "Proteomics" , #this is my assumption based on the use of epitopes; it was not submitted in the form or explicitly said on the website
+  `Data Type` = "Curated literature data: experimentally-tested epitopes and their immunological, biological, and clinical contexts" ,
+  `Unique Factors` = "It is a free resoure that provides the cancer community with a central repository of experimentally-tested cancer epitopes curated from peer-reviewed literature.",
+  Price = "Free",
+  Link = "https://cedar.iedb.org/",
+  Summary = "The Cancer Epitope Database and Analysis Resource (CEDAR) is a freely available resource funded by NCI. It catalogs experimental data on antibody and T cell epitopes studied in humans, non-human primates, and other animal species in the context of cancer disease. CEDAR also hosts tools to assist in the prediction and analysis of cancer epitopes." ,
+  identifier = "CEDAR"
+)
+
+## Add ARCHS4: Submitted 09/13/2023, 12:36 (avi.maayan@mssm.edu)
+new_ARCHS4 <- tibble(
+  Name = "ARCHS4",
+  Funding = "Yes", 
+  Subcategories = "Transcriptomics",
+  `Data Type` = "Transcriptomics, GEO",
+  `Unique Factors` = "This resource is updated frequently. It contains all GEO samples and includes metadata and data search.",
+  Price = "Free for academic institutions",
+  Link = "https://maayanlab.cloud/archs4/" ,
+  Summary = "ARCHS4 provides gene and trasncript counts uniformly processed from all the human and mouse RNA-seq samples from GEO" ,
+  identifier = "ARCHS4"
+)
+
+resource <- dplyr::rows_insert(resource, dplyr::bind_rows(new_CEDAR, new_ARCHS4), conflict = "ignore")
+
+write.csv(resource, file="data/itcr_table_resources_identifier.csv") #because this file is used as a linker for other tables/in other files, writing it out.
+
+```
+
+```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+modified_resource <- formatTheTables(resource, "NA")
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
-# Create a Imaging Table
-ITCR_resource <- trimmedData %>%
-  DT::datatable(
-    style = 'default',
-    width="100%",
-    colnames = c('Unique Factor' = 4, 'Types of Data' = 5, 'Summary' = 3),
-    rownames = FALSE,
-    escape = FALSE,
-    #caption = "some caption",
-    filter = "top",
-    #extensions = list("Scroller")
-    options = list(scrollX = TRUE, autoWidth = TRUE, pageLength = 10,
-                   scrollCollapse = TRUE, fillContainer = TRUE,
-                   order = (list(0, 'asc')),
-                   columnDefs = list(list(className = 'dt-center', targets = "_all"),
+# Create a Resource Table
+
+columnDefsListOfLists <- list(list(className = 'dt-center', targets = "_all"),
                                      list(width = '120px', targets = c(0)) , 
                                      list(width = '300px', targets = c(2)) , 
                                      list(width = '140px', targets = c(3)) ,
-                                     list(width = '100px', targets = c(4)) ),
-                   # columnDefs = list(list(width = '300px', targets = c(2)),
-                   #                   list(width = '100px', targets = c(4,5)),
-                   #                   list(width = '120px', targets = c(0)),
-                   #                   list(width = '200px', targets = c(3)),
-                   #                   list(width = '150px', targets = "_all")),
-                   initComplete = JS(
-                     "function(settings, json) {",
-                     #"$('body').css({'font-family': 'Calibri'});",
-                     "$(this.api().table().header()).css({'backgroundColor': '#3f546f'});",
-                     "$(this.api().table().header()).css({'color': '#fff'});",
-                     "}"))
-  )
+                                     list(width = '100px', targets = c(4)) 
+                              )
+
+ITCR_resource <- setup_dt_datatable(modified_resource, columnDefsListOfLists)
 ```
 
 ```{r,echo=FALSE,message=FALSE, warning=FALSE}
+#Display the resource table
 ITCR_resource
 ```
