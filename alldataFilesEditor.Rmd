@@ -81,7 +81,7 @@ resource <- dplyr::rows_insert(resource, dplyr::bind_rows(new_CEDAR, new_ARCHS4)
 
 
 ## Save the edited data file
-write.csv(resource_identifier, file = "data/itcr_table_resources_identifier.csv") #Do I want to just rewrite the original file?
+#write.csv(resource, file = "data/itcr_table_resources_identifier.csv") #Do I want to just rewrite the original file?
 ```
 
 ## Adding new platforms to the Imaging Table
