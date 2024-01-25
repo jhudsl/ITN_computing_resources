@@ -1,10 +1,11 @@
-## File name structure
+## Contributing Guide
 
-1. filename.csv = The original data files that we had initially.
-2. filename_new.csv = the new entries/modifications added to the original files. Such changes were performed in the `alldataFilesEditor.Rmd`.  (Overwriting the original file did not work since it kept adding the same row with new tool information every time it compiled the Rmd file.)
-3. modifiled_filename.csv = the data files after preparing them for website view (keeping certain columns, removing others, hyperlinked, etc.). These were compiled in each of the different table's Rmd files and then we used the modified files (with all the editing) in the "All platforms" page. This allowed us to avoid copy pasting the same wrangling codes again in the "allTables.Rmd".
+The code that renders this website is open source and [available on GitHub](https://github.com/jhudsl/ITCR_Tables). If you'd like to contribute by opening an issue or a pull request, visit the [`ITCR_Tables` repo](https://github.com/jhudsl/ITCR_Tables). If you would like to submit a tool or resource for inclusion, please [fill out this feedback form](https://jhudatascience.org/ITCR_Tables/feedback.html).
 
-The workflow is basically this:
-1. We add new/modify new/old entries in each datasets in the `alldataFilesEditor.Rmd` (filename.csv > filename_new.csv)
-2. We wrangle each dataset and generate the modified datasets suitable for using with `DT::dataTable()` (filename_new.csv > modified_filename.csv).
+### Notes about Pull Requests
 
+There are GitHub actions that will take a few seconds to start tests for broken URLs and spelling/code styling. If there are spelling "errors" that are intentional, please modify the `dictionary.txt` file in the `resources` directory.
+
+### Assigning reviewers
+
+If you open an issue or pull request, please assign Kate Isaac (`@kweav`) or Carrie Wright (`@carriewright11`) to review them.

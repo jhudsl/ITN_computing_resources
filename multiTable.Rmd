@@ -31,7 +31,8 @@ source("scripts/format-tables.R")
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Load file for General Table and make additions/edits here in this block
-generalData <- read_csv(file = here::here("data/itcr_table_general.csv"))
+generalData <- read_csv(file = here::here("data/itcr_table_general.csv")) %>%
+  rename("Unique Factor" = "Unique Factor (free trial, extra guidance, privacy protection, development, unique dataset?)")
 
 #While reworking the code, saw that ICGC and PCAWG were not separated by a comma and therefore ICGC wasn't linked
 tibbleCGC <- tibble(
@@ -44,7 +45,6 @@ generalData <- dplyr::rows_update(generalData, tibbleCGC, by = "Name")
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
-generalData %<>% rename("Unique Factor" = "Unique Factor (free trial, extra guidance, privacy protection, development, unique dataset?)")
 modified_general <- formatTheTables(generalData, "General", non_resource = TRUE) 
 # save the trimmed version of the data file to call into allTables.Rmd
 write_csv(modified_general, file = "data/modified_general.csv")

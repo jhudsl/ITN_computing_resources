@@ -8,20 +8,22 @@ output: html_document
 This website contains a list of non-specified informatics tools funded by ITCR grants.
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
-#Load DT, dplyr
 library(DT)
 library(dplyr)
 library(here)
 library(tidyverse)
 library(magrittr)
-#library(RCurl)
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
-# Load file for Imaging Table
-generalData <- read_csv(file = here::here("data/ictr_table_other.csv"))
-generalData
+# Load file for Other Table and make any additions/edits within this block
+generalData <- read_csv(file = here::here("data/itcr_table_other.csv"))
 
+
+```
+
+
+```{r, echo=FALSE, results='hide',message=FALSE}
 # Mutate the tibble to alter three of the columns
 generalData %<>%
   mutate(`Link (Hyperlinked Over Name)` = paste0('<a href="',`Link (Hyperlinked Over Name)`,'"',' target="_blank"','<div title="Main Link"> </div> <img src="Hyperlink.png"  height=\"30\"> </img>','</a>'),
@@ -43,8 +45,8 @@ trimmedData
 
 
 ```{r,echo=FALSE,results='hide',message=FALSE}
-# Create a Imaging Table
-ICTR_omics <- trimmedData %>%
+# Create the other Table
+ITCR_other <- trimmedData %>%
   DT::datatable(
     style = 'default',
     width="100%",
@@ -73,5 +75,6 @@ ICTR_omics <- trimmedData %>%
 ```
 
 ```{r,echo=FALSE}
-ICTR_omics
+#Display the other table
+ITCR_other
 ```

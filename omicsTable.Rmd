@@ -25,6 +25,14 @@ source("scripts/format-tables.R")
 # Load file for omics Table and make any edits/additions in this block
 omicsData <- read_csv(file = here::here("data/itcr_table_omics.csv"))
 
+#While reworking the code, saw that ICGC and PCAWG were not separated by a comma and therefore ICGC wasn't linked
+tibbleCGC <- tibble(
+  Name = "Cancer Genome Collaboratory",
+  `Data Provided` = "ICGC, PCAWG, DCC"
+)
+
+omicsData <- dplyr::rows_update(omicsData, tibbleCGC, by = "Name")
+
 ```
 
 ```{r, echo=FALSE,results='hide',message=FALSE, warning=FALSE}

@@ -34,6 +34,14 @@ tibbleTOPAS <- tibble(
 
 resource <- dplyr::rows_update(resource, tibbleTOPAS, by="Name") #this will update the existing TOPAS entry
 
+## Goal: Create the html version of links in resources
+## Edit 1: Add a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
+## Edit 2: Make sure add new identifiers for new resources in the resource data set.
+resource %<>% 
+  mutate(identifier = c("PDX", "HemOnc", "ngchm", "OncoMX", "MethCon5", "CIViC", "BioMuta", "TCIA", "SCGV", "ivyGlimpse", "TCPA", "dcmqi", "Region Templates", "Cistrome", "TOPAS", "TCGA", "1000 Genomes", "TARGET", "CCLE", "dbGAP", "CPTAC", "PheKB", "NSCLC Radiomics", "ICGC"))  %>%  relocate(identifier)
+
+## From this point forward, any additions to the resource table need to include an "identifier" in the tibble/row that will be added
+
 ## Add ISIC Archive: Submitted 06/01/2023, 13:31 (vrotemberg@gmail.com)
 new_ISIC <- tibble(
   Name = "ISIC Archive",
@@ -43,17 +51,12 @@ new_ISIC <- tibble(
   `Unique Factors` = "The largest public archive of dermatology photographs. It has around 20 million individual image downloads per month and is widely used for education and AI research.",
   Price = "Free",
   Link = "https://www.isic-archive.com/",
-  `Summary` = "The ISIC Archive is an academic-industry collaboration that is devoted to improving dermatology artificial intelligence. It is the largest public archive of images of skin conditions, with special attention to skin cancer detection. We also host grand challenges (and live challenges) for AI models as well as conference workshops.")
+  `Summary` = "The ISIC Archive is an academic-industry collaboration that is devoted to improving dermatology artificial intelligence. It is the largest public archive of images of skin conditions, with special attention to skin cancer detection. We also host grand challenges (and live challenges) for AI models as well as conference workshops.",
+  identifier = "ISIC"
+  )
 
 resource <- dplyr::rows_insert(resource, new_ISIC, conflict = "ignore") #include conflict = ignore argument because it won't re-add the resource the next time this code is run if the file is overwritten/resource is already included.
 
-## Goal: Create the html version of links in resources
-## Edit 1: Add a column "identifier" to the resource table to use it as a merge key variable with the Data provided column entries in other tables
-## Edit 2: Make sure add new identifiers for new resources in the resource data set.
-resource %<>% 
-  mutate(identifier = c("PDX", "HemOnc", "ngchm", "OncoMX", "MethCon5", "CIViC", "BioMuta", "TCIA", "SCGV", "ivyGlimpse", "TCPA", "dcmqi", "Region Templates", "Cistrome", "TOPAS", "TCGA", "1000 Genomes", "TARGET", "CCLE", "dbGAP", "CPTAC", "PheKB", "NSCLC Radiomics", "ICGC", "ISIC"))  %>%  relocate(identifier)
-
-## From this point forward, any additions to the resource table need to include an "identifier" in the tibble/row that will be added
 
 ## Add The Cancer Epitope Database and Analysis Resource (CEDAR): Submitted 07/26/2023, 10:48 (nblazeska@lji.org)
 new_CEDAR <- tibble(
@@ -82,6 +85,21 @@ new_ARCHS4 <- tibble(
 )
 
 resource <- dplyr::rows_insert(resource, dplyr::bind_rows(new_CEDAR, new_ARCHS4), conflict = "ignore")
+
+## Add PCDC: Submitted 01/06/2023, Issue #22 on GitHub
+new_PCDC <- tibble(
+  Name = "Pediatric Cancer Data Commons (PCDC)",
+  Funding = "Yes",
+  Subcategories = "Clinical",
+  `Data Type` = "ALL Data Commons, C3P, CHIC, FA Data Commons, Global REACH, HIBiSCus, INRG, INSPiRE, INSTRuCT, INTERACT, MaGIC, NOBLE, NODAL, Reproductive HOPE",
+  `Unique Factors` = "Uses consensus-based data dictionaries and maps all clinical data in the portal to standardized terms; provides a data portal and analysis tools to assess study feasibility" ,
+  Price = "Free",
+  Link = "https://portal.pedscommons.org/login",
+  Summary = "The PCDC Data Portal offers a unified platform where researchers can use the cohort explorer and other analysis tools to explore available data and assess study feasibility; if a user wishes to perform research with data from the PCDC, the proposed project undergoes review and approval by the relevant disease consortium.",
+  identifier = "PCDC"
+)
+
+resource <- dplyr::rows_insert(resource, new_PCDC, conflict="ignore")
 
 write.csv(resource, file="data/itcr_table_resources_identifier.csv") #because this file is used as a linker for other tables/in other files, writing it out.
 

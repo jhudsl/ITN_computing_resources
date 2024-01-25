@@ -5,9 +5,20 @@ library(tidyverse)
 library(DT)
 library(here)
 
+#' Format the tibble/table to bold names, link links, add icons, and rearrange/select columns
+#'
+#' @param tableOI a tibble
+#' @param keywordOI a string; only necessary if non_resource is TRUE; example is "Clinical" or "Omics"
+#' @param non_resource a boolean; default is FALSE; whether or not the table being formatted is the resource table or a tools table; if non_resource true, it's a tool's table; if false, the resource table.
+#' 
+#' @return
+
 formatTheTables <- function(tableOI, keywordOI, non_resource = FALSE){
   
   #check that it's tibble, if not, make it a tibble
+  if (!is_tibble(tableOI)){
+    tableOI <- as_tibble(test_df)
+  }
   
   #Mutate the tibble to alter three of the columns
   if (non_resource) {
@@ -105,6 +116,14 @@ formatTheTables <- function(tableOI, keywordOI, non_resource = FALSE){
   
   return(trimmedData)
 }
+
+#' Create an HTML table using the DT::datatable function
+#'
+#' @param modified_data a tibble; has been formatted to rearrange columns, etc. already
+#' @param columnDefsListOfLists a list of lists; passed to columnDefs; user sets various attributes for columns, each sub-list must contain a vector named targets, specifying the applied columns; we're using it to set column widths and center entries
+#' 
+#' @return ITCR_table a formatted DT::datatable
+
 
 setup_dt_datatable <- function(modified_data, columnDefsListOfLists){
   ITCR_table <- modified_data %>%

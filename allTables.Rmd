@@ -36,8 +36,15 @@ knitr::knit_child("imagingTable.Rmd") #inherit modified_imaging
 knitr::knit_child("omicsTable.Rmd") #inherit modified_omics
 knitr::knit_child("clinicalTable.Rmd") #inherit modified_clinical
 
-fulltab <- bind_rows(modified_general, modified_imaging, modified_omics, modified_clinical)
-names(fulltab)
+fulltab <- bind_rows(modified_general, modified_imaging, modified_omics, modified_clinical) %>%
+  unite("PlatformCategory", c("Platform", "Category"), sep=";", remove=FALSE)
+
+duplicatesToRemove <- tibble(
+  PlatformCategory = c("<b>Cancer Genomics Cloud</b>:<br></br><a href=\"https://www.cancergenomicscloud.org/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> </div><img src=\"resources/images/Hyperlink2.png\"  height=\"30\"> </img></a><a href=\"https://docs.cancergenomicscloud.org/docs\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> </div><img src=\"resources/images/Documentation2.png\" height=\"30\"> </img></a><a href=\"https://www.cancergenomicscloud.org/collaborate\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> </div><img src=\"resources/images/Publication2.png\" height=\"30\"> </img></a>;General", "<b>Cancer Genome Collaboratory</b>:<br></br><a href=\"https://cancercollaboratory.org/\"style=\"color: #be3b2a\" target=\"_blank\"<div title=\"Main Link\"> </div><img src=\"resources/images/Hyperlink2.png\"  height=\"30\"> </img></a><a href=\"https://cancercollaboratory.org/support/user-guides\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Documentation\"> </div><img src=\"resources/images/Documentation2.png\" height=\"30\"> </img></a><a href=\"https://cancercollaboratory.org/publications-presentations\"style=\"color: #be3b2a\"target=\"_blank\"<div title=\"Publications\"> </div><img src=\"resources/images/Publication2.png\" height=\"30\"> </img></a>;General"))
+
+fulltab <- rows_delete(fulltab, duplicatesToRemove, by="PlatformCategory") %>%
+  select(-c(PlatformCategory))
+  
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}

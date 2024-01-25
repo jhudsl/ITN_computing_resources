@@ -16,15 +16,24 @@ output:
 ```{r, fig.align='center', fig.alt="Banner", out.width="1540px", echo = FALSE}
 knitr::include_graphics("resources/images/bannerITCR.png")
 ```
-<br> 
+<br>
 
 ### *Get in touch*
 
 Hey there!  
 
-The platforms and resources on the website are primarily made from ITCR Training Network (ITN) resources and are linked to the [ITCR table](https://itcr.cancer.gov/informatics-tools) hosted on the ITCR website. 
+The platforms and resources on the website are primarily made from ITCR Training Network (ITN) resources and are linked to the [ITCR table](https://itcr.cancer.gov/informatics-tools) hosted on the ITCR website.
 
-We would love to hear from you! If you have any feedback, suggestions or questions please contact:
+We would love to hear from you! If you have any feedback, suggestions or questions please contact us at [itcrtrainingnetwork@gmail.com](itcrtrainingnetwork@gmail.com).
 
-* **Carrie Wright** (cwright2@fredhutch.org)  *[for ITCR stuff]*
-* **Awan Afiaz** (aafiaz@uw.edu) *[for technical blurbs]*
+### *Contributing Guide*
+
+The code that renders this website is open source and [available on GitHub](https://github.com/jhudsl/ITCR_Tables). If you'd like to contribute by opening an issue or a pull request, visit the [`ITCR_Tables` repo](https://github.com/jhudsl/ITCR_Tables). If you would like to submit a tool or resource for inclusion, please [fill out this feedback form](https://jhudatascience.org/ITCR_Tables/feedback.html).
+
+#### Notes about Pull Requests
+
+There are GitHub actions that will take a few seconds to start tests for broken URLs and spelling/code styling. If there are spelling "errors" that are intentional, please modify the `dictionary.txt` file in the `resources` directory.
+
+#### Assigning reviewers
+
+If you open an issue or pull request, please assign Kate Isaac (`@kweav`) or Carrie Wright (`@carriewright11`) to review them.
