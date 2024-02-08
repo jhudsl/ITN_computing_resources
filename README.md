@@ -214,6 +214,6 @@ generalData <- dplyr::rows_update(generalData, tibbleCGC, by = "Name")
 
 ### Other files, not rendered
 
-* [`scripts/format-tables.R`](https://github.com/jhudsl/ITCR_Tables/blob/main/format-tables.R) -- functions that can be used to format the tables for the various `Table.Rmd` files. This script is sourced within the Rmarkdown files after loading libraries so the functions are available.
+* [`scripts/format-tables.R`](https://github.com/jhudsl/ITCR_Tables/blob/main/format-tables.R) -- functions that can be used to format the tables for the various `Table.Rmd` files. This script is sourced within the R Markdown files after loading libraries so the functions are available.
 * [`contributing.md`](https://github.com/jhudsl/ITCR_Tables/blob/main/contributing.md) -- contributing guidelines (e.g., opening an issue or pull request)
 * [`_site.yml`](https://github.com/jhudsl/ITCR_Tables/blob/main/_site.yml) -- which files are rendered and how the site is structured
