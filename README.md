@@ -2,7 +2,23 @@
 
 ## General description of repo
 
-This repo uses the [OTTR template](https://github.com/jhudsl/OTTR_Template) to [build the ITCR tools/resources table website](https://jhudatascience.org/ITCR_Tables/index.html). There are 6 tables that are generated (resources, clinical tools, imaging tools, multi-data type tools, omics tools, and all tools) using 5 input files (resources, clinical, imaging, multi-data, and omics). The resources table needs to be generated first so that a file with identifier acronyms is written that can be used in building the rest of the tables. Within each Rmarkdown building the resource, clinical, imaging, multi-data, or omics tables, the input file is read-in and then the table is formatted to add hyperlinks, rearrange columns, etc. Rather than saving these modified tables (clinical, imaging, multi-data, and omics) as output files, `knitr::knit_child` is used to force rendering the clinical, imaging, multi-data, and omics Rmarkdowns within the `allTables.Rmd`. This then allows the `allTables.Rmd` to inherit the modified table variables. Since the resources table has to be generated first, `knitr::knit_child` is used with the `resourcesTable.Rmd` first. The rows of these tables are joined together to form the all tools table (resources are not included in this). Two tools that were listed twice (each were listed once as multi-data type and once as omics) in this combo table were de-duplicated. If you need to add or edit existing resources/tools, see the instructions below. Which file you edit, depends on the type of tool or resource that you are adding/editing.      
+# Overview
+
+This repo uses the [OTTR template](https://github.com/jhudsl/OTTR_Template) to [build the ITCR tools/resources table website](https://jhudatascience.org/ITCR_Tables/index.html). 
+
+There are 6 tables that are generated:
+
+- data resources
+- clinical tools
+- imaging tools
+- multi-data type tools
+- omics tools
+- and all tools
+
+These are generated using 5 input files (data resources, clinical, imaging, multi-data, and omics). The data resources table needs to be generated first so that a file with identifier acronyms is written that can be used in building the rest of the tables. Within each R Markdown file building the tables, the input file is read-in and then the table is formatted to add hyperlinks, rearrange columns, etc. 
+
+Rather than saving these modified tables (clinical, imaging, multi-data, and omics) as output files, `knitr::knit_child` is used to force rendering the clinical, imaging, multi-data, and omics R Markdowns within the `allTables.Rmd`. This then allows the `allTables.Rmd` to inherit the modified table variables. Since the resources table has to be generated first, `knitr::knit_child` is used with the `resourcesTable.Rmd` first. The rows of these tables are joined together to form the all tools table (data resources are not included in this). 
+      
 
 ## Adding to or editing the Resource Table
 
