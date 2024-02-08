@@ -22,7 +22,7 @@ Rather than saving these modified tables (clinical, imaging, multi-data, and omi
 
 ## Adding to or editing the Resource Table
 
-The resource table has different information for each resource compared to the tools in the other tables.
+The data resource table has additional information about data that can be accessed by the various computing platform tools in the other tables.
 
 ### Adding a new data resource to the tables
 
