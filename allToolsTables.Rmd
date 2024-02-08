@@ -30,7 +30,7 @@ library(magrittr)
 ```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
 ## Solution using child Rmds:  https://stackoverflow.com/questions/70785139/accessing-objects-from-another-mardown-file
 ## general refers to multi-data types
-knitr::knit_child("resourceTable.Rmd")
+knitr::knit_child("dataResourceTable.Rmd")
 knitr::knit_child("multiTable.Rmd") #inherit modified_general
 knitr::knit_child("imagingTable.Rmd") #inherit modified_imaging
 knitr::knit_child("omicsTable.Rmd") #inherit modified_omics

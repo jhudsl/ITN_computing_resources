@@ -32,11 +32,11 @@ navbar:
         icon: fa-heartbeat
         
       - text: All platforms
-        href: allTables.html
+        href: allToolsTables.html
         icon: fa-th
     
   - text: Data Resources  
-    href: resourceTable.html 
+    href: dataResourceTable.html 
     icon: fa-database
  
     

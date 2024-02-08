@@ -17,7 +17,7 @@ There are 6 tables that are generated:
 
 These are generated using 5 input files (data resources, clinical, imaging, multi-data, and omics). The data resources table needs to be generated first so that a file with identifier acronyms is written that can be used in building the rest of the tables. Within each R Markdown file building the tables, the input file is read-in and then the table is formatted to add hyperlinks, rearrange columns, etc. 
 
-Rather than saving these modified tables (clinical, imaging, multi-data, and omics) as output files, `knitr::knit_child` is used to force rendering the clinical, imaging, multi-data, and omics R Markdowns within the `allTables.Rmd`. This then allows the `allTables.Rmd` to inherit the modified table variables. Since the resources table has to be generated first, `knitr::knit_child` is used with the `resourcesTable.Rmd` first. The rows of these tables are joined together to form the all tools table (data resources are not included in this). 
+Rather than saving these modified tables (clinical, imaging, multi-data, and omics) as output files, `knitr::knit_child` is used to force rendering the clinical, imaging, multi-data, and omics R Markdowns within the `allToolTables.Rmd`. This then allows the `allToolTables.Rmd` to inherit the modified table variables. Since the resources table has to be generated first, `knitr::knit_child` is used with the `dataResourceTable.Rmd` first. The rows of these tables are joined together to form the all tools table (data resources are not included in this). 
       
 
 ## Adding to or editing the Resource Table
@@ -26,7 +26,7 @@ The data resource table has additional information about data that can be access
 
 ### Adding a new data resource to the tables
 
-When adding a Data Resources Platform to the resources table, you will edit the first code block (which reads in the original `.csv` file) in [`resourcesTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/resourceTable.Rmd).
+When adding a Data Resources Platform to the resources table, you will edit the first code block (which reads in the original `.csv` file) in [`dataResourceTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/dataResourceTable.Rmd).
 
   * First, create a tibble for the new resource, including the following information:
     * "Name"
@@ -63,7 +63,7 @@ resource <- dplyr::rows_insert(resource, new_PCDC, conflict="ignore")
 
 ### Editing an existing data resource in the tables
 
-When editing an existing entry in the resources table, you will edit the first code block (which reads in the original `itcr_table_resources.csv` file) in [`resourcesTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/resourceTable.Rmd).
+When editing an existing entry in the resources table, you will edit the first code block (which reads in the original `itcr_table_resources.csv` file) in [`dataResourceTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/dataResourceTable.Rmd).
 
 * First, make a tibble with the name of the entry you want to edit as well as the column/info you want to edit. The column/info you want to edit should be one of the following columns:
   * "Name"
@@ -201,12 +201,12 @@ generalData <- dplyr::rows_update(generalData, tibbleCGC, by = "Name")
 ## Important files in the repo
 ### Rendered files
 
-* [`resourcesTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/resourceTable.Rmd) -- renders the ["Data Resources" page](https://jhudatascience.org/ITCR_Tables/allTables.html)
+* [`dataResourceTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/dataResourceTable.Rmd) -- renders the ["Data Resources" page](https://jhudatascience.org/ITCR_Tables/dataResourceTable.html)
 * [`clinicalTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/clinicalTable.Rmd) -- renders the ["Computing Resources --> Clinical Platforms" page](https://jhudatascience.org/ITCR_Tables/clinicalTable.html)
 * [`imagingTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/imagingTable.Rmd) -- renders the ["Computing Resources --> Imaging Platforms" page](https://jhudatascience.org/ITCR_Tables/imagingTable.html)
 * [`multiTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/multiTable.Rmd) -- renders the ["Computing Resources --> Multi-data type Platforms" page](https://jhudatascience.org/ITCR_Tables/multiTable.html)
 * [`omicsTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/omicsTable.Rmd) -- renders the ["Computing Resources --> Omics Platforms" page](https://jhudatascience.org/ITCR_Tables/omicsTable.html)
-* [`allTables.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/allTables.Rmd) -- renders the ["Computing Resources --> All platforms" page](https://jhudatascience.org/ITCR_Tables/allTables.html)
+* [`allToolTables.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/allTables.Rmd) -- renders the ["Computing Resources --> All platforms" page](https://jhudatascience.org/ITCR_Tables/allToolTables.html)
 * [`contact.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/contact.Rmd) -- renders the ["Contact" page](https://jhudatascience.org/ITCR_Tables/contact.html)
 * [`feedback.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/feedback.Rmd) -- renders the ["Feedback Form" page](https://jhudatascience.org/ITCR_Tables/feedback.html)
 * [`index.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/index.Rmd) -- renders the [home page](https://jhudatascience.org/ITCR_Tables/index.html)
