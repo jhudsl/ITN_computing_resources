@@ -29,7 +29,7 @@ resource <- readr::read_csv(file = here::here("data/itcr_table_resources.csv"))
 
 tibbleTOPAS <- tibble(
   Name = "TOPAS",
-  Price = '<a href="http://www.topasmc.org/licensing" style="color: #be3b2a" target="_blank"<div title="Pricing Link"> </div>Paid/Free</a>'
+  Price = '<a href="https://www.topasmc.org/license" style="color: #be3b2a" target="_blank"<div title="Pricing Link"> </div>Paid/Free</a>'
 )
 
 resource <- dplyr::rows_update(resource, tibbleTOPAS, by="Name") #this will update the existing TOPAS entry

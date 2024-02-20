@@ -84,7 +84,7 @@ When editing an existing entry in the resources table, you will edit the first c
 ```
 tibbleTOPAS <- tibble(
   Name = "TOPAS",
-  Price = '<a href="http://www.topasmc.org/licensing" style="color: #be3b2a" target="_blank"<div title="Pricing Link"> </div>Paid/Free</a>'
+  Price = '<a href="http://www.topasmc.org/license" style="color: #be3b2a" target="_blank"<div title="Pricing Link"> </div>Paid/Free</a>'
 )
 
 resource <- dplyr::rows_update(resource, tibbleTOPAS, by="Name") #this will update the existing TOPAS entry
@@ -206,7 +206,7 @@ generalData <- dplyr::rows_update(generalData, tibbleCGC, by = "Name")
 * [`imagingTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/imagingTable.Rmd) -- renders the ["Computing Resources --> Imaging Platforms" page](https://jhudatascience.org/ITCR_Tables/imagingTable.html)
 * [`multiTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/multiTable.Rmd) -- renders the ["Computing Resources --> Multi-data type Platforms" page](https://jhudatascience.org/ITCR_Tables/multiTable.html)
 * [`omicsTable.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/omicsTable.Rmd) -- renders the ["Computing Resources --> Omics Platforms" page](https://jhudatascience.org/ITCR_Tables/omicsTable.html)
-* [`allToolTables.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/allTables.Rmd) -- renders the ["Computing Resources --> All platforms" page](https://jhudatascience.org/ITCR_Tables/allToolTables.html)
+* [`allToolsTables.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/allToolsTables.Rmd) -- renders the ["Computing Resources --> All platforms" page](https://jhudatascience.org/ITCR_Tables/allToolsTables.html)
 * [`contact.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/contact.Rmd) -- renders the ["Contact" page](https://jhudatascience.org/ITCR_Tables/contact.html)
 * [`feedback.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/feedback.Rmd) -- renders the ["Feedback Form" page](https://jhudatascience.org/ITCR_Tables/feedback.html)
 * [`index.Rmd`](https://github.com/jhudsl/ITCR_Tables/blob/main/index.Rmd) -- renders the [home page](https://jhudatascience.org/ITCR_Tables/index.html)
@@ -214,6 +214,6 @@ generalData <- dplyr::rows_update(generalData, tibbleCGC, by = "Name")
 
 ### Other files, not rendered
 
-* [`scripts/format-tables.R`](https://github.com/jhudsl/ITCR_Tables/blob/main/format-tables.R) -- functions that can be used to format the tables for the various `Table.Rmd` files. This script is sourced within the R Markdown files after loading libraries so the functions are available.
+* [`scripts/format-tables.R`](https://github.com/jhudsl/ITCR_Tables/blob/main/scripts/format-tables.R) -- functions that can be used to format the tables for the various `Table.Rmd` files. This script is sourced within the R Markdown files after loading libraries so the functions are available.
 * [`contributing.md`](https://github.com/jhudsl/ITCR_Tables/blob/main/contributing.md) -- contributing guidelines (e.g., opening an issue or pull request)
 * [`_site.yml`](https://github.com/jhudsl/ITCR_Tables/blob/main/_site.yml) -- which files are rendered and how the site is structured
