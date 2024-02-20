@@ -299,7 +299,7 @@ $(document).ready(function () {
       </a>
     </li>
     <li>
-      <a href="allTables.html">
+      <a href="allToolsTables.html">
         <span class="fa fa-th"></span>
          
         All platforms
@@ -308,7 +308,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li>
-  <a href="resourceTable.html">
+  <a href="dataResourceTable.html">
     <span class="fa fa-database"></span>
      
     Data Resources
@@ -344,14 +344,17 @@ $(document).ready(function () {
 </div>
 
 
-<div id="file-name-structure" class="section level2">
-<h2>File name structure</h2>
-<ol style="list-style-type: decimal">
-<li>filename.csv = The original data files that we had initially.</li>
-<li>filename_new.csv = the new entries/modifications added to the original files. Such changes were performed in the <code>alldataFilesEditor.Rmd</code>. (Overwriting the original file did not work since it kept adding the same row with new tool information every time it compiled the Rmd file.)</li>
-<li>modifiled_filename.csv = the data files after preparing them for website view (keeping certain columns, removing others, hyperlinked, etc.). These were compiled in each of the different table’s Rmd files and then we used the modified files (with all the editing) in the “All platforms” page. This allowed us to avoid copy pasting the same wrangling codes again in the “allTables.Rmd”.</li>
-</ol>
-<p>The workflow is basically this: 1. We add new/modify new/old entries in each datasets in the <code>alldataFilesEditor.Rmd</code> (filename.csv &gt; filename_new.csv) 2. We wrangle each dataset and generate the modified datasets suitable for using with <code>DT::dataTable()</code> (filename_new.csv &gt; modified_filename.csv).</p>
+<div id="contributing-guide" class="section level2">
+<h2>Contributing Guide</h2>
+<p>The code that renders this website is open source and <a href="https://github.com/jhudsl/ITCR_Tables">available on GitHub</a>. If you’d like to contribute by opening an issue or a pull request, visit the <a href="https://github.com/jhudsl/ITCR_Tables"><code>ITCR_Tables</code> repo</a>. If you would like to submit a tool or resource for inclusion, please <a href="https://jhudatascience.org/ITCR_Tables/feedback.html">fill out this feedback form</a>.</p>
+<div id="notes-about-pull-requests" class="section level3">
+<h3>Notes about Pull Requests</h3>
+<p>There are GitHub actions that will take a few seconds to start tests for broken URLs and spelling/code styling. If there are spelling “errors” that are intentional, please modify the <code>dictionary.txt</code> file in the <code>resources</code> directory.</p>
+</div>
+<div id="assigning-reviewers" class="section level3">
+<h3>Assigning reviewers</h3>
+<p>If you open an issue or pull request, please assign Kate Isaac (<code>@kweav</code>) or Carrie Wright (<code>@carriewright11</code>) to review them.</p>
+</div>
 </div>
 
 
