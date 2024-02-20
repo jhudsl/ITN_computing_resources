@@ -12,7 +12,7 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of informatics and biomedical platforms that can help researchers work with **multiple types** of publicly available data and or their own data. These platforms provide computing resource support across different areas of bioinformatics research. 
+The following table contains a list of informatics and biomedical platforms that can help researchers work with **multiple types** of publicly available data and or their own data. These platforms provide computing resource support across different areas of bioinformatics research.
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 #Load DT, dplyr
@@ -24,8 +24,8 @@ library(magrittr)
 source("scripts/format-tables.R")
 ```
 
-**Table keys:** 
-<div title="Table keys"> 
+**Table keys:**
+<div title="Table keys">
 <img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
@@ -45,17 +45,17 @@ generalData <- dplyr::rows_update(generalData, tibbleCGC, by = "Name")
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
-modified_general <- formatTheTables(generalData, "General", non_resource = TRUE) 
-# save the trimmed version of the data file to call into allTables.Rmd
-write_csv(modified_general, file = "data/modified_general.csv")
+modified_general <- formatTheTables(generalData, "General", non_resource = TRUE)
+# save to the data folder
+#write_csv(modified_general, file = "data/modified_general.csv")
 ```
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 # Create a General Table
 
 columnDefsListOfLists <- list(list(className = 'dt-center', targets = "_all"),
-                                     list(width = '280px', targets = c(2)) , 
-                                     list(width = '120px', targets = c(3)) 
+                                     list(width = '280px', targets = c(2)) ,
+                                     list(width = '120px', targets = c(3))
                               )
 
 ITCR_general <- setup_dt_datatable(modified_general, columnDefsListOfLists)

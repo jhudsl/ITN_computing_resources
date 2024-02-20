@@ -5,7 +5,7 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of "omics" informatics platforms funded by ITCR grants. "Omics" platforms are those which work with genomic or proteomic data types, such as RNA-Seq data. These platforms allow access to interactively explore and analyze large-scale cancer data, as well as create and share reproducible workspaces and results. The goals of these platforms are to facilitate scientific collaboration and to better empower the research community for "omic" research. 
+The following table contains a list of "omics" informatics platforms funded by ITCR grants. "Omics" platforms are those which work with genomic or proteomic data types, such as RNA-Seq data. These platforms allow access to interactively explore and analyze large-scale cancer data, as well as create and share reproducible workspaces and results. The goals of these platforms are to facilitate scientific collaboration and to better empower the research community for "omic" research.
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 library(DT)
@@ -16,8 +16,8 @@ library(magrittr)
 source("scripts/format-tables.R")
 ```
 
-**Table keys:** 
-<div title="Table keys"> 
+**Table keys:**
+<div title="Table keys">
 <img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
@@ -39,8 +39,8 @@ omicsData <- dplyr::rows_update(omicsData, tibbleCGC, by = "Name")
 
 modified_omics <- formatTheTables(omicsData, "Omics", non_resource = TRUE)
 
-# save the trimmed version of the data file to call into allTables.Rmd
-write_csv(modified_omics, file = "data/modified_omics.csv")
+# save to the data folder
+#write_csv(modified_omics, file = "data/modified_omics.csv")
 ```
 
 
@@ -48,7 +48,7 @@ write_csv(modified_omics, file = "data/modified_omics.csv")
 # Create an omics Table
 
 columnDefsListOfLists <- list(list(className = 'dt-center', targets = "_all"),
-                                     list(width = '280px', targets = c(2)) , 
+                                     list(width = '280px', targets = c(2)) ,
                                      list(width = '130px', targets = c(3)) )
 
 ITCR_omics <- setup_dt_datatable(modified_omics, columnDefsListOfLists)

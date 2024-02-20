@@ -5,7 +5,7 @@ output: html_document
 
 ### **Overview**
 
-The following table contains a list of clinical informatics platforms. These platforms work with several types of clinical data, such as EMR Text and Clinical Notes, utilizing Natural Language Processing techniques, AI and machine learning algorithms in order to generate actionable insights with automated research tools. 
+The following table contains a list of clinical informatics platforms. These platforms work with several types of clinical data, such as EMR Text and Clinical Notes, utilizing Natural Language Processing techniques, AI and machine learning algorithms in order to generate actionable insights with automated research tools.
 
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 library(DT)
@@ -16,8 +16,8 @@ library(magrittr)
 source("scripts/format-tables.R")
 ```
 
-**Table keys:** 
-<div title="Table keys"> 
+**Table keys:**
+<div title="Table keys">
 <img src="resources/images/Hyperlink2.png"  height="30"> </img> = Main Link, <img src="resources/images/Documentation2.png" height="30"> </img> = Documentation, <img src="resources/images/Publication2.png" height="30"> </img> = Publications, &nbsp; <img src="ITCRLogo.png" height="25"> </img> = ITCR Funded
 </div>
 
@@ -30,7 +30,7 @@ clinicalData <- read_csv(file = here::here("data/itcr_table_clinical.csv"))
 ```{r,echo=FALSE,results='hide',message=FALSE, warning=FALSE}
 modified_clinical <- formatTheTables(clinicalData, "Clinical", non_resource = TRUE)
 # save this data file to the data folder
-write_csv(modified_clinical, file = "data/modified_clinical.csv")
+#write_csv(modified_clinical, file = "data/modified_clinical.csv")
 ```
 
 
@@ -38,8 +38,8 @@ write_csv(modified_clinical, file = "data/modified_clinical.csv")
 # Create a Clinical Table
 
 columnDefsListOfLists <- list(list(className = 'dt-center', targets = "_all"),
-                                     list(width = '280px', targets = c(2)) , 
-                                     list(width = '120px', targets = c(3)) 
+                                     list(width = '280px', targets = c(2)) ,
+                                     list(width = '120px', targets = c(3))
                               )
 
 ITCR_clinical <- setup_dt_datatable(modified_clinical, columnDefsListOfLists)
