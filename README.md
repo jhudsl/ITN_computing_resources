@@ -1,10 +1,12 @@
-# ITCR_Tables
+# ITN_computing_resources
+
+A searchable table for scientific computing and data resource platforms relevant for cancer informatics or built by the Informatics Technology for Cancer Research (ITCR) network. 
 
 ## General description of repo
 
 # Overview
 
-This repo uses the [OTTR template](https://github.com/jhudsl/OTTR_Template) to [build the ITCR tools/resources table website](https://jhudatascience.org/ITCR_Tables/index.html). 
+This repo uses the [OTTR template](https://github.com/jhudsl/OTTR_Template_Website) to [build the ITCR tools/resources table website](https://jhudatascience.org/ITN_computing_resources/index.html). 
 
 There are 6 tables that are generated:
 

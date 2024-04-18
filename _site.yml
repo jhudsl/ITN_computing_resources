@@ -1,4 +1,4 @@
-name: ITCR Scientific Software Resources
+name: Computing and Data Resources for Cancer Informatics
 output_dir: '.'
 navbar:
   title: "<img id=\"logo\" style=\"width: 75px;\" src=\"ITCRLogo.png\" />"

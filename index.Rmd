@@ -1,5 +1,5 @@
 ---
-title: "**ITCR Scientific Software Resources**"
+title: "**Computing and Data Resources for Cancer Informatics**"
 output:
   html_document
 ---
