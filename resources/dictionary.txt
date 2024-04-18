@@ -14,10 +14,13 @@ lightgreen
 omics
 omicsTable
 OTTR
+Plink
 proteomic
 radiographic
+repo
 Rmd
 subdir
+tibble
 th
 www
 bioinformatics
