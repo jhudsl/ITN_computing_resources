@@ -23,7 +23,7 @@ knitr::include_graphics("resources/images/bannerITCR.png")
 
 ### **Welcome!**
 
-This website is intended to help cancer researchers find bioinformatics computing platforms and data resources, many of which are funded by the ITCR (Informatics Technology for Cancer Research) program of the NCI (National Cancer Institute). Please note that some of the information presented in these tables came from the [ITCR website](https://itcr.cancer.gov/informatics-tools).
+This website is intended to help cancer researchers find bioinformatics computing platforms and data resources, many of which are funded by the ITCR (Informatics Technology for Cancer Research) program of the NCI (National Cancer Institute). Please note that some of the information presented in these tables came from the [ITCR website](https://www.cancer.gov/about-nci/organization/cssi/resources/informatics-tools).
 
   - **Computing resource platforms** are web or cloud-based platforms that provide computational support to researchers including, but not limited to, analysis, visualization, storage, and computation of large-scale bioinformatics data sets while facilitating efficient workflow,  database management, wider collaboration,  reproducibility, and streamlined scientific communication.  
   
@@ -33,7 +33,7 @@ Each resource will have, along with their brief description, up to three links t
 
 Please browse the through the resources on each page by using the navigation bar above.  
 <br> <br>
-In addition to this site, the ITCR also offers **[an interactive table](https://itcr.cancer.gov/informatics-tools)** of Informatics Tools on the **[ITCR website](https://itcr.cancer.gov/)**. 
+In addition to this site, the ITCR also offers **[an interactive table](https://www.cancer.gov/about-nci/organization/cssi/resources/informatics-tools)** of Informatics Tools on the **[ITCR website](https://itcr.cancer.gov/)**. 
 <br><br>
 
 If you would like to contact us please use the contact information listed on the **Contact** page. We would love to hear your questions, feedback and suggestions!  
