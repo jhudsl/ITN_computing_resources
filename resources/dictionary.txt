@@ -1,5 +1,6 @@
 cheatsheet
 css
+cssi
 custimization
 cwrigh
 DT
@@ -7,14 +8,18 @@ EMR
 favicon
 generalTable
 HTTPS
+https
 imagingTable
 ITCR
+itcr
 lightblue
 lightgreen
+nci
 omics
 omicsTable
 OTTR
 Plink
+PLink
 proteomic
 radiographic
 repo
