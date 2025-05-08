@@ -13,8 +13,8 @@
 
 <title>Computing and Data Resources for Cancer Informatics</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 <link rel="shortcut icon" href="resources/images/favicon_ITCR.ico" />
 
  <!--- 11/8/22 Awan: added the favicon_ITCR.ico file to the resources/image folder and included the favicon to the website. --->
@@ -64,6 +64,7 @@ if (window.hljs) {
 
 
 
+
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
 
@@ -88,6 +89,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -145,11 +149,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -178,8 +186,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -187,16 +195,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -240,7 +241,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -257,7 +258,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-desktop"></span>
      
     Computing Resources
@@ -342,7 +343,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><strong>Computing and Data Resources for Cancer Informatics</strong></h1>
+<h1 class="title toc-ignore"><strong>Computing and Data Resources for
+Cancer Informatics</strong></h1>
 
 </div>
 
@@ -356,19 +358,47 @@ $(document).ready(function () {
 }
 </style>
 <p><br></p>
-<p><img src="resources/images/bannerITCR.png" title="Banner" alt="Banner" width="1540px" style="display: block; margin: auto;" /></p>
+<p><img src="resources/images/bannerITCR.png" alt="Banner" width="1540px" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <div id="welcome" class="section level3">
 <h3><strong>Welcome!</strong></h3>
-<p>This website is intended to help cancer researchers find bioinformatics computing platforms and data resources, many of which are funded by the ITCR (Informatics Technology for Cancer Research) program of the NCI (National Cancer Institute). Please note that some of the information presented in these tables came from the <a href="https://itcr.cancer.gov/informatics-tools">ITCR website</a>.</p>
+<p>This website is intended to help cancer researchers find
+bioinformatics computing platforms and data resources, many of which are
+funded by the ITCR (Informatics Technology for Cancer Research) program
+of the NCI (National Cancer Institute). Please note that some of the
+information presented in these tables came from the <a
+href="https://www.cancer.gov/about-nci/organization/cssi/resources/informatics-tools">ITCR
+website, specifically
+https://www.cancer.gov/about-nci/organization/cssi/resources/informatics-tools</a>.</p>
 <ul>
-<li><p><strong>Computing resource platforms</strong> are web or cloud-based platforms that provide computational support to researchers including, but not limited to, analysis, visualization, storage, and computation of large-scale bioinformatics data sets while facilitating efficient workflow, database management, wider collaboration, reproducibility, and streamlined scientific communication.</p></li>
-<li><p><strong>Data resources</strong> are remotely hosted sources of curated or collaborative bioinformatics data that researchers can access and utilize as required. The available data sets accommodate genomics, proteomics, imaging (histology and radiology), as well as other types of data.</p></li>
+<li><p><strong>Computing resource platforms</strong> are web or
+cloud-based platforms that provide computational support to researchers
+including, but not limited to, analysis, visualization, storage, and
+computation of large-scale bioinformatics data sets while facilitating
+efficient workflow, database management, wider collaboration,
+reproducibility, and streamlined scientific communication.</p></li>
+<li><p><strong>Data resources</strong> are remotely hosted sources of
+curated or collaborative bioinformatics data that researchers can access
+and utilize as required. The available data sets accommodate genomics,
+proteomics, imaging (histology and radiology), as well as other types of
+data.</p></li>
 </ul>
-<p>Each resource will have, along with their brief description, up to three links that navigate towards their (1) main site, (2) pertinent documentation, and (3) a list of their publications. Please note that all resource summaries were obtained from their respective sources.</p>
-<p>Please browse the through the resources on each page by using the navigation bar above.<br />
-<br> <br> In addition to this site, the ITCR also offers <strong><a href="https://itcr.cancer.gov/informatics-tools">an interactive table</a></strong> of Informatics Tools on the <strong><a href="https://itcr.cancer.gov/">ITCR website</a></strong>. <br><br></p>
-<p>If you would like to contact us please use the contact information listed on the <strong>Contact</strong> page. We would love to hear your questions, feedback and suggestions!</p>
+<p>Each resource will have, along with their brief description, up to
+three links that navigate towards their (1) main site, (2) pertinent
+documentation, and (3) a list of their publications. Please note that
+all resource summaries were obtained from their respective sources.</p>
+<p>Please browse the through the resources on each page by using the
+navigation bar above.<br />
+<br> <br> In addition to this site, the ITCR also offers <strong><a
+href="https://www.cancer.gov/about-nci/organization/cssi/resources/informatics-tools">an
+interactive table at
+https://www.cancer.gov/about-nci/organization/cssi/resources/informatics-tools</a></strong>
+of Informatics Tools on the <strong><a
+href="https://itcr.cancer.gov/">ITCR website:
+https://itcr.cancer.gov/</a></strong>. <br><br></p>
+<p>If you would like to contact us please use the contact information
+listed on the <strong>Contact</strong> page. We would love to hear your
+questions, feedback and suggestions!</p>
 </div>
 
 
